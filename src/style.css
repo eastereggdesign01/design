@@ -304,6 +304,20 @@ button {
   padding: 3px 7px;
 }
 
+.badge-homepage-only {
+  display: inline-block;
+  vertical-align: 2px;
+  margin-left: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #b45309;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 6px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
 .empty {
   padding: 80px 0;
   text-align: center;
