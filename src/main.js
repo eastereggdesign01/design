@@ -1,6 +1,7 @@
 import './style.css';
 import hospitals from './data/hospitals.json';
 import company from './data/company.json';
+import sb from './data/supabase.json';
 
 /* 로고 파일 규칙: public/logos/{슬러그}_{버전}.png
    버전 — v: 세로 / h: 가로 / vw: 세로 화이트 / hw: 가로 화이트
@@ -45,28 +46,125 @@ let favOnly = false;
 
 const DEPTS = ['전체', ...new Set(hospitals.flatMap((h) => h.dept))];
 
-/* ---------- 담당자 & 즐겨찾기 (브라우저 localStorage 저장) ---------- */
+/* ---------- 담당자 & 즐겨찾기 ---------- */
+/* 기본은 브라우저(localStorage) 저장.
+   Supabase가 설정되고 마스터키로 로그인하면 서버에 담당자별로 저장되어
+   어느 기기에서나 같은 즐겨찾기를 보게 된다. */
 const USER_KEY = 'bkh_user';
+const MASTER_KEY = 'bkh_master';
 let user = localStorage.getItem(USER_KEY) || '';
+let masterKey = localStorage.getItem(MASTER_KEY) || '';
+const SB_ON = !!(sb.url && sb.anonKey);
+const loggedIn = () => SB_ON && !!masterKey;
+
 const favKey = () => `bkh_favs::${user || '공용'}`;
 let favs = new Set(JSON.parse(localStorage.getItem(favKey()) || '[]'));
+
+async function sbFetch(path, opts = {}) {
+  const res = await fetch(`${sb.url}/rest/v1/${path}`, {
+    ...opts,
+    headers: {
+      apikey: sb.anonKey,
+      Authorization: `Bearer ${sb.anonKey}`,
+      'Content-Type': 'application/json',
+      ...(opts.headers || {}),
+    },
+  });
+  if (!res.ok) throw new Error(`supabase ${res.status}`);
+  return res.status === 204 ? null : res.json();
+}
+
+async function verifyMasterKey(key) {
+  const rows = await sbFetch(`app_keys?select=key&key=eq.${encodeURIComponent(key)}`);
+  return rows.length > 0;
+}
+
+async function loadRemoteFavs() {
+  if (!loggedIn() || !user) return;
+  try {
+    const rows = await sbFetch(
+      `favorites?select=slug&master_key=eq.${encodeURIComponent(masterKey)}&user_name=eq.${encodeURIComponent(user)}`
+    );
+    favs = new Set(rows.map((r) => r.slug));
+    saveFavs();
+    renderChips();
+    renderGrid();
+  } catch {
+    showToast('동기화 실패 — 브라우저 저장분을 표시합니다');
+  }
+}
 
 function saveFavs() {
   localStorage.setItem(favKey(), JSON.stringify([...favs]));
 }
 
+function pushRemoteFav(slug, add) {
+  if (!loggedIn() || !user) return;
+  const q = `favorites?master_key=eq.${encodeURIComponent(masterKey)}&user_name=eq.${encodeURIComponent(user)}&slug=eq.${encodeURIComponent(slug)}`;
+  const req = add
+    ? sbFetch('favorites', {
+        method: 'POST',
+        headers: { Prefer: 'resolution=ignore-duplicates' },
+        body: JSON.stringify({ master_key: masterKey, user_name: user, slug }),
+      })
+    : sbFetch(q, { method: 'DELETE' });
+  req.catch(() => showToast('서버 저장 실패 — 네트워크를 확인하세요'));
+}
+
 function toggleFav(slug) {
-  if (favs.has(slug)) {
-    favs.delete(slug);
-    showToast('즐겨찾기에서 뺐습니다');
-  } else {
+  const add = !favs.has(slug);
+  if (add) {
     favs.add(slug);
     showToast('즐겨찾기에 추가했습니다 ★');
+  } else {
+    favs.delete(slug);
+    showToast('즐겨찾기에서 뺐습니다');
   }
   saveFavs();
+  pushRemoteFav(slug, add);
   renderChips();
   renderGrid();
 }
+
+function renderTeam() {
+  const btn = document.getElementById('team-chip');
+  if (!SB_ON) {
+    btn.style.display = 'none';
+    return;
+  }
+  btn.style.display = '';
+  btn.innerHTML = loggedIn()
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0"/></svg>팀 로그인됨'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>팀 로그인';
+  btn.classList.toggle('set', loggedIn());
+}
+
+document.addEventListener('click', async (e) => {
+  if (!e.target.closest('#team-chip')) return;
+  if (loggedIn()) {
+    if (confirm('팀 로그인을 해제할까요? (즐겨찾기는 이 브라우저에만 저장됩니다)')) {
+      masterKey = '';
+      localStorage.removeItem(MASTER_KEY);
+      renderTeam();
+    }
+    return;
+  }
+  const key = prompt('팀 마스터키를 입력하세요');
+  if (!key) return;
+  try {
+    if (await verifyMasterKey(key.trim())) {
+      masterKey = key.trim();
+      localStorage.setItem(MASTER_KEY, masterKey);
+      renderTeam();
+      showToast('팀 로그인 완료 — 즐겨찾기가 동기화됩니다');
+      loadRemoteFavs();
+    } else {
+      showToast('마스터키가 올바르지 않습니다');
+    }
+  } catch {
+    showToast('로그인 실패 — 네트워크를 확인하세요');
+  }
+});
 
 function setUser(name) {
   user = (name || '').trim();
@@ -76,6 +174,7 @@ function setUser(name) {
   renderUser();
   renderChips();
   renderGrid();
+  loadRemoteFavs();
 }
 
 function renderUser() {
@@ -108,6 +207,7 @@ app.innerHTML = `
           <input id="search-input" type="search" placeholder="병원명·전화·주소 검색" autocomplete="off" />
         </div>
         <button class="user-chip" id="user-chip" title="담당자 설정 — 즐겨찾기가 담당자별로 저장됩니다"></button>
+        <button class="user-chip" id="team-chip" title="팀 마스터키로 로그인하면 즐겨찾기가 모든 기기에서 동기화됩니다"></button>
       </div>
       <div class="chips" id="chips"></div>
     </div>
@@ -719,6 +819,8 @@ document.getElementById('search-input').addEventListener('input', (e) => {
 });
 
 renderUser();
+renderTeam();
 renderCompany();
 renderChips();
 renderGrid();
+loadRemoteFavs();
