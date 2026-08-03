@@ -4,8 +4,8 @@
   "logos": [
     { "file": "easteregg_v.png", "label": "세로 컬러", "dark": false },
     { "file": "easteregg_h.png", "label": "가로 컬러", "dark": false },
-    { "file": "easteregg_hw.png", "label": "가로 화이트", "dark": true },
-    { "file": "easteregg_vm.png", "label": "세로 혼합", "dark": true }
+    { "file": "easteregg_vm.png", "label": "세로 혼합", "dark": true },
+    { "file": "easteregg_hw.png", "label": "가로 화이트", "dark": true }
   ],
   "colors": [
     { "label": "Main", "hex": "#50C8FA" },
