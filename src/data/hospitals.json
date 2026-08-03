@@ -32,8 +32,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/365hang_"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "jshang",
@@ -66,8 +65,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/js_hang25"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "geomdanhang",
@@ -104,8 +102,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/geomdanhang"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "kimhyeeun",
@@ -137,8 +134,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/khesurgery"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "maxmo",
@@ -170,8 +166,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/maxmoclinic"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "miraehangmaek",
@@ -209,8 +204,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/miraehang_"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "bucheonmompyeonhan",
@@ -244,8 +238,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/mampyunhan"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "samsungyu",
@@ -282,8 +275,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/samsungu2"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "saebit",
@@ -318,8 +310,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/hongcrates"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "seoulyuhang",
@@ -353,8 +344,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/seouluhang_"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "seoultaphangmaek",
@@ -389,8 +379,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/tophmsurgery"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "seoulhanghaji",
@@ -428,8 +417,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/hangandhagi"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "seoultunteun",
@@ -462,7 +450,7 @@
         "url": "http://www.seoultntn.co.kr/"
       }
     ],
-    "homepageOnly": true
+    "badge": "홈페이지만 제작 · 마케팅 미진행"
   },
   {
     "slug": "sejong365mideum",
@@ -510,8 +498,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/sejong365trust"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "songdo",
@@ -547,8 +534,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/djsongdo"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "smileme",
@@ -578,7 +564,7 @@
         "url": "http://smileme-dental.com/"
       }
     ],
-    "homepageOnly": true
+    "badge": "홈페이지만 관리 · 마케팅 미진행"
   },
   {
     "slug": "yeouiyuhang",
@@ -611,8 +597,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/yeouiyh"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "yeilhang",
@@ -645,8 +630,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/yeil_clinic"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "joeunachim",
@@ -678,8 +662,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/mkhdream7"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "champyeonhan",
@@ -708,8 +691,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/charmphog"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "chaehang",
@@ -738,8 +720,7 @@
         "label": "홈페이지",
         "url": "http://www.chsurgery.com/"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "nowonhangpyeonhan",
@@ -773,8 +754,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/drkang2024"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "daywell_bundang",
@@ -806,8 +786,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/daywell_bundang"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "daywell_daechi",
@@ -839,8 +818,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/daywell_daechi"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "daywell_yongsan",
@@ -873,8 +851,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/daywell_yongsan"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "daywell_misa",
@@ -903,8 +880,7 @@
         "label": "홈페이지",
         "url": "http://daywellclinic.com/misa/"
       }
-    ],
-    "homepageOnly": false
+    ]
   },
   {
     "slug": "osegwan",
@@ -928,7 +904,7 @@
         "url": "http://dcoskosclinic.com/"
       }
     ],
-    "homepageOnly": true
+    "badge": "홈페이지만 제작 · 마케팅 미진행"
   },
   {
     "slug": "ajuhang",
@@ -964,7 +940,6 @@
         "label": "블로그",
         "url": "https://blog.naver.com/craftrain"
       }
-    ],
-    "homepageOnly": false
+    ]
   }
 ]

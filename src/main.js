@@ -310,11 +310,11 @@ function renderGrid() {
     const name = document.createElement('div');
     name.className = 'card-name';
     name.textContent = h.name;
-    if (h.homepageOnly) {
+    if (h.badge) {
       const badge = document.createElement('span');
       badge.className = 'badge-homepage-only';
       badge.textContent = '홈페이지만';
-      badge.title = '홈페이지만 제작 · 마케팅 미진행';
+      badge.title = h.badge;
       name.appendChild(badge);
     }
     card.appendChild(name);
@@ -587,10 +587,10 @@ function openDrawer(h) {
     </button>
   `;
   head.querySelector('h2').textContent = h.name;
-  if (h.homepageOnly) {
+  if (h.badge) {
     const badge = document.createElement('span');
     badge.className = 'badge-homepage-only';
-    badge.textContent = '홈페이지만 제작 · 마케팅 미진행';
+    badge.textContent = h.badge;
     head.querySelector('h2').appendChild(badge);
   }
   head.querySelector('.slug').textContent = h.slug;
