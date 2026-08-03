@@ -2,25 +2,52 @@
   {
     "slug": "365hang",
     "name": "365항외과",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "02-900-0365",
     "address": "서울특별시 강북구 도봉로 333, 8층 (수유동)",
-    "colors": [{ "label": "Main", "hex": "#F27B1F" }],
-    "gradient": ["#FBB95B", "#EC1C29"],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#F27B1F"
+      }
+    ],
+    "gradient": [
+      "#FBB95B",
+      "#EC1C29"
+    ],
     "hours": [
       "평일 09:00 – 20:00",
       "토요일 09:00 – 14:00",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://www.365hang.co.kr/toob/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/365hang_"
+      }
     ]
   },
   {
     "slug": "jshang",
     "name": "JS항외과",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "02-2088-7175",
     "address": "서울 성동구 자동차시장1길 85, 2층",
-    "colors": [{ "label": "Main", "hex": "#DD1318" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#DD1318"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월·화·수·금 09:00 – 18:00",
@@ -28,17 +55,35 @@
       "토요일 09:00 – 14:00",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://jssurgery.co.kr/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/js_hang25"
+      }
     ]
   },
   {
     "slug": "geomdanhang",
     "name": "검단항외과",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "032-565-7500",
     "address": "인천 서구 이음5로 36, 더원타워 401–404호",
     "colors": [
-      { "label": "Main", "hex": "#EA5515" },
-      { "label": "Sub", "hex": "#3F3B3A" }
+      {
+        "label": "Main",
+        "hex": "#EA5515"
+      },
+      {
+        "label": "Sub",
+        "hex": "#3F3B3A"
+      }
     ],
     "gradient": null,
     "hours": [
@@ -47,47 +92,100 @@
       "토요일 08:30 – 13:00",
       "점심시간 13:00 – 14:00",
       "일요일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "https://www.gdhang.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/geomdanhang"
+      }
     ]
   },
   {
     "slug": "kimhyeeun",
     "name": "김혜은여성외과",
-    "dept": ["여성·유방"],
+    "dept": [
+      "여성·유방"
+    ],
     "phone": "041-574-0100",
     "address": "충남 천안시 서북구 두정로 202, 엘엠빌딩 6층",
-    "colors": [{ "label": "Main", "hex": "#6B4786" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#6B4786"
+      }
+    ],
     "gradient": null,
     "hours": [
       "평일 09:30 – 19:00",
       "수요일 09:30 – 13:00",
       "점심시간 13:00 – 14:00",
       "토·일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://xn--vb0b0xw92bnoebuaj0b125d.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/khesurgery"
+      }
     ]
   },
   {
     "slug": "maxmo",
     "name": "맥스모외과",
-    "dept": ["외과"],
+    "dept": [
+      "외과"
+    ],
     "phone": "02-2661-5887",
     "address": "서울 강서구 공항대로 164, 류마타워 4층 404~405호",
-    "colors": [{ "label": "Main", "hex": "#00AEEF" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#00AEEF"
+      }
+    ],
     "gradient": null,
     "hours": [
       "평일 10:00 – 20:00",
       "토요일 10:00 – 14:00",
       "점심시간 13:30 – 14:30",
       "목·일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://maxmohair.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/maxmoclinic"
+      }
     ]
   },
   {
     "slug": "miraehangmaek",
     "name": "미래항맥외과",
-    "dept": ["항문·대장", "하지정맥"],
+    "dept": [
+      "항문·대장",
+      "하지정맥"
+    ],
     "phone": "032-508-7175",
     "address": "인천 부평구 부평문화로 55, 와이디타워 603호",
     "colors": [
-      { "label": "Main", "hex": "#806B64" },
-      { "label": "Sub", "hex": "#AF4691" }
+      {
+        "label": "Main",
+        "hex": "#806B64"
+      },
+      {
+        "label": "Sub",
+        "hex": "#AF4691"
+      }
     ],
     "gradient": null,
     "hours": [
@@ -96,15 +194,32 @@
       "토요일 09:30 – 13:30",
       "점심시간 13:00 – 14:30",
       "둘째·넷째 목, 일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://miraehang.co.kr/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/miraehang_"
+      }
     ]
   },
   {
     "slug": "bucheonmompyeonhan",
     "name": "부천맘편한외과",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "032-213-2000",
     "address": "경기 부천시 부천로 4, 4층",
-    "colors": [{ "label": "Main", "hex": "#E4007E" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#E4007E"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월·목·금 09:30 – 18:30",
@@ -113,17 +228,35 @@
       "토요일 09:30 – 14:00",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "https://mampyunhan-surgery.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/mampyunhan"
+      }
     ]
   },
   {
     "slug": "samsungyu",
     "name": "삼성유외과",
-    "dept": ["유방·갑상선"],
+    "dept": [
+      "유방·갑상선"
+    ],
     "phone": "02-3412-7775",
     "address": "서울특별시 강남구 일원로 37, 2층",
     "colors": [
-      { "label": "Main", "hex": "#E95780" },
-      { "label": "Sub", "hex": "#186CA9" }
+      {
+        "label": "Main",
+        "hex": "#E95780"
+      },
+      {
+        "label": "Sub",
+        "hex": "#186CA9"
+      }
     ],
     "gradient": null,
     "hours": [
@@ -132,30 +265,68 @@
       "토요일 09:00 – 14:00",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://samsungu.co.kr/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/samsungu2"
+      }
     ]
   },
   {
     "slug": "saebit",
     "name": "새빛병원",
-    "dept": ["병원"],
+    "dept": [
+      "병원"
+    ],
     "phone": "043-234-7509",
     "address": "충북 청주시 서원구 서부로 1350, 3·4층",
-    "colors": [{ "label": "Main", "hex": "#EE7422" }],
-    "gradient": ["#EE7422", "#F7E826"],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#EE7422"
+      }
+    ],
+    "gradient": [
+      "#EE7422",
+      "#F7E826"
+    ],
     "hours": [
       "평일 09:00 – 18:00",
       "토요일 09:00 – 16:00",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://www.xn--xx3bj8b.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/hongcrates"
+      }
     ]
   },
   {
     "slug": "seoulyuhang",
     "name": "서울유항외과",
-    "dept": ["유방·갑상선", "항문·대장"],
+    "dept": [
+      "유방·갑상선",
+      "항문·대장"
+    ],
     "phone": "031-439-7571",
     "address": "경기 안산시 단원구 예술대학로 17, 중앙노블레스빌딩 417호 (고잔동)",
-    "colors": [{ "label": "Main", "hex": "#E31B6D" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#E31B6D"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월·화·목·금 09:00 – 18:00",
@@ -163,15 +334,33 @@
       "토요일 09:00 – 15:30 (매월 2·4주 휴무)",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://www.seouluhang.co.kr/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/seouluhang_"
+      }
     ]
   },
   {
     "slug": "seoultaphangmaek",
     "name": "서울탑항맥외과",
-    "dept": ["항문·대장", "하지정맥"],
+    "dept": [
+      "항문·대장",
+      "하지정맥"
+    ],
     "phone": "051-937-5000",
     "address": "부산광역시 연제구 아시아드대로 89, 주안타워 2층",
-    "colors": [{ "label": "Main", "hex": "#003480" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#003480"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월·화·금 09:00 – 18:00",
@@ -180,17 +369,36 @@
       "토요일 09:00 – 13:00",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://seoultophm.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/tophmsurgery"
+      }
     ]
   },
   {
     "slug": "seoulhanghaji",
     "name": "서울항앤하지외과",
-    "dept": ["항문·대장", "하지정맥"],
+    "dept": [
+      "항문·대장",
+      "하지정맥"
+    ],
     "phone": "02-6213-9972",
     "address": "서울특별시 강남구 선릉로 324, 6층",
     "colors": [
-      { "label": "Main", "hex": "#345079" },
-      { "label": "Sub", "hex": "#9DD5DB" }
+      {
+        "label": "Main",
+        "hex": "#345079"
+      },
+      {
+        "label": "Sub",
+        "hex": "#9DD5DB"
+      }
     ],
     "gradient": null,
     "hours": [
@@ -199,17 +407,35 @@
       "토요일 09:30 – 13:30 (점심시간 없이 진료)",
       "점심시간 13:00 – 14:00",
       "목·일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://hangnhagi.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/hangandhagi"
+      }
     ]
   },
   {
     "slug": "seoultunteun",
     "name": "서울튼튼정형외과",
-    "dept": ["정형외과"],
+    "dept": [
+      "정형외과"
+    ],
     "phone": "031-769-1000",
     "address": "경기 광주시 광주대로 31, 5층",
     "colors": [
-      { "label": "Main", "hex": "#003668" },
-      { "label": "Sub", "hex": "#2EA7E0" }
+      {
+        "label": "Main",
+        "hex": "#003668"
+      },
+      {
+        "label": "Sub",
+        "hex": "#2EA7E0"
+      }
     ],
     "gradient": null,
     "hours": [
@@ -217,20 +443,43 @@
       "토요일 09:00 – 14:00 (점심시간 없이 진료)",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://www.seoultntn.co.kr/"
+      }
     ]
   },
   {
     "slug": "sejong365mideum",
     "name": "세종365믿음정형외과",
-    "dept": ["정형외과"],
+    "dept": [
+      "정형외과"
+    ],
     "phone": "044-866-7582",
     "address": "세종특별자치시 세종로 1229, 스타플레이스 2·3층",
     "colors": [
-      { "label": "Main", "hex": "#1A3863" },
-      { "label": "Sub 1", "hex": "#1C8CCD" },
-      { "label": "Sub 2", "hex": "#FCC804" },
-      { "label": "Sub 3", "hex": "#90BF27" },
-      { "label": "Sub 4", "hex": "#F28D05" }
+      {
+        "label": "Main",
+        "hex": "#1A3863"
+      },
+      {
+        "label": "Sub 1",
+        "hex": "#1C8CCD"
+      },
+      {
+        "label": "Sub 2",
+        "hex": "#FCC804"
+      },
+      {
+        "label": "Sub 3",
+        "hex": "#90BF27"
+      },
+      {
+        "label": "Sub 4",
+        "hex": "#F28D05"
+      }
     ],
     "gradient": null,
     "hours": [
@@ -238,17 +487,35 @@
       "토·일 09:00 – 18:00",
       "점심시간 13:00 – 14:00",
       "365일 야간진료"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://sj365trust.co.kr/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/sejong365trust"
+      }
     ]
   },
   {
     "slug": "songdo",
     "name": "송도외과",
-    "dept": ["외과"],
+    "dept": [
+      "외과"
+    ],
     "phone": "042-222-7175",
     "address": "대전 중구 계백로 1711-1, 7층",
     "colors": [
-      { "label": "Main", "hex": "#E23911" },
-      { "label": "Sub", "hex": "#F39800" }
+      {
+        "label": "Main",
+        "hex": "#E23911"
+      },
+      {
+        "label": "Sub",
+        "hex": "#F39800"
+      }
     ],
     "gradient": null,
     "hours": [
@@ -256,15 +523,32 @@
       "토요일 09:10 – 13:00",
       "점심시간 12:30 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://www.djsongdo.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/djsongdo"
+      }
     ]
   },
   {
     "slug": "smileme",
     "name": "스마일미치과",
-    "dept": ["치과"],
+    "dept": [
+      "치과"
+    ],
     "phone": "031-797-2879",
     "address": "경기 광주시 중앙로 95-4, 2층",
-    "colors": [{ "label": "Main", "hex": "#F6AD2D" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#F6AD2D"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월·수·금 09:30 – 18:30",
@@ -272,30 +556,61 @@
       "토요일 09:30 – 13:30 (점심시간 없이 진료)",
       "점심시간 12:30 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://smileme-dental.com/"
+      }
     ]
   },
   {
     "slug": "yeouiyuhang",
     "name": "여의유항외과",
-    "dept": ["유방·갑상선", "항문·대장"],
+    "dept": [
+      "유방·갑상선",
+      "항문·대장"
+    ],
     "phone": "02-785-6060",
     "address": "서울 영등포구 여의대방로69길 19, 2층",
-    "colors": [{ "label": "Main", "hex": "#ED6C84" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#ED6C84"
+      }
+    ],
     "gradient": null,
     "hours": [
       "평일 10:00 – 19:00",
       "토요일 09:00 – 15:00 (1·3주 수술만 / 2·4·5주 휴무)",
       "점심시간 14:00 – 15:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://yeoui-yh.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/yeouiyh"
+      }
     ]
   },
   {
     "slug": "yeilhang",
     "name": "예일항외과",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "031-840-8275",
     "address": "경기 의정부시 평화로 540, 5층 (의정부동)",
-    "colors": [{ "label": "Main", "hex": "#154F51" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#154F51"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월·화·목·금 08:30 – 17:30",
@@ -303,30 +618,64 @@
       "토요일 08:30 – 12:30",
       "일요일 08:45 – 09:45",
       "점심시간 12:30 – 14:00"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://yeilclinic.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/yeil_clinic"
+      }
     ]
   },
   {
     "slug": "joeunachim",
     "name": "조은아침예항외과",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "031-404-3375",
     "address": "경기 시흥시 삼미시장1길 5, 2층 (신천동)",
-    "colors": [{ "label": "Main", "hex": "#6FC089" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#6FC089"
+      }
+    ],
     "gradient": null,
     "hours": [
       "평일 09:00 – 18:00",
       "토요일 09:00 – 12:30",
       "점심시간 12:30 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://yehang.co.kr/toob/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/mkhdream7"
+      }
     ]
   },
   {
     "slug": "champyeonhan",
     "name": "참편한여성의원",
-    "dept": ["여성·유방"],
+    "dept": [
+      "여성·유방"
+    ],
     "phone": "032-653-5677",
     "address": "경기 부천시 원미구 부천로 14",
-    "colors": [{ "label": "Main", "hex": "#E50065" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#E50065"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월요일 09:30 – 19:30",
@@ -334,15 +683,28 @@
       "화·토 09:30 – 13:00",
       "점심시간 14:00 – 15:30",
       "일요일 휴진"
+    ],
+    "links": [
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/charmphog"
+      }
     ]
   },
   {
     "slug": "chaehang",
     "name": "채항외과",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "041-534-9955",
     "address": "충남 아산시 번영로 226, 현진빌딩 3층 (모종동)",
-    "colors": [{ "label": "Main", "hex": "#323494" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#323494"
+      }
+    ],
     "gradient": null,
     "hours": [
       "평일 09:30 – 18:30",
@@ -350,15 +712,29 @@
       "점심시간 13:00 – 14:00",
       "목요일 오후 휴진",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://www.chsurgery.com/"
+      }
     ]
   },
   {
     "slug": "nowonhangpyeonhan",
     "name": "항편한하지외과",
-    "dept": ["항문·대장", "하지정맥"],
+    "dept": [
+      "항문·대장",
+      "하지정맥"
+    ],
     "phone": "02-936-7000",
     "address": "서울 노원구 노해로 485, 금정빌딩 301호",
-    "colors": [{ "label": "Main", "hex": "#013766" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#013766"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월·수·목·금 09:00 – 18:00",
@@ -366,45 +742,96 @@
       "토요일 09:00 – 13:00",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://www.nwhanghaji.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/drkang2024"
+      }
     ]
   },
   {
     "slug": "daywell_bundang",
     "name": "데이웰 분당점",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "031-8039-6640",
     "address": "경기 성남시 성남대로 349, 시그마타워 2층",
-    "colors": [{ "label": "Main", "hex": "#FF8900" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#FF8900"
+      }
+    ],
     "gradient": null,
     "hours": [
       "평일 09:00 – 17:50 (접수 마감 17:20)",
       "토요일 09:00 – 13:30 (접수 마감 13:00, 점심시간 없이 진료)",
       "점심시간 12:50 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://daywellclinic.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/daywell_bundang"
+      }
     ]
   },
   {
     "slug": "daywell_daechi",
     "name": "데이웰 대치점",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "02-2039-7588",
     "address": "서울 강남구 삼성로 155, 대치퍼스트 4층 (대치역 7번 출구)",
-    "colors": [{ "label": "Main", "hex": "#FF8900" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#FF8900"
+      }
+    ],
     "gradient": null,
     "hours": [
       "평일 08:30 – 18:00",
       "토요일 08:00 – 13:30",
       "점심시간 13:00 – 14:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://daywellclinic.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/daywell_daechi"
+      }
     ]
   },
   {
     "slug": "daywell_yongsan",
     "name": "데이웰 용산점",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "02-6953-0627",
     "address": "서울 용산구 한강대로 95, 래미안용산더센트럴 2층 (신용산역 3·4번 출구)",
-    "colors": [{ "label": "Main", "hex": "#FF8900" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#FF8900"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월·화·금 08:00 – 17:00",
@@ -412,15 +839,32 @@
       "토요일 08:00 – 13:00",
       "점심시간 13:00 – 14:00",
       "목요일 정기휴무, 일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://daywellclinic.com/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/daywell_yongsan"
+      }
     ]
   },
   {
     "slug": "daywell_misa",
     "name": "데이웰 미사점",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "031-8027-8065",
     "address": "경기 하남시 미사강변동로 100-1, 파라곤스퀘어 메디컬빌딩 3층",
-    "colors": [{ "label": "Main", "hex": "#FF8900" }],
+    "colors": [
+      {
+        "label": "Main",
+        "hex": "#FF8900"
+      }
+    ],
     "gradient": null,
     "hours": [
       "월·화·금 09:00 – 18:00",
@@ -428,12 +872,20 @@
       "토요일 08:00 – 13:00",
       "점심시간 13:00 – 14:00",
       "목요일 정기휴무, 일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://daywellclinic.com/"
+      }
     ]
   },
   {
     "slug": "osegwan",
     "name": "둔촌오세관정형외과",
-    "dept": ["정형외과"],
+    "dept": [
+      "정형외과"
+    ],
     "phone": "02-472-5988",
     "address": "서울 강동구 성내동 427-19, 혜윰빌딩 4층",
     "colors": [],
@@ -443,17 +895,31 @@
       "토요일 09:00 – 13:00",
       "점심시간 13:30 – 15:00",
       "일요일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://dcoskosclinic.com/"
+      }
     ]
   },
   {
     "slug": "ajuhang",
     "name": "아주항외과",
-    "dept": ["항문·대장"],
+    "dept": [
+      "항문·대장"
+    ],
     "phone": "031-242-2028",
     "address": "경기 수원시 팔달구 중부대로 53, 2층",
     "colors": [
-      { "label": "Main", "hex": "#75B544" },
-      { "label": "Sub", "hex": "#215529" }
+      {
+        "label": "Main",
+        "hex": "#75B544"
+      },
+      {
+        "label": "Sub",
+        "hex": "#215529"
+      }
     ],
     "gradient": null,
     "hours": [
@@ -461,6 +927,16 @@
       "토요일 08:30 – 13:00",
       "점심시간 13:00 – 14:00",
       "수·일·공휴일 휴진"
+    ],
+    "links": [
+      {
+        "label": "홈페이지",
+        "url": "http://ajhang.co.kr/"
+      },
+      {
+        "label": "블로그",
+        "url": "https://blog.naver.com/craftrain"
+      }
     ]
   }
 ]
