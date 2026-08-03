@@ -32,7 +32,14 @@
         "label": "블로그",
         "url": "https://blog.naver.com/365hang_"
       }
-    ]
+    ],
+    "logoLabels": {
+      "h": "가로 혼합",
+      "vw": "세로 혼합"
+    },
+    "logoDark": {
+      "h": true
+    }
   },
   {
     "slug": "jshang",

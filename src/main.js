@@ -383,8 +383,12 @@ function logoSection(h) {
   grid.className = 'logo-grid';
 
   VARIANTS.forEach((v) => {
+    // 병원별 오버라이드: logoLabels(라벨 문구), logoDark(어두운 배경 여부)
+    const slotLabel = h.logoLabels?.[v.code] ?? v.label;
+    const slotDark = h.logoDark?.[v.code] ?? v.dark;
+
     const slot = document.createElement('div');
-    slot.className = 'logo-slot' + (v.dark ? ' dark' : '');
+    slot.className = 'logo-slot' + (slotDark ? ' dark' : '');
 
     const preview = document.createElement('div');
     preview.className = 'preview';
@@ -394,7 +398,7 @@ function logoSection(h) {
     foot.className = 'slot-foot';
     const label = document.createElement('span');
     label.className = 'slot-label';
-    label.textContent = v.label;
+    label.textContent = slotLabel;
     foot.appendChild(label);
     slot.appendChild(foot);
 
