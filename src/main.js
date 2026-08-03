@@ -58,9 +58,13 @@ const assignedTo = (name) => hospitals.filter((h) => h.manager === name).map((h)
 const favKey = () => `bkh_favs::${user || '공용'}`;
 
 function loadFavs() {
-  const saved = localStorage.getItem(favKey());
-  if (saved !== null) return new Set(JSON.parse(saved));
-  // 저장된 조정 내역이 없으면 배정된 담당 병원으로 초기화
+  try {
+    const saved = JSON.parse(localStorage.getItem(favKey()) || 'null');
+    // 저장된 목록이 비어있지 않을 때만 사용 — 비었으면 배정 병원으로 다시 채운다
+    if (Array.isArray(saved) && saved.length) return new Set(saved);
+  } catch {
+    /* 손상된 저장값은 무시 */
+  }
   return new Set(user ? assignedTo(user) : []);
 }
 
