@@ -171,16 +171,6 @@ function renderGrid() {
     });
     meta.appendChild(tags);
 
-    const dots = document.createElement('div');
-    dots.className = 'dots';
-    h.colors.slice(0, 3).forEach((c) => {
-      const dot = document.createElement('span');
-      dot.className = 'dot';
-      dot.style.background = c.hex;
-      dots.appendChild(dot);
-    });
-    meta.appendChild(dots);
-
     card.appendChild(meta);
     $grid.appendChild(card);
   });

@@ -245,19 +245,6 @@ button {
   padding: 3px 7px;
 }
 
-.dots {
-  display: flex;
-  gap: 4px;
-  flex: none;
-}
-
-.dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
 .empty {
   padding: 80px 0;
   text-align: center;
