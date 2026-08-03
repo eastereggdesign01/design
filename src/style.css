@@ -719,6 +719,10 @@ button {
 }
 
 @media (max-width: 560px) {
+  .card-logo {
+    display: none;
+  }
+
   .header-inner {
     padding: 14px 16px 0;
   }
