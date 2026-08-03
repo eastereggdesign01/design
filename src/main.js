@@ -116,9 +116,9 @@ function cardLogoEl(h) {
   fallback.textContent = h.name.slice(0, 1);
   wrap.appendChild(fallback);
 
-  // 세로 → 가로 순서로 컬러 로고를 찾아 썸네일로 사용
+  // 가로형 우선, 없으면 세로형 컬러 로고를 썸네일로 사용
   (async () => {
-    for (const code of ['v', 'h']) {
+    for (const code of ['h', 'v']) {
       const src = logoPath(h.slug, code);
       if (await checkLogo(src)) {
         const img = document.createElement('img');
