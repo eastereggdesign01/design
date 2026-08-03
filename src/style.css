@@ -562,6 +562,40 @@ button {
   font-size: 13px;
 }
 
+/* links */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 14px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.link-btn:hover {
+  border-color: #c8cdd5;
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+
+.link-btn svg {
+  width: 14px;
+  height: 14px;
+  color: var(--ink-sub);
+}
+
 /* placeholders */
 .placeholder {
   border: 1.5px dashed #d7dbe1;

@@ -40,7 +40,11 @@ npm run build    # dist/ 폴더에 정적 파일 생성
   "address": "…",
   "colors": [{ "label": "Main", "hex": "#F27B1F" }],
   "gradient": ["#FBB95B", "#EC1C29"],  // 없으면 null
-  "hours": ["평일 09:00 – 20:00", "…"]
+  "hours": ["평일 09:00 – 20:00", "…"],
+  "links": [                           // 선택 — 드로어의 "링크" 섹션에 버튼으로 표시
+    { "label": "홈페이지", "url": "https://…" },
+    { "label": "블로그", "url": "https://blog.naver.com/…" }
+  ]
 }
 ```
 

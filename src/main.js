@@ -400,6 +400,27 @@ function placeholderSection(title, desc) {
   return section(title, div);
 }
 
+function linkSection(h) {
+  const links = h.links || [];
+  if (!links.length) {
+    return placeholderSection('링크', '등록된 링크가 없습니다 — hospitals.json의 links에 추가하세요.');
+  }
+  const wrap = document.createElement('div');
+  wrap.className = 'links';
+  links.forEach((l) => {
+    const a = document.createElement('a');
+    a.className = 'link-btn';
+    a.href = l.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg>';
+    a.appendChild(document.createTextNode(l.label));
+    wrap.appendChild(a);
+  });
+  return section('링크', wrap);
+}
+
 function openDrawer(h) {
   $drawer.innerHTML = '';
 
@@ -424,11 +445,9 @@ function openDrawer(h) {
   body.appendChild(logoSection(h));
   body.appendChild(colorSection(h));
   body.appendChild(infoSection(h));
+  body.appendChild(linkSection(h));
   body.appendChild(
     placeholderSection('폰트 · 톤앤매너', '준비 중 — 국문/영문 지정 폰트, 톤 키워드가 들어갈 자리입니다.')
-  );
-  body.appendChild(
-    placeholderSection('소재 아카이브', '준비 중 — 병원별 카드뉴스·인스타·포스터 아카이브가 들어갈 자리입니다.')
   );
   $drawer.appendChild(body);
 
