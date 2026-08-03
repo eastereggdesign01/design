@@ -1,0 +1,17 @@
+{
+  "name": "이스터에그",
+  "description": "자사 정보",
+  "address": "인천 연수구 인천타워대로 323, 송도센트로드 A동 1811호",
+  "phones": [
+    { "label": "대표번호", "number": "032-710-2258" },
+    { "label": "경영지원팀 업무폰", "number": "010-5149-3801" },
+    { "label": "마케팅팀 업무폰", "number": "010-5668-3801" },
+    { "label": "대표님 업무폰", "number": "010-7331-3801" }
+  ],
+  "email": "easteregg.medi@gmail.com",
+  "links": [
+    { "label": "홈페이지", "url": "https://xn--2i0b050bvjc72bb0w.com/" },
+    { "label": "블로그", "url": "https://blog.naver.com/easteregg_blog" },
+    { "label": "유튜브", "url": "https://www.youtube.com/@easteregg247" }
+  ]
+}

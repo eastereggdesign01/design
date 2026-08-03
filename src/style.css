@@ -158,6 +158,65 @@ button {
   padding: 24px;
 }
 
+/* ---------- 자사 패널 ---------- */
+.company {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.company summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.company summary::-webkit-details-marker {
+  display: none;
+}
+
+.company summary:hover {
+  background: #fafbfc;
+}
+
+.company-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.company .chev {
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  color: var(--ink-sub);
+  transition: transform 0.2s;
+}
+
+.company[open] .chev {
+  transform: rotate(180deg);
+}
+
+.company-body {
+  padding: 4px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
 .count {
   font-size: 13px;
   color: var(--ink-sub);

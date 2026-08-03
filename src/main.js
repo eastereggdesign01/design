@@ -1,5 +1,6 @@
 import './style.css';
 import hospitals from './data/hospitals.json';
+import company from './data/company.json';
 
 /* 로고 파일 규칙: public/logos/{슬러그}_{버전}.png
    버전 — v: 세로 / h: 가로 / vw: 세로 화이트 / hw: 가로 화이트
@@ -62,6 +63,14 @@ app.innerHTML = `
     </div>
   </header>
   <main class="main">
+    <details class="company" id="company">
+      <summary>
+        <span class="company-badge">자사</span>
+        <span class="company-name"></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </summary>
+      <div class="company-body" id="company-body"></div>
+    </details>
     <p class="count" id="count"></p>
     <div class="grid" id="grid"></div>
   </main>
@@ -77,6 +86,68 @@ const $count = document.getElementById('count');
 const $overlay = document.getElementById('overlay');
 const $drawer = document.getElementById('drawer');
 const $toast = document.getElementById('toast');
+
+/* ---------- 자사 패널 ---------- */
+function renderCompany() {
+  document.querySelector('.company-name').textContent = company.name;
+  const body = document.getElementById('company-body');
+  body.innerHTML = '';
+
+  const list = document.createElement('div');
+  list.className = 'info-list';
+
+  const row = (k, vNode, copyValue) => {
+    const r = document.createElement('div');
+    r.className = 'info-row';
+    const key = document.createElement('span');
+    key.className = 'k';
+    key.textContent = k;
+    r.appendChild(key);
+    const val = document.createElement('span');
+    val.className = 'v';
+    val.appendChild(vNode);
+    r.appendChild(val);
+    if (copyValue) {
+      const btn = document.createElement('button');
+      btn.className = 'copy-mini';
+      btn.textContent = '복사';
+      btn.onclick = () => copyText(copyValue, `복사됨 · ${copyValue}`);
+      r.appendChild(btn);
+    }
+    list.appendChild(r);
+  };
+
+  row('주소', document.createTextNode(company.address), company.address);
+
+  company.phones.forEach((p) => {
+    const a = document.createElement('a');
+    a.href = `tel:${p.number.replace(/[^0-9]/g, '')}`;
+    a.textContent = p.number;
+    row(p.label, a, p.number);
+  });
+
+  const mail = document.createElement('a');
+  mail.href = `mailto:${company.email}`;
+  mail.textContent = company.email;
+  row('이메일', mail, company.email);
+
+  body.appendChild(list);
+
+  const links = document.createElement('div');
+  links.className = 'links';
+  company.links.forEach((l) => {
+    const a = document.createElement('a');
+    a.className = 'link-btn';
+    a.href = l.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg>';
+    a.appendChild(document.createTextNode(l.label));
+    links.appendChild(a);
+  });
+  body.appendChild(links);
+}
 
 /* ---------- 필터 칩 ---------- */
 function renderChips() {
@@ -460,5 +531,6 @@ document.getElementById('search-input').addEventListener('input', (e) => {
   renderGrid();
 });
 
+renderCompany();
 renderChips();
 renderGrid();
