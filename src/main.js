@@ -436,9 +436,6 @@ function openDrawer(h) {
   body.appendChild(colorSection(h));
   body.appendChild(infoSection(h));
   body.appendChild(linkSection(h));
-  body.appendChild(
-    placeholderSection('폰트 · 톤앤매너', '준비 중 — 국문/영문 지정 폰트, 톤 키워드가 들어갈 자리입니다.')
-  );
   $drawer.appendChild(body);
 
   $drawer.classList.add('open');
