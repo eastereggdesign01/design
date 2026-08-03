@@ -723,6 +723,27 @@ button {
     display: none;
   }
 
+  /* 카드를 한 줄로: 병원명 왼쪽, 진료과 라벨 오른쪽 */
+  .card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .card-name {
+    font-size: 14.5px;
+  }
+
+  .card-meta {
+    flex: none;
+  }
+
+  .tags {
+    justify-content: flex-end;
+  }
+
   .header-inner {
     padding: 14px 16px 0;
   }
