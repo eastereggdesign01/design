@@ -270,9 +270,10 @@ function cardLogoEl(h) {
   fallback.textContent = h.name.slice(0, 1);
   wrap.appendChild(fallback);
 
-  // 가로형 우선, 없으면 세로형 컬러 로고를 썸네일로 사용
+  // 가로형 우선, 없으면 세로형 컬러 로고를 썸네일로 사용 (thumb 필드로 병원별 지정 가능)
   (async () => {
-    for (const code of ['h', 'v']) {
+    const order = h.thumb ? [h.thumb, 'h', 'v'] : ['h', 'v'];
+    for (const code of order) {
       const src = logoPath(h.slug, code);
       if (await checkLogo(src)) {
         const img = document.createElement('img');
