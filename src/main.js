@@ -285,6 +285,15 @@ function colorSection(h) {
   const wrap = document.createElement('div');
   wrap.className = 'swatches';
 
+  if (!h.colors.length && !h.gradient) {
+    const div = document.createElement('div');
+    div.className = 'placeholder';
+    div.style.flex = '1';
+    div.textContent = '컬러 미지정';
+    wrap.appendChild(div);
+    return section('브랜드 컬러', wrap);
+  }
+
   h.colors.forEach((c) => {
     const btn = document.createElement('button');
     btn.className = 'swatch';

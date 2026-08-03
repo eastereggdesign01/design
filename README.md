@@ -75,6 +75,12 @@ npm run build    # dist/ 폴더에 정적 파일 생성
 | 데이웰 용산점 | daywell_yongsan |
 | 삼성지정형외과 | samsungji |
 | 아주항외과 | ajuhang |
+| 채항외과 | chaehang |
+| 스마일미치과 | smileme |
+| 서울튼튼정형외과 | seoultunteun |
+| 둔촌오세관정형외과 | osegwan |
+
+데이웰 로고 매핑: 분당점 = "데이웰의원" 로고 / 대치점·용산점 = "데이웰가정의학과" 로고 (같은 파일을 두 슬러그로 복사해 사용)
 
 ## 다음 확장 (자리만 잡아둠)
 
