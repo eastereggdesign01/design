@@ -93,6 +93,89 @@ function renderCompany() {
   const body = document.getElementById('company-body');
   body.innerHTML = '';
 
+  // 로고 슬롯 (라벨은 company.json에서 지정, 파일이 있으면 다운로드 버튼)
+  if (company.logos?.length) {
+    const grid = document.createElement('div');
+    grid.className = 'logo-grid company-logos';
+    company.logos.forEach((lg) => {
+      const slot = document.createElement('div');
+      slot.className = 'logo-slot' + (lg.dark ? ' dark' : '');
+
+      const preview = document.createElement('div');
+      preview.className = 'preview';
+      slot.appendChild(preview);
+
+      const foot = document.createElement('div');
+      foot.className = 'slot-foot';
+      const label = document.createElement('span');
+      label.className = 'slot-label';
+      label.textContent = lg.label;
+      foot.appendChild(label);
+      slot.appendChild(foot);
+
+      const src = `/logos/${lg.file}`;
+      checkLogo(src).then((ok) => {
+        if (ok) {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = `${company.name} ${lg.label} 로고`;
+          preview.appendChild(img);
+
+          const a = document.createElement('a');
+          a.className = 'dl-btn';
+          a.href = src;
+          a.download = lg.file;
+          a.innerHTML =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m6 11 6 6 6-6"/><path d="M4 21h16"/></svg>다운로드';
+          foot.appendChild(a);
+        } else {
+          slot.classList.add('missing');
+          const none = document.createElement('span');
+          none.className = 'none';
+          none.textContent = '파일 없음';
+          preview.appendChild(none);
+          const noneTxt = document.createElement('span');
+          noneTxt.className = 'none-txt';
+          noneTxt.textContent = '없음';
+          foot.appendChild(noneTxt);
+        }
+      });
+
+      grid.appendChild(slot);
+    });
+    body.appendChild(grid);
+  }
+
+  // 브랜드 컬러 (클릭 복사)
+  if (company.colors?.length) {
+    const wrap = document.createElement('div');
+    wrap.className = 'swatches';
+    company.colors.forEach((c) => {
+      const btn = document.createElement('button');
+      btn.className = 'swatch';
+      btn.title = '클릭하면 HEX가 복사됩니다';
+      btn.onclick = () => copyText(c.hex, `복사됨 · ${c.hex}`, c.hex);
+
+      const box = document.createElement('span');
+      box.className = 'chipbox';
+      box.style.background = c.hex;
+      btn.appendChild(box);
+
+      const hex = document.createElement('span');
+      hex.className = 'hex';
+      hex.textContent = c.hex;
+      btn.appendChild(hex);
+
+      const lbl = document.createElement('span');
+      lbl.className = 'lbl';
+      lbl.textContent = c.label;
+      btn.appendChild(lbl);
+
+      wrap.appendChild(btn);
+    });
+    body.appendChild(wrap);
+  }
+
   const list = document.createElement('div');
   list.className = 'info-list';
 

@@ -1,6 +1,16 @@
 {
   "name": "이스터에그",
   "description": "자사 정보",
+  "logos": [
+    { "file": "easteregg_v.png", "label": "세로 컬러", "dark": false },
+    { "file": "easteregg_h.png", "label": "가로 컬러", "dark": false },
+    { "file": "easteregg_hw.png", "label": "가로 화이트", "dark": true },
+    { "file": "easteregg_vm.png", "label": "세로 혼합", "dark": true }
+  ],
+  "colors": [
+    { "label": "Main", "hex": "#50C8FA" },
+    { "label": "Black", "hex": "#000000" }
+  ],
   "address": "인천 연수구 인천타워대로 323, 송도센트로드 A동 1811호",
   "phones": [
     { "label": "대표번호", "number": "032-710-2258" },

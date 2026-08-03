@@ -217,6 +217,16 @@ button {
   padding-top: 16px;
 }
 
+.company-logos {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.company .info-row .k {
+  width: auto;
+  min-width: 110px;
+  white-space: nowrap;
+}
+
 .count {
   font-size: 13px;
   color: var(--ink-sub);
