@@ -810,7 +810,7 @@
     "links": [
       {
         "label": "홈페이지",
-        "url": "http://daywellclinic.com/"
+        "url": "http://daywellclinic.com/daechi/"
       },
       {
         "label": "블로그",
@@ -843,7 +843,7 @@
     "links": [
       {
         "label": "홈페이지",
-        "url": "http://daywellclinic.com/"
+        "url": "http://daywellclinic.com/yongsan/"
       },
       {
         "label": "블로그",
@@ -876,7 +876,7 @@
     "links": [
       {
         "label": "홈페이지",
-        "url": "http://daywellclinic.com/"
+        "url": "http://daywellclinic.com/misa/"
       }
     ]
   },
