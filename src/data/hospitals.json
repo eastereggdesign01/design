@@ -40,7 +40,8 @@
     "logoDark": {
       "h": true
     },
-    "thumb": "v"
+    "thumb": "v",
+    "manager": "최유미(01)"
   },
   {
     "slug": "jshang",
@@ -73,7 +74,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/js_hang25"
       }
-    ]
+    ],
+    "manager": "최유미(01)"
   },
   {
     "slug": "geomdanhang",
@@ -110,7 +112,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/geomdanhang"
       }
-    ]
+    ],
+    "manager": "이길은"
   },
   {
     "slug": "kimhyeeun",
@@ -142,7 +145,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/khesurgery"
       }
-    ]
+    ],
+    "manager": "이하늘"
   },
   {
     "slug": "maxmo",
@@ -174,7 +178,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/maxmoclinic"
       }
-    ]
+    ],
+    "manager": "이하늘"
   },
   {
     "slug": "miraehangmaek",
@@ -212,7 +217,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/miraehang_"
       }
-    ]
+    ],
+    "manager": "최유미(03)"
   },
   {
     "slug": "bucheonmompyeonhan",
@@ -246,7 +252,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/mampyunhan"
       }
-    ]
+    ],
+    "manager": "이길은"
   },
   {
     "slug": "samsungyu",
@@ -283,7 +290,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/samsungu2"
       }
-    ]
+    ],
+    "manager": "이길은"
   },
   {
     "slug": "saebit",
@@ -318,7 +326,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/hongcrates"
       }
-    ]
+    ],
+    "manager": "최유미(03)"
   },
   {
     "slug": "seoulyuhang",
@@ -352,7 +361,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/seouluhang_"
       }
-    ]
+    ],
+    "manager": "이길은"
   },
   {
     "slug": "seoultaphangmaek",
@@ -387,7 +397,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/tophmsurgery"
       }
-    ]
+    ],
+    "manager": "이길은"
   },
   {
     "slug": "seoulhanghaji",
@@ -425,7 +436,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/hangandhagi"
       }
-    ]
+    ],
+    "manager": "최유미(01)"
   },
   {
     "slug": "seoultunteun",
@@ -458,7 +470,8 @@
         "url": "http://www.seoultntn.co.kr/"
       }
     ],
-    "badge": "홈페이지만 제작 · 마케팅 미진행"
+    "badge": "홈페이지만 제작 · 마케팅 미진행",
+    "manager": "김수빈"
   },
   {
     "slug": "sejong365mideum",
@@ -506,7 +519,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/sejong365trust"
       }
-    ]
+    ],
+    "manager": "최유미(01)"
   },
   {
     "slug": "songdo",
@@ -542,7 +556,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/djsongdo"
       }
-    ]
+    ],
+    "manager": "최유미(01)"
   },
   {
     "slug": "smileme",
@@ -572,7 +587,8 @@
         "url": "http://smileme-dental.com/"
       }
     ],
-    "badge": "홈페이지만 관리 · 마케팅 미진행"
+    "badge": "홈페이지만 관리 · 마케팅 미진행",
+    "manager": "김수빈"
   },
   {
     "slug": "yeouiyuhang",
@@ -605,7 +621,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/yeouiyh"
       }
-    ]
+    ],
+    "manager": "최유미(03)"
   },
   {
     "slug": "yeilhang",
@@ -638,7 +655,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/yeil_clinic"
       }
-    ]
+    ],
+    "manager": "최유미(03)"
   },
   {
     "slug": "joeunachim",
@@ -670,7 +688,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/mkhdream7"
       }
-    ]
+    ],
+    "manager": "최유미(03)"
   },
   {
     "slug": "champyeonhan",
@@ -699,7 +718,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/charmphog"
       }
-    ]
+    ],
+    "manager": "이길은"
   },
   {
     "slug": "chaehang",
@@ -728,7 +748,8 @@
         "label": "홈페이지",
         "url": "http://www.chsurgery.com/"
       }
-    ]
+    ],
+    "manager": "김지예"
   },
   {
     "slug": "nowonhangpyeonhan",
@@ -762,7 +783,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/drkang2024"
       }
-    ]
+    ],
+    "manager": "이길은"
   },
   {
     "slug": "daywell_bundang",
@@ -794,7 +816,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/daywell_bundang"
       }
-    ]
+    ],
+    "manager": "이하늘"
   },
   {
     "slug": "daywell_daechi",
@@ -826,7 +849,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/daywell_daechi"
       }
-    ]
+    ],
+    "manager": "이하늘"
   },
   {
     "slug": "daywell_yongsan",
@@ -859,7 +883,8 @@
         "label": "블로그",
         "url": "https://blog.naver.com/daywell_yongsan"
       }
-    ]
+    ],
+    "manager": "이하늘"
   },
   {
     "slug": "daywell_misa",
@@ -888,7 +913,8 @@
         "label": "홈페이지",
         "url": "http://daywellclinic.com/misa/"
       }
-    ]
+    ],
+    "manager": "이하늘"
   },
   {
     "slug": "osegwan",
@@ -912,7 +938,8 @@
         "url": "http://dcoskosclinic.com/"
       }
     ],
-    "badge": "홈페이지만 제작 · 마케팅 미진행"
+    "badge": "홈페이지만 제작 · 마케팅 미진행",
+    "manager": "김수빈"
   },
   {
     "slug": "ajuhang",
@@ -948,6 +975,7 @@
         "label": "블로그",
         "url": "https://blog.naver.com/craftrain"
       }
-    ]
+    ],
+    "manager": "최유미(03)"
   }
 ]

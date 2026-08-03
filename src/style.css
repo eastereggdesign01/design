@@ -145,6 +145,44 @@ button {
   border-color: #c8cdd5;
 }
 
+.user-menu {
+  position: fixed;
+  z-index: 60;
+  min-width: 170px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-menu-item {
+  text-align: left;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: var(--ink);
+}
+
+.user-menu-item:hover {
+  background: #f1f2f4;
+}
+
+.user-menu-item.on {
+  background: var(--accent);
+  color: #fff;
+}
+
+.user-menu-item.clear {
+  color: var(--ink-sub);
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 8px 8px;
+  margin-top: 4px;
+}
+
 .fav-btn {
   font-size: 19px;
   line-height: 1;
