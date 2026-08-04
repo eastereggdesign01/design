@@ -680,6 +680,13 @@ function infoSection(h) {
   });
   row('진료시간', ul, null);
 
+  if (h.taxEmail) {
+    const mail = document.createElement('a');
+    mail.href = `mailto:${h.taxEmail}`;
+    mail.textContent = h.taxEmail;
+    row('세금계산서', mail, h.taxEmail);
+  }
+
   row('진료과', document.createTextNode(h.dept.join(' · ')), null);
 
   if (h.manager) row('담당자', document.createTextNode(h.manager), null);

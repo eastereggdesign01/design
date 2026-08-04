@@ -75,7 +75,8 @@
         "url": "https://blog.naver.com/js_hang25"
       }
     ],
-    "manager": "최유미(01)"
+    "manager": "최유미(01)",
+    "taxEmail": "jsdrkim@naver.com"
   },
   {
     "slug": "geomdanhang",
@@ -113,7 +114,8 @@
         "url": "https://blog.naver.com/geomdanhang"
       }
     ],
-    "manager": "이길은"
+    "manager": "이길은",
+    "taxEmail": "hyh031@naver.com"
   },
   {
     "slug": "kimhyeeun",
@@ -146,7 +148,8 @@
         "url": "https://blog.naver.com/khesurgery"
       }
     ],
-    "manager": "이하늘"
+    "manager": "이하늘",
+    "taxEmail": "heaeun.kim77@naver.com"
   },
   {
     "slug": "maxmo",
@@ -179,7 +182,8 @@
         "url": "https://blog.naver.com/maxmoclinic"
       }
     ],
-    "manager": "이하늘"
+    "manager": "이하늘",
+    "taxEmail": "maddoc79@naver.com"
   },
   {
     "slug": "miraehangmaek",
@@ -218,7 +222,8 @@
         "url": "https://blog.naver.com/miraehang_"
       }
     ],
-    "manager": "최유미(03)"
+    "manager": "최유미(03)",
+    "taxEmail": "mdbhlee@hotmail.com"
   },
   {
     "slug": "bucheonmompyeonhan",
@@ -253,7 +258,8 @@
         "url": "https://blog.naver.com/mampyunhan"
       }
     ],
-    "manager": "이길은"
+    "manager": "이길은",
+    "taxEmail": "mampyunhan@naver.com"
   },
   {
     "slug": "samsungyu",
@@ -362,7 +368,8 @@
         "url": "https://blog.naver.com/seouluhang_"
       }
     ],
-    "manager": "이길은"
+    "manager": "이길은",
+    "taxEmail": "seouluhang@naver.com"
   },
   {
     "slug": "seoultaphangmaek",
@@ -398,7 +405,8 @@
         "url": "https://blog.naver.com/tophmsurgery"
       }
     ],
-    "manager": "이길은"
+    "manager": "이길은",
+    "taxEmail": "tophmsurgery@naver.com"
   },
   {
     "slug": "seoulhanghaji",
@@ -437,7 +445,8 @@
         "url": "https://blog.naver.com/hangandhagi"
       }
     ],
-    "manager": "최유미(01)"
+    "manager": "최유미(01)",
+    "taxEmail": "hangandhagi@naver.com"
   },
   {
     "slug": "seoultunteun",
@@ -520,7 +529,8 @@
         "url": "https://blog.naver.com/sejong365trust"
       }
     ],
-    "manager": "최유미(01)"
+    "manager": "최유미(01)",
+    "taxEmail": "niccolao9@hanmail.net"
   },
   {
     "slug": "songdo",
@@ -588,7 +598,8 @@
       }
     ],
     "badge": "홈페이지만 관리 · 마케팅 미진행",
-    "manager": "김수빈"
+    "manager": "김수빈",
+    "taxEmail": "smilemedent@naver.com"
   },
   {
     "slug": "yeouiyuhang",
@@ -622,7 +633,8 @@
         "url": "https://blog.naver.com/yeouiyh"
       }
     ],
-    "manager": "최유미(03)"
+    "manager": "최유미(03)",
+    "taxEmail": "nabiya3005@gmail.com"
   },
   {
     "slug": "yeilhang",
@@ -656,7 +668,8 @@
         "url": "https://blog.naver.com/yeil_clinic"
       }
     ],
-    "manager": "최유미(03)"
+    "manager": "최유미(03)",
+    "taxEmail": "sumi_song@hanmail.net"
   },
   {
     "slug": "joeunachim",
@@ -719,7 +732,8 @@
         "url": "https://blog.naver.com/charmphog"
       }
     ],
-    "manager": "이길은"
+    "manager": "이길은",
+    "taxEmail": "violia1872@naver.com"
   },
   {
     "slug": "chaehang",
@@ -784,7 +798,8 @@
         "url": "https://blog.naver.com/drkang2024"
       }
     ],
-    "manager": "이길은"
+    "manager": "이길은",
+    "taxEmail": "drkang2024@naver.com"
   },
   {
     "slug": "daywell_bundang",
@@ -817,7 +832,8 @@
         "url": "https://blog.naver.com/daywell_bundang"
       }
     ],
-    "manager": "이하늘"
+    "manager": "이하늘",
+    "taxEmail": "jmbundang@naver.com"
   },
   {
     "slug": "daywell_daechi",
@@ -850,7 +866,8 @@
         "url": "https://blog.naver.com/daywell_daechi"
       }
     ],
-    "manager": "이하늘"
+    "manager": "이하늘",
+    "taxEmail": "bh820228@naver.com"
   },
   {
     "slug": "daywell_yongsan",
@@ -884,7 +901,8 @@
         "url": "https://blog.naver.com/daywell_yongsan"
       }
     ],
-    "manager": "이하늘"
+    "manager": "이하늘",
+    "taxEmail": "parkseoheee@gmail.com"
   },
   {
     "slug": "daywell_misa",
@@ -976,6 +994,7 @@
         "url": "https://blog.naver.com/craftrain"
       }
     ],
-    "manager": "최유미(03)"
+    "manager": "최유미(03)",
+    "taxEmail": "susiyong@gmail.com"
   }
 ]
