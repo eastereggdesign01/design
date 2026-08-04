@@ -327,6 +327,8 @@ function renderCompany() {
 
   body.appendChild(list);
 
+  body.appendChild(bizSection('easteregg', company.name));
+
   const links = document.createElement('div');
   links.className = 'links';
   company.links.forEach((l) => {
@@ -694,6 +696,63 @@ function infoSection(h) {
   return section('기본 정보', list);
 }
 
+/* ---------- 사업자등록증 ---------- */
+const bizPath = (slug) => `/biz/${slug}.jpg`;
+
+function openLightbox(src, title) {
+  const box = document.createElement('div');
+  box.className = 'lightbox';
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = title;
+  box.appendChild(img);
+  const close = () => {
+    box.remove();
+    document.removeEventListener('keydown', onKey);
+  };
+  const onKey = (e) => {
+    if (e.key === 'Escape') close();
+  };
+  box.onclick = close;
+  document.addEventListener('keydown', onKey);
+  document.body.appendChild(box);
+}
+
+function bizSection(slug, name) {
+  const wrap = document.createElement('div');
+  wrap.className = 'biz-actions';
+  const src = bizPath(slug);
+
+  checkLogo(src).then((ok) => {
+    if (!ok) {
+      const div = document.createElement('div');
+      div.className = 'placeholder';
+      div.style.flex = '1';
+      div.textContent = '파일 없음';
+      wrap.appendChild(div);
+      return;
+    }
+    const view = document.createElement('button');
+    view.className = 'link-btn';
+    view.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
+    view.appendChild(document.createTextNode('보기'));
+    view.onclick = () => openLightbox(src, `${name} 사업자등록증`);
+    wrap.appendChild(view);
+
+    const dl = document.createElement('a');
+    dl.className = 'link-btn';
+    dl.href = src;
+    dl.download = `사업자등록증_${name}.jpg`;
+    dl.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m6 11 6 6 6-6"/><path d="M4 21h16"/></svg>';
+    dl.appendChild(document.createTextNode('JPG 다운로드'));
+    wrap.appendChild(dl);
+  });
+
+  return section('사업자등록증', wrap);
+}
+
 function placeholderSection(title, desc) {
   const div = document.createElement('div');
   div.className = 'placeholder';
@@ -763,6 +822,7 @@ function openDrawer(h) {
   body.appendChild(logoSection(h));
   body.appendChild(colorSection(h));
   body.appendChild(infoSection(h));
+  body.appendChild(bizSection(h.slug, h.name));
   body.appendChild(linkSection(h));
   $drawer.appendChild(body);
 
