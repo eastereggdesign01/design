@@ -1,9 +1,32 @@
 [
   {
-    "emoji": "🎨",
-    "title": "브랜드 키트 허브",
-    "description": "병원별 로고 · 컬러 · 연락처 · 사업자등록증을 한곳에서 찾아 쓰는 내부 도구. 로그인 없이 로고 다운로드, 담당자별 즐겨찾기 지원.",
-    "tags": ["Vite", "Vanilla JS", "내부 도구"],
-    "url": "/hub/"
+    "title": "삼성지정형외과 홈페이지",
+    "description": "정형외과 병원 웹사이트 기획 · 디자인 · 개발",
+    "type": "웹사이트",
+    "url": "http://eastereggtest.com/samsungg/"
+  },
+  {
+    "title": "핏앤필의원 홈페이지",
+    "description": "가상의 피부과 브랜드를 설정해 만든 웹사이트",
+    "type": "웹사이트",
+    "url": "http://eastereggtest.com/fitandfill/"
+  },
+  {
+    "title": "병원 카드뉴스 생성기",
+    "description": "병원 홍보용 카드뉴스 이미지를 자동으로 만들어주는 도구",
+    "type": "웹 도구",
+    "url": "https://cardnews-img-production.up.railway.app/"
+  },
+  {
+    "title": "스카이라인 인스타그램 이미지 생성기",
+    "description": "인스타그램용 이미지를 템플릿 기반으로 생성하는 도구",
+    "type": "웹 도구",
+    "url": "https://skyline-insta-production.up.railway.app/"
+  },
+  {
+    "title": "브랜드 키트",
+    "description": "병원별 로고 · 컬러 · 연락처를 한곳에서 찾아 쓰는 브랜드 자산 허브",
+    "type": "웹 도구",
+    "url": "https://brand-kit-coral.vercel.app/"
   }
 ]
