@@ -12,6 +12,12 @@ const TABS = [
   ['test', '테스트 방법'],
 ];
 
+/* 값이 배열이면 번호 리스트로, 문자열이면 문단으로 표시 */
+const detailHTML = (value) =>
+  Array.isArray(value)
+    ? `<ol class="tab-steps">${value.map((s) => `<li>${s}</li>`).join('')}</ol>`
+    : `<p>${value}</p>`;
+
 const app = document.getElementById('app');
 
 const isExternal = (url) => /^https?:\/\//.test(url);
@@ -53,7 +59,7 @@ function workItem(work, i) {
                 )
                 .join('')}
             </div>
-            <p class="tab-content" data-content>${work.details?.[tabs[0]?.[0]] || ''}</p>
+            <div class="tab-content" data-content>${detailHTML(work.details?.[tabs[0]?.[0]] || '')}</div>
             <a
               class="panel-visit"
               href="${work.url}"
@@ -84,6 +90,8 @@ app.innerHTML = `
     <section class="works" aria-label="작업물 목록">
       ${works.map(workItem).join('')}
     </section>
+
+    <p class="works-note">원본 자료(로고 · 사업자등록증 · 병원 DB)는 전 작업물 공통으로 Google Drive에서 가져와 사용합니다.</p>
   </main>
 `;
 
@@ -126,7 +134,7 @@ works.forEach((work, i) => {
       });
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
-      content.textContent = work.details[tab.dataset.tab] || '';
+      content.innerHTML = detailHTML(work.details[tab.dataset.tab] || '');
     });
   });
 });
