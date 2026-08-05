@@ -216,6 +216,10 @@ body {
   min-height: 3.5em;
 }
 
+.tab-content p + p {
+  margin-top: 10px;
+}
+
 .tab-steps {
   padding-left: 1.35em;
   display: flex;

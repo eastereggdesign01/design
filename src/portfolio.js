@@ -12,11 +12,15 @@ const TABS = [
   ['test', '테스트 방법'],
 ];
 
-/* 값이 배열이면 번호 리스트로, 문자열이면 문단으로 표시 */
+/* 값이 배열이면 번호 리스트로, 문자열이면 문단으로 표시 (줄바꿈 = 문단 나눔) */
 const detailHTML = (value) =>
   Array.isArray(value)
     ? `<ol class="tab-steps">${value.map((s) => `<li>${s}</li>`).join('')}</ol>`
-    : `<p>${value}</p>`;
+    : value
+        .split('\n')
+        .filter(Boolean)
+        .map((p) => `<p>${p}</p>`)
+        .join('');
 
 const app = document.getElementById('app');
 
