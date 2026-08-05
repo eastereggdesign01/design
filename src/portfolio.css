@@ -54,9 +54,47 @@ body {
   min-height: 100vh;
 }
 
+/* ---------- 등장 애니메이션 ---------- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* backwards: 딜레이 동안 from 상태(투명)로 대기하고, 끝나면 일반 스타일(호버 포함)로 복귀 */
+.hero,
+.work-card,
+.foot {
+  animation: fade-up 0.55s ease backwards;
+}
+
+.foot {
+  animation-delay: 0.35s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .work-card,
+  .foot {
+    animation: none;
+  }
+}
+
 /* ---------- 히어로 ---------- */
 .hero {
   margin-bottom: 44px;
+}
+
+.hero-logo {
+  height: 26px;
+  width: auto;
+  margin-bottom: 26px;
+  opacity: 0.92;
 }
 
 .hero-eyebrow {
@@ -109,6 +147,10 @@ body {
   transform: translateY(-3px);
   background: var(--card-hover);
   border-color: rgba(80, 200, 250, 0.45);
+  box-shadow:
+    0 12px 34px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(80, 200, 250, 0.12),
+    0 0 44px rgba(80, 200, 250, 0.1);
 }
 
 .work-card:focus-visible {
@@ -180,19 +222,49 @@ body {
   margin-top: auto;
   padding-top: 56px;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  gap: 18px;
   font-size: 13px;
   color: var(--muted);
 }
 
-.foot a {
+.foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.foot-link {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.foot-link:hover {
+  border-color: rgba(80, 200, 250, 0.45);
+  background: var(--card-hover);
+}
+
+.foot-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.foot-meta a {
   color: var(--muted);
   text-decoration: none;
 }
 
-.foot a:hover {
+.foot-meta a:hover {
   color: var(--accent);
 }
 
