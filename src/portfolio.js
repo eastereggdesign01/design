@@ -1,5 +1,6 @@
 import './portfolio.css';
 import works from './data/works.json';
+import manuscripts from './data/test-manuscripts.js';
 
 /* 작업물 추가 = src/data/works.json 배열에 항목 하나 추가.
    { title, description, type, url, details: { tools, intent, method, test } }
@@ -9,8 +10,21 @@ const TABS = [
   ['tools', '사용 툴'],
   ['intent', '기획의도'],
   ['method', '제작방법'],
-  ['test', '테스트 방법'],
 ];
+
+/* 테스트 탭: 원고를 클릭 한 번으로 복사해 실제 도구에서 써볼 수 있게 한다 */
+const TEST_TAB = '__test';
+
+const testHTML = (text) => `
+  <p class="copy-guide">아래 원고를 클릭하면 복사됩니다. 사이트에 접속해 붙여넣으면 결과를 직접 확인할 수 있어요.</p>
+  <div class="copy-box" role="button" tabindex="0" aria-label="테스트 원고 복사">
+    <div class="copy-box-head">
+      <span>테스트 원고</span>
+      <span class="copy-btn" data-copy-btn>클릭하여 복사</span>
+    </div>
+    <div class="copy-box-text">${text}</div>
+  </div>
+`;
 
 /* 값이 배열이면 번호 리스트로, 문자열이면 문단으로 표시 (줄바꿈 = 문단 나눔) */
 const detailHTML = (value) =>
@@ -29,6 +43,7 @@ const isExternal = (url) => /^https?:\/\//.test(url);
 function workItem(work, i) {
   const external = isExternal(work.url);
   const tabs = TABS.filter(([key]) => work.details?.[key]);
+  if (work.testKey && manuscripts[work.testKey]) tabs.push([TEST_TAB, '테스트']);
   return `
     <article class="work" data-work="${i}">
       <div class="work-row" role="button" tabindex="0" aria-expanded="false" aria-controls="panel-${i}">
@@ -138,7 +153,45 @@ works.forEach((work, i) => {
       });
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
-      content.innerHTML = detailHTML(work.details[tab.dataset.tab] || '');
+      content.innerHTML =
+        tab.dataset.tab === TEST_TAB
+          ? testHTML(manuscripts[work.testKey])
+          : detailHTML(work.details[tab.dataset.tab] || '');
     });
   });
+
+  /* 원고 클릭 → 복사 (탭 전환 때마다 다시 그려지므로 위임 방식) */
+  article.addEventListener('click', (e) => {
+    const box = e.target.closest('.copy-box');
+    if (box) copyText(manuscripts[work.testKey], box.querySelector('[data-copy-btn]'));
+  });
 });
+
+/* http 환경에서는 navigator.clipboard가 없어서 textarea 방식으로 폴백 */
+function copyText(text, btn) {
+  const done = () => {
+    if (!btn) return;
+    btn.textContent = '복사되었습니다 ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '클릭하여 복사';
+      btn.classList.remove('copied');
+    }, 1800);
+  };
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    done();
+  };
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(fallback);
+  } else {
+    fallback();
+  }
+}

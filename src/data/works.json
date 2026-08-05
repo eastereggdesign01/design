@@ -37,6 +37,7 @@
     "description": "병원 홍보용 카드뉴스 이미지를 자동으로 만들어주는 도구",
     "type": "웹 도구",
     "url": "https://cardnews-img-production.up.railway.app/",
+    "testKey": "cardnews",
     "details": {
       "tools": "Claude (기획) · Claude Code (디자인 · 개발) · OpenAI API (기획안 · 이미지 생성) · Railway (서버)",
       "intent": "GPT로 이미지를 만들 때 처음부터 \"이런 이미지 만들어줘\"라고 하면 결과가 잘 안 나옵니다. 내용을 던져 기획안을 먼저 받고 \"그대로 만들어줘\"라고 해야 좋아집니다. 문제는 그 두 단계를 매번 사람이 나눠서 시켜야 한다는 것이었고, 그 순서 자체를 도구 안에 넣기로 했습니다.",
@@ -53,6 +54,7 @@
     "description": "글만 입력하면 이미지 · 캡션 · 해시태그까지 만들어주는 도구",
     "type": "웹 도구",
     "url": "https://skyline-insta-production.up.railway.app/",
+    "testKey": "instagram",
     "details": {
       "tools": "Claude (기획) · Claude Code (디자인 · 개발) · OpenAI API (이미지 · 캡션 생성) · Railway (서버)",
       "intent": "카드뉴스 생성기를 만들면서 생각이 하나 더 붙었습니다. 결국 매번 사람이 이미지를 고르고 캡션을 쓰고 태그를 다는데, 그 판단 기준은 늘 같다는 것. 그렇다면 기준을 미리 넣어두면 됩니다. 03에서 검증한 구조를 게시물 단위로 확장했습니다.",

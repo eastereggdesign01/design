@@ -232,6 +232,73 @@ body {
   font-size: 13px;
 }
 
+/* ---------- 테스트 원고 복사 박스 ---------- */
+.copy-guide {
+  margin-bottom: 12px;
+}
+
+.copy-box {
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fbfaf8;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.copy-box:hover {
+  border-color: #cfc9c0;
+  background: #f7f5f1;
+}
+
+.copy-box-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.copy-btn {
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 11px;
+  background: #fff;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.copy-box:hover .copy-btn {
+  color: var(--text);
+  border-color: #cfc9c0;
+}
+
+.copy-btn.copied {
+  color: #2e7d4f;
+  border-color: #bcd9c8;
+  background: #eef7f1;
+}
+
+.copy-box-text {
+  padding: 12px 14px;
+  max-height: 180px;
+  overflow-y: auto;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  white-space: pre-line;
+}
+
 .works-note {
   margin-top: 22px;
   font-size: 12.5px;
