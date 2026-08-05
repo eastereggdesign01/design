@@ -3,7 +3,7 @@
     "title": "삼성지정형외과 홈페이지",
     "description": "정형외과 병원 웹사이트 기획 · 디자인 · 개발",
     "type": "웹사이트",
-    "url": "http://eastereggtest.com/samsungg/",
+    "url": "http://eastereggtest.com/homepage-samsungg/",
     "details": {
       "tools": "Claude (AI 코딩) · HTML · CSS · JavaScript · 가비아 웹호스팅",
       "intent": "정형외과 병원의 진료 과목, 의료진, 오시는 길을 한 흐름으로 전달하는 병원 홈페이지를 목표로 제작했습니다.",
@@ -14,7 +14,7 @@
     "title": "핏앤필의원 홈페이지",
     "description": "가상의 피부과 브랜드를 설정해 만든 웹사이트",
     "type": "웹사이트",
-    "url": "http://eastereggtest.com/fitandfill/",
+    "url": "http://eastereggtest.com/homepage-fitandfill/",
     "details": {
       "tools": "Claude (AI 코딩) · HTML · CSS · JavaScript · 가비아 웹호스팅",
       "intent": "가상의 피부과 브랜드 '핏앤필'을 설정하고, 브랜드 톤에 맞는 컬러와 문구로 홈페이지 전체를 구성했습니다.",
