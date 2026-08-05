@@ -29,36 +29,17 @@ body {
 .portfolio {
   max-width: 720px;
   margin: 0 auto;
-  padding: 40px 24px 56px;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  padding: 40px 24px 80px;
 }
 
 /* ---------- 상단 ---------- */
 .top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
   margin-bottom: 96px;
 }
 
 .top-logo {
   height: 22px;
   width: auto;
-}
-
-.top-mail {
-  font-size: 13px;
-  color: var(--muted);
-  text-decoration: none;
-}
-
-.top-mail:hover {
-  color: var(--text);
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 /* ---------- 히어로 ---------- */
@@ -85,18 +66,21 @@ body {
   border-top: 1px solid var(--line);
 }
 
+.work {
+  border-bottom: 1px solid var(--line);
+}
+
 .work-row {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr auto auto auto;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   padding: 24px 12px;
   margin: 0 -12px;
-  border-bottom: 1px solid var(--line);
-  text-decoration: none;
-  color: inherit;
   border-radius: 10px;
+  cursor: pointer;
   transition: background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .work-row:hover {
@@ -137,50 +121,118 @@ body {
   white-space: nowrap;
 }
 
-.work-arrow {
+.work-visit {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   color: #b5b0a8;
   transition:
-    transform 0.15s ease,
-    color 0.15s ease;
+    color 0.15s ease,
+    background 0.15s ease;
 }
 
-.work-row:hover .work-arrow {
+.work-visit:hover {
   color: var(--text);
-  transform: translate(2px, -2px);
+  background: #eae7e1;
 }
 
-/* ---------- 푸터 ---------- */
-.foot {
-  margin-top: auto;
-  padding-top: 72px;
+.work-chevron {
+  color: #b5b0a8;
+  transition: transform 0.2s ease;
+}
+
+.work.open .work-chevron {
+  transform: rotate(180deg);
+}
+
+/* ---------- 펼침 패널 ---------- */
+.work-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.work.open .work-panel {
+  grid-template-rows: 1fr;
+}
+
+.work-panel-clip {
+  overflow: hidden;
+}
+
+.work-panel-inner {
+  padding: 4px 12px 26px 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-panel {
+    transition: none;
+  }
+}
+
+/* ---------- 탭 ---------- */
+.tabs {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.tab {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
   font-size: 13px;
+  font-weight: 600;
   color: var(--muted);
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
 }
 
-.foot-links {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.foot-links a {
-  color: var(--muted);
-  text-decoration: none;
-}
-
-.foot-links a:hover {
+.tab:hover {
   color: var(--text);
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
-.foot-dot {
-  color: var(--line);
+.tab.active {
+  color: var(--text);
+  background: #ece9e3;
+}
+
+.tab-content {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #4b4b4b;
+  max-width: 560px;
+  min-height: 3.5em;
+}
+
+.panel-visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 16px;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.panel-visit:hover {
+  background: var(--hover);
+  border-color: #d5d1ca;
 }
 
 /* ---------- 모바일 ---------- */
@@ -190,13 +242,18 @@ body {
   }
 
   .work-row {
-    grid-template-columns: auto 1fr auto;
-    gap: 14px;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 12px;
     padding: 20px 10px;
     margin: 0 -10px;
   }
 
   .work-type {
     display: none;
+  }
+
+  .work-panel-inner {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
