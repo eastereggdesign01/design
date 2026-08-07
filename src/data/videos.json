@@ -7,16 +7,16 @@
   {
     "title": "둔촌오세관정형외과 영상",
     "description": "병원 홍보 영상",
-    "src": "/videos/osegwan.mp4"
+    "src": "https://res.cloudinary.com/dm7nivu1d/video/upload/v1786081074/clients/osegwan/hero/osegwan_hero_main.mp4"
   },
   {
     "title": "삼성지정형외과 영상",
     "description": "원내 사진을 영상화한 메인 히어로 영상",
-    "src": "/videos/samsungg.mp4"
+    "src": "https://res.cloudinary.com/dm7nivu1d/video/upload/samsung-g/hero/final-subtitled.mp4"
   },
   {
     "title": "핏앤필의원 메인 영상",
     "description": "브랜드 스토리텔링 구조의 메인 히어로 영상",
-    "src": "/videos/fitandfill.mp4"
+    "src": "https://d2ol7oe51mr4n9.cloudfront.net/user_381XACKCJl4h4vI1Xr64j08GG8v/586cb66f-11f7-4db6-aab0-932d110aa88e.mp4"
   }
 ]
