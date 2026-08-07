@@ -1,6 +1,7 @@
 import './portfolio.css';
 import works from './data/works.json';
 import manuscripts from './data/test-manuscripts.js';
+import videos from './data/videos.json';
 
 /* 작업물 추가 = src/data/works.json 배열에 항목 하나 추가.
    { title, description, type, url, details: { tools, intent, method, test } }
@@ -96,6 +97,33 @@ function workItem(work, i) {
   `;
 }
 
+/* 영상 항목: 펼치면 플레이어가 나온다 (preload=none — 열기 전엔 내려받지 않음) */
+function videoItem(video, i) {
+  return `
+    <article class="work">
+      <div class="work-row" role="button" tabindex="0" aria-expanded="false" aria-controls="video-panel-${i}">
+        <span class="work-num">${String(i + 1).padStart(2, '0')}</span>
+        <span class="work-info">
+          <span class="work-title">${video.title}</span>
+          <span class="work-desc">${video.description || ''}</span>
+        </span>
+        <svg class="work-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="work-panel" id="video-panel-${i}">
+        <div class="work-panel-clip">
+          <div class="work-panel-inner">
+            <video class="video-player" controls preload="none" src="${video.src}">
+              브라우저가 영상 재생을 지원하지 않습니다.
+            </video>
+          </div>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 app.innerHTML = `
   <main class="portfolio">
     <header class="top">
@@ -111,6 +139,13 @@ app.innerHTML = `
       ${works.map(workItem).join('')}
     </section>
 
+    <section aria-label="영상 목록">
+      <h2 class="sec-title">영상</h2>
+      <div class="works">
+        ${videos.map(videoItem).join('')}
+      </div>
+    </section>
+
     <p class="works-note">원본 자료(로고 · 사업자등록증 · 병원 DB)는 전 작업물 공통으로 Google Drive에서 가져와 사용합니다.</p>
   </main>
 `;
@@ -119,6 +154,7 @@ app.innerHTML = `
 function setOpen(article, open) {
   article.classList.toggle('open', open);
   article.querySelector('.work-row').setAttribute('aria-expanded', String(open));
+  if (!open) article.querySelector('video')?.pause();
 }
 
 document.querySelectorAll('.work').forEach((article) => {

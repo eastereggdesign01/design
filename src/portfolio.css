@@ -232,6 +232,22 @@ body {
   font-size: 13px;
 }
 
+/* ---------- 영상 섹션 ---------- */
+.sec-title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 72px 0 16px;
+}
+
+.video-player {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  border-radius: 12px;
+  background: #000;
+}
+
 /* ---------- 테스트 원고 복사 박스 ---------- */
 .copy-guide {
   margin-bottom: 12px;
