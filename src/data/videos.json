@@ -1,8 +1,8 @@
 [
   {
-    "title": "핏앤필의원 메인 영상",
-    "description": "브랜드 스토리텔링 구조의 메인 히어로 영상",
-    "src": "/videos/fitandfill.mp4"
+    "title": "미래항맥외과 영상",
+    "description": "병원 홍보 영상",
+    "src": "/videos/miraehangmaek.mp4"
   },
   {
     "title": "둔촌오세관정형외과 영상",
@@ -10,8 +10,13 @@
     "src": "/videos/osegwan.mp4"
   },
   {
-    "title": "미래항맥외과 영상",
-    "description": "병원 홍보 영상",
-    "src": "/videos/miraehangmaek.mp4"
+    "title": "삼성지정형외과 영상",
+    "description": "원내 사진을 영상화한 메인 히어로 영상",
+    "src": "/videos/samsungg.mp4"
+  },
+  {
+    "title": "핏앤필의원 메인 영상",
+    "description": "브랜드 스토리텔링 구조의 메인 히어로 영상",
+    "src": "/videos/fitandfill.mp4"
   }
 ]
