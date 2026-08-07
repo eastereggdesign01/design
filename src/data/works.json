@@ -5,7 +5,7 @@
     "type": "웹사이트",
     "url": "http://eastereggtest.com/homepage-samsungg/",
     "details": {
-      "tools": "Claude (기획) · Claude Design (디자인) · Claude Code (개발) · Higgsfield (메인 영상) · 그누보드5 · 파일질라 · 가비아 웹호스팅",
+      "tools": "Claude (기획) · Claude Design (디자인) · Claude Code (개발) · Higgsfield (메인 영상) · GPT (서브페이지 이미지) · 그누보드5 · 파일질라 · 가비아 웹호스팅",
       "intent": "실제 납품을 목표로 진행한 병원입니다. 제작을 하기로 했으나 실행 단계에서 회신이 계속 딜레이되면서 진행이 멈췄고, AI로 제작해보는 테스트를 겸해 직접 만들어봤습니다.\n영상 — 기존에 찍어둔 원내 사진을 활용했습니다. Claude에 연결한 Higgsfield로 가벼운 버전의 메인 영상을 만들었습니다.",
       "method": [
         "Claude로 사이트 구조와 페이지별 콘텐츠 기획",
@@ -23,7 +23,7 @@
     "type": "웹사이트",
     "url": "http://eastereggtest.com/homepage-fitandfill/",
     "details": {
-      "tools": "Claude (브랜드 기획) · Claude Design (로고 · 디자인) · Claude Code (개발) · Higgsfield (메인 영상) · Cloudinary (영상 호스팅) · 파일질라",
+      "tools": "Claude (브랜드 기획) · Claude Design (로고 · 디자인) · Claude Code (개발) · Higgsfield (메인 영상) · GPT (서브페이지 이미지) · Cloudinary (영상 호스팅) · 파일질라",
       "intent": "가상의 병원을 하나 만들어, 브랜드 정의부터 완성까지 하나의 톤으로 진행했습니다. 로고 · 기획 · 디자인 · 제작을 전부 AI로 올인원 작업했습니다.\n영상 — 브랜딩 톤앤매너에 맞춰 Claude에 연결한 Higgsfield로 스토리텔링 방식의 메인 영상을 제작했습니다. PC 가로와 모바일 세로 두 벌로 만들었습니다.",
       "method": [
         "브랜드 네이밍 · 로고 · 컬러 · 톤앤매너 정의",
