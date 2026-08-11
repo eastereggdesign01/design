@@ -97,8 +97,12 @@ function workItem(work, i) {
   `;
 }
 
-/* 영상 항목: 펼치면 플레이어가 나온다 (preload=none — 열기 전엔 내려받지 않음) */
+/* 영상 항목: 펼치면 플레이어가 나온다 (preload=none — 열기 전엔 내려받지 않음)
+   embed 필드가 있으면 mp4 대신 HTML 연출물을 iframe으로 재생한다 (열 때만 로드) */
 function videoItem(video, i) {
+  const media = video.embed
+    ? `<iframe class="video-embed" data-src="${video.embed}" title="${video.title}" allow="autoplay" scrolling="no"></iframe>`
+    : `<video class="video-player" controls preload="none" src="${video.src}">브라우저가 영상 재생을 지원하지 않습니다.</video>`;
   return `
     <article class="work">
       <div class="work-row" role="button" tabindex="0" aria-expanded="false" aria-controls="video-panel-${i}">
@@ -114,9 +118,7 @@ function videoItem(video, i) {
       <div class="work-panel" id="video-panel-${i}">
         <div class="work-panel-clip">
           <div class="work-panel-inner">
-            <video class="video-player" controls preload="none" src="${video.src}">
-              브라우저가 영상 재생을 지원하지 않습니다.
-            </video>
+            ${media}
           </div>
         </div>
       </div>
@@ -155,6 +157,12 @@ function setOpen(article, open) {
   article.classList.toggle('open', open);
   article.querySelector('.work-row').setAttribute('aria-expanded', String(open));
   if (!open) article.querySelector('video')?.pause();
+  // iframe 연출물은 열 때 로드하고 닫으면 내려서 재생을 멈춘다
+  const frame = article.querySelector('.video-embed');
+  if (frame) {
+    if (open && !frame.getAttribute('src')) frame.src = frame.dataset.src;
+    if (!open) frame.removeAttribute('src');
+  }
 }
 
 document.querySelectorAll('.work').forEach((article) => {

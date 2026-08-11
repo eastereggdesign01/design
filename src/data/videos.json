@@ -11,8 +11,8 @@
   },
   {
     "title": "삼성지정형외과 영상",
-    "description": "원내 사진을 영상화한 메인 히어로 영상",
-    "src": "https://res.cloudinary.com/dm7nivu1d/video/upload/samsung-g/hero/final-subtitled.mp4"
+    "description": "7컷 크로스페이드 + 카피 오버레이로 구성한 메인 히어로",
+    "embed": "/hero-samsungg.html"
   },
   {
     "title": "핏앤필의원 메인 영상",

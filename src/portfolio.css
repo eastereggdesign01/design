@@ -248,6 +248,16 @@ body {
   background: #000;
 }
 
+.video-embed {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+  background: #000;
+}
+
 /* ---------- 테스트 원고 복사 박스 ---------- */
 .copy-guide {
   margin-bottom: 12px;
