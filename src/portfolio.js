@@ -17,6 +17,15 @@ const TABS = [
 /* 테스트 탭: 원고를 클릭 한 번으로 복사해 실제 도구에서 써볼 수 있게 한다 */
 const TEST_TAB = '__test';
 
+/* 결과물 샘플 탭: 도구로 만든 결과 영상을 바로 재생 */
+const SAMPLE_TAB = '__sample';
+
+const sampleHTML = (src) => `
+  <video class="video-player video-sample" controls preload="none" src="${src}">
+    브라우저가 영상 재생을 지원하지 않습니다.
+  </video>
+`;
+
 const testHTML = (text) => `
   <p class="copy-guide">아래 원고를 클릭하면 복사됩니다. 사이트에 접속해 붙여넣으면 결과를 직접 확인할 수 있어요.</p>
   <div class="copy-box" role="button" tabindex="0" aria-label="테스트 원고 복사">
@@ -45,6 +54,7 @@ const isExternal = (url) => /^https?:\/\//.test(url);
 function workItem(work, i) {
   const external = isExternal(work.url);
   const tabs = TABS.filter(([key]) => work.details?.[key]);
+  if (work.sampleVideo) tabs.push([SAMPLE_TAB, '결과물 샘플']);
   if (work.testKey && manuscripts[work.testKey]) tabs.push([TEST_TAB, '테스트']);
   return `
     <article class="work" data-work="${i}">
@@ -201,7 +211,9 @@ works.forEach((work, i) => {
       content.innerHTML =
         tab.dataset.tab === TEST_TAB
           ? testHTML(manuscripts[work.testKey])
-          : detailHTML(work.details[tab.dataset.tab] || '');
+          : tab.dataset.tab === SAMPLE_TAB
+            ? sampleHTML(work.sampleVideo)
+            : detailHTML(work.details[tab.dataset.tab] || '');
     });
   });
 

@@ -75,6 +75,7 @@
     "description": "인스타그램 릴스 영상을 웹에서 바로 편집해 만드는 도구",
     "type": "웹 도구",
     "url": "https://skyline-reels-editor-production.up.railway.app/",
+    "sampleVideo": "/videos/reels-sample.mp4",
     "details": {
       "tools": "Claude Code (기획 · 디자인 · 개발) · Google Drive (원본 자료) · OpenAI API (요약 · 편집 · 캡션 생성) · Railway (서버)",
       "intent": "이미지 생성기에 이어 영상 콘텐츠까지 같은 방식으로 확장한 도구입니다. 릴스 제작에 반복되는 컷 구성과 자막 작업을 도구 안에 정형화해, 편집 경험이 없어도 일정한 품질의 릴스를 만들 수 있게 했습니다.",

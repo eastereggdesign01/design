@@ -248,6 +248,13 @@ body {
   background: #000;
 }
 
+/* 릴스 등 세로 영상 샘플 */
+.video-sample {
+  max-width: 280px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+}
+
 .video-embed {
   display: block;
   width: 100%;
