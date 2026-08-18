@@ -76,6 +76,8 @@
     "type": "웹 도구",
     "url": "https://skyline-reels-editor-production.up.railway.app/",
     "sampleVideo": "/videos/reels-sample.mp4",
+    "sampleCaption": "체코 프라하 여행, 승무원은 뭘 꼭 먹고 사고 오냐고요? 직접 다녀온 저만의 경험으로 진짜 추천만 모았어요! 여행 준비할 때 이 리스트 저장해두면 후회할 일 없어요. 프라하 갈 친구에게 공유도 잊지 마세요. 승무원 꿀팁 더 궁금하면 팔로우 잊지 말기.\n— 미소, 비행 중",
+    "sampleTags": "#승무원 #스튜어디스 #승무원준비 #항공과 #프라하 #체코여행 #해외여행추천 #크루라이프 #비행일기 #해외스테이 #여행릴스 #reels #프라하맛집 #프라하여행 #체코음식 #트르들로 #굴라쉬 #꼴레뇨 #까를교 #보헤미안크리스탈 #체코맥주 #crewlife #cabincrew #layover #승무원브이로그",
     "details": {
       "tools": "Claude Code (기획 · 디자인 · 개발) · Google Drive (원본 자료) · OpenAI API (요약 · 편집 · 캡션 생성) · Railway (서버)",
       "intent": "이미지 생성기에 이어 영상 콘텐츠까지 같은 방식으로 확장한 도구입니다. 릴스 제작에 반복되는 컷 구성과 자막 작업을 도구 안에 정형화해, 편집 경험이 없어도 일정한 품질의 릴스를 만들 수 있게 했습니다.",

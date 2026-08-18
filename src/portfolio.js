@@ -20,10 +20,25 @@ const TEST_TAB = '__test';
 /* 결과물 샘플 탭: 도구로 만든 결과 영상을 바로 재생 */
 const SAMPLE_TAB = '__sample';
 
-const sampleHTML = (src) => `
-  <video class="video-player video-sample" controls preload="none" src="${src}">
-    브라우저가 영상 재생을 지원하지 않습니다.
-  </video>
+const sampleHTML = (work) => `
+  <p class="copy-guide">글만 입력해 영상 · 캡션 · 해시태그까지 자동 생성된 결과물입니다.</p>
+  <div class="sample-wrap">
+    <video class="video-player video-sample" controls preload="none" src="${work.sampleVideo}">
+      브라우저가 영상 재생을 지원하지 않습니다.
+    </video>
+    ${
+      work.sampleCaption
+        ? `<div class="sample-caption">
+            ${work.sampleCaption
+              .split('\n')
+              .filter(Boolean)
+              .map((p) => `<p>${p}</p>`)
+              .join('')}
+            ${work.sampleTags ? `<p class="sample-tags">${work.sampleTags}</p>` : ''}
+          </div>`
+        : ''
+    }
+  </div>
 `;
 
 const testHTML = (text) => `
@@ -212,7 +227,7 @@ works.forEach((work, i) => {
         tab.dataset.tab === TEST_TAB
           ? testHTML(manuscripts[work.testKey])
           : tab.dataset.tab === SAMPLE_TAB
-            ? sampleHTML(work.sampleVideo)
+            ? sampleHTML(work)
             : detailHTML(work.details[tab.dataset.tab] || '');
     });
   });
