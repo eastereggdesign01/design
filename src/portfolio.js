@@ -20,26 +20,35 @@ const TEST_TAB = '__test';
 /* 결과물 샘플 탭: 도구로 만든 결과 영상을 바로 재생 */
 const SAMPLE_TAB = '__sample';
 
-const sampleHTML = (work) => `
-  <p class="copy-guide">글만 입력해 영상 · 캡션 · 해시태그까지 자동 생성된 결과물입니다.</p>
-  <div class="sample-wrap">
-    <video class="video-player video-sample" controls preload="none" src="${work.sampleVideo}">
-      브라우저가 영상 재생을 지원하지 않습니다.
-    </video>
-    ${
-      work.sampleCaption
-        ? `<div class="sample-caption">
-            ${work.sampleCaption
-              .split('\n')
-              .filter(Boolean)
-              .map((p) => `<p>${p}</p>`)
-              .join('')}
-            ${work.sampleTags ? `<p class="sample-tags">${work.sampleTags}</p>` : ''}
-          </div>`
-        : ''
-    }
-  </div>
-`;
+const sampleHTML = (work) => {
+  const media = work.sampleVideo
+    ? `<video class="video-player video-sample" controls preload="none" src="${work.sampleVideo}">브라우저가 영상 재생을 지원하지 않습니다.</video>`
+    : work.sampleImages?.length
+      ? `<div class="sample-gallery">${work.sampleImages
+          .map(
+            (src) =>
+              `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" loading="lazy" alt="결과물 샘플 이미지" /></a>`
+          )
+          .join('')}</div>`
+      : '';
+  const caption = work.sampleCaption
+    ? `<div class="sample-caption">
+        ${work.sampleCaption
+          .split('\n')
+          .filter(Boolean)
+          .map((p) => `<p>${p}</p>`)
+          .join('')}
+        ${work.sampleTags ? `<p class="sample-tags">${work.sampleTags}</p>` : ''}
+      </div>`
+    : '';
+  return `
+    ${work.sampleNote ? `<p class="copy-guide">${work.sampleNote}</p>` : ''}
+    <div class="sample-wrap${work.sampleImages?.length ? ' has-gallery' : ''}">
+      ${media}
+      ${caption}
+    </div>
+  `;
+};
 
 const testHTML = (text) => `
   <p class="copy-guide">아래 원고를 클릭하면 복사됩니다. 사이트에 접속해 붙여넣으면 결과를 직접 확인할 수 있어요.</p>
@@ -69,7 +78,7 @@ const isExternal = (url) => /^https?:\/\//.test(url);
 function workItem(work, i) {
   const external = isExternal(work.url);
   const tabs = TABS.filter(([key]) => work.details?.[key]);
-  if (work.sampleVideo) tabs.push([SAMPLE_TAB, '결과물 샘플']);
+  if (work.sampleVideo || work.sampleImages?.length) tabs.push([SAMPLE_TAB, '결과물 샘플']);
   if (work.testKey && manuscripts[work.testKey]) tabs.push([TEST_TAB, '테스트']);
   return `
     <article class="work" data-work="${i}">

@@ -281,6 +281,32 @@ body {
   word-break: keep-all;
 }
 
+/* 이미지 결과물 갤러리 */
+.sample-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.sample-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  transition: transform 0.15s ease;
+}
+
+.sample-gallery a:hover img {
+  transform: scale(1.02);
+}
+
+.sample-wrap.has-gallery {
+  flex-direction: column;
+}
+
 .video-embed {
   display: block;
   width: 100%;

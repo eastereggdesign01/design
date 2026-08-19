@@ -75,6 +75,7 @@
     "description": "인스타그램 릴스 영상을 웹에서 바로 편집해 만드는 도구",
     "type": "웹 도구",
     "url": "https://skyline-reels-editor-production.up.railway.app/",
+    "sampleNote": "글만 입력해 영상 · 캡션 · 해시태그까지 자동 생성된 결과물입니다.",
     "sampleVideo": "/videos/reels-sample.mp4",
     "sampleCaption": "체코 프라하 여행, 승무원은 뭘 꼭 먹고 사고 오냐고요? 직접 다녀온 저만의 경험으로 진짜 추천만 모았어요! 여행 준비할 때 이 리스트 저장해두면 후회할 일 없어요. 프라하 갈 친구에게 공유도 잊지 마세요. 승무원 꿀팁 더 궁금하면 팔로우 잊지 말기.\n— 미소, 비행 중",
     "sampleTags": "#승무원 #스튜어디스 #승무원준비 #항공과 #프라하 #체코여행 #해외여행추천 #크루라이프 #비행일기 #해외스테이 #여행릴스 #reels #프라하맛집 #프라하여행 #체코음식 #트르들로 #굴라쉬 #꼴레뇨 #까를교 #보헤미안크리스탈 #체코맥주 #crewlife #cabincrew #layover #승무원브이로그",
