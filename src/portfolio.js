@@ -24,12 +24,21 @@ const sampleHTML = (work) => {
   const media = work.sampleVideo
     ? `<video class="video-player video-sample" controls preload="none" src="${work.sampleVideo}">브라우저가 영상 재생을 지원하지 않습니다.</video>`
     : work.sampleImages?.length
-      ? `<div class="sample-gallery">${work.sampleImages
-          .map(
-            (src) =>
-              `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" loading="lazy" alt="결과물 샘플 이미지" /></a>`
-          )
-          .join('')}</div>`
+      ? `<div class="sample-carousel">
+          <div class="carousel-track" data-track>${work.sampleImages
+            .map(
+              (src, n) =>
+                `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" ${n === 0 ? '' : 'loading="lazy"'} alt="결과물 샘플 ${n + 1}" /></a>`
+            )
+            .join('')}</div>
+          <button class="carousel-btn prev" data-dir="-1" aria-label="이전 이미지">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="carousel-btn next" data-dir="1" aria-label="다음 이미지">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="carousel-count" data-count></div>
+        </div>`
       : '';
   const caption = work.sampleCaption
     ? `<div class="sample-caption">
@@ -43,7 +52,7 @@ const sampleHTML = (work) => {
     : '';
   return `
     ${work.sampleNote ? `<p class="copy-guide">${work.sampleNote}</p>` : ''}
-    <div class="sample-wrap${work.sampleImages?.length ? ' has-gallery' : ''}">
+    <div class="sample-wrap">
       ${media}
       ${caption}
     </div>
@@ -238,6 +247,7 @@ works.forEach((work, i) => {
           : tab.dataset.tab === SAMPLE_TAB
             ? sampleHTML(work)
             : detailHTML(work.details[tab.dataset.tab] || '');
+      if (tab.dataset.tab === SAMPLE_TAB) initCarousel(content);
     });
   });
 
@@ -247,6 +257,25 @@ works.forEach((work, i) => {
     if (box) copyText(manuscripts[work.testKey], box.querySelector('[data-copy-btn]'));
   });
 });
+
+/* 캐러셀: 좌우 버튼 · 스와이프로 한 장씩, 페이지 표시 갱신 */
+function initCarousel(root) {
+  const track = root.querySelector('[data-track]');
+  if (!track) return;
+  const count = root.querySelector('[data-count]');
+  const total = track.querySelectorAll('img').length;
+  const update = () => {
+    const i = Math.round(track.scrollLeft / track.clientWidth);
+    count.textContent = `${Math.min(i + 1, total)} / ${total}`;
+  };
+  track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  root.querySelectorAll('.carousel-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      track.scrollBy({ left: track.clientWidth * Number(btn.dataset.dir), behavior: 'smooth' });
+    });
+  });
+  update();
+}
 
 /* http 환경에서는 navigator.clipboard가 없어서 textarea 방식으로 폴백 */
 function copyText(text, btn) {
