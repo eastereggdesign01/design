@@ -28,7 +28,7 @@ const sampleHTML = (work) => {
           <div class="carousel-track" data-track>${work.sampleImages
             .map(
               (src, n) =>
-                `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" ${n === 0 ? '' : 'loading="lazy"'} alt="결과물 샘플 ${n + 1}" /></a>`
+                `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" style="aspect-ratio:${work.sampleRatio || '1 / 1'}" ${n === 0 ? '' : 'loading="lazy"'} alt="결과물 샘플 ${n + 1}" /></a>`
             )
             .join('')}</div>
           <button class="carousel-btn prev" data-dir="-1" aria-label="이전 이미지">
