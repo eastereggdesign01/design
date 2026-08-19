@@ -220,6 +220,10 @@ body {
   margin-top: 10px;
 }
 
+.tab-content.tab-content-wide {
+  max-width: none;
+}
+
 .tab-steps {
   padding-left: 1.35em;
   display: flex;

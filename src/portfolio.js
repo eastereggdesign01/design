@@ -247,6 +247,8 @@ works.forEach((work, i) => {
           : tab.dataset.tab === SAMPLE_TAB
             ? sampleHTML(work)
             : detailHTML(work.details[tab.dataset.tab] || '');
+      // 샘플 탭은 이미지+텍스트 가로 배치를 위해 본문 폭 제한을 푼다
+      content.classList.toggle('tab-content-wide', tab.dataset.tab === SAMPLE_TAB);
       if (tab.dataset.tab === SAMPLE_TAB) initCarousel(content);
     });
   });
