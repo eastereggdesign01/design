@@ -52,12 +52,17 @@
       "cost": "고품질(High) 이미지 생성 기준, 1세트(5장) 약 1,500원.\n월 15건 발행 × 20개 병원 = 월 300세트(이미지 1,500장) 기준 약 44만 원 수준.\n기획안 생성(텍스트) 비용 포함 · OpenAI gpt-image-2 고품질 기준이며, 이미지 크기와 환율에 따라 달라질 수 있습니다."
     },
     "sampleNote": "원고만 입력해 기획안 → 카드뉴스 이미지까지 자동 생성된 결과물입니다.",
-    "sampleImages": [
-      "/samples/cardnews-01.jpg",
-      "/samples/cardnews-02.jpg",
-      "/samples/cardnews-03.jpg",
-      "/samples/cardnews-04.jpg",
-      "/samples/cardnews-05.jpg"
+    "sampleSets": [
+      {
+        "label": "JS항외과 세트",
+        "images": [
+          "/samples/cardnews-01.jpg",
+          "/samples/cardnews-02.jpg",
+          "/samples/cardnews-03.jpg",
+          "/samples/cardnews-04.jpg",
+          "/samples/cardnews-05.jpg"
+        ]
+      }
     ]
   },
   {

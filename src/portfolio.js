@@ -20,25 +20,38 @@ const TEST_TAB = '__test';
 /* 결과물 샘플 탭: 도구로 만든 결과 영상을 바로 재생 */
 const SAMPLE_TAB = '__sample';
 
+const carouselHTML = (set, small) => `
+  <div class="sample-set${small ? ' small' : ''}">
+    ${set.label ? `<p class="set-label">${set.label}</p>` : ''}
+    <div class="sample-carousel">
+      <div class="carousel-track" data-track>${set.images
+        .map(
+          (src, n) =>
+            `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" style="aspect-ratio:${set.ratio || '1 / 1'}" ${n === 0 ? '' : 'loading="lazy"'} alt="결과물 샘플 ${n + 1}" /></a>`
+        )
+        .join('')}</div>
+      <button class="carousel-btn prev" data-dir="-1" aria-label="이전 이미지">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="carousel-btn next" data-dir="1" aria-label="다음 이미지">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="carousel-count" data-count></div>
+    </div>
+  </div>
+`;
+
+/* 이미지 세트: sampleSets([{label, images, ratio}]) 또는 단일 sampleImages */
+const imageSets = (work) =>
+  work.sampleSets ||
+  (work.sampleImages?.length ? [{ images: work.sampleImages, ratio: work.sampleRatio }] : null);
+
 const sampleHTML = (work) => {
+  const sets = imageSets(work);
   const media = work.sampleVideo
     ? `<video class="video-player video-sample" controls preload="none" src="${work.sampleVideo}">브라우저가 영상 재생을 지원하지 않습니다.</video>`
-    : work.sampleImages?.length
-      ? `<div class="sample-carousel">
-          <div class="carousel-track" data-track>${work.sampleImages
-            .map(
-              (src, n) =>
-                `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" style="aspect-ratio:${work.sampleRatio || '1 / 1'}" ${n === 0 ? '' : 'loading="lazy"'} alt="결과물 샘플 ${n + 1}" /></a>`
-            )
-            .join('')}</div>
-          <button class="carousel-btn prev" data-dir="-1" aria-label="이전 이미지">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="carousel-btn next" data-dir="1" aria-label="다음 이미지">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="carousel-count" data-count></div>
-        </div>`
+    : sets
+      ? sets.map((set) => carouselHTML(set, sets.length > 1)).join('')
       : '';
   const caption = work.sampleCaption
     ? `<div class="sample-caption">
@@ -87,7 +100,7 @@ const isExternal = (url) => /^https?:\/\//.test(url);
 function workItem(work, i) {
   const external = isExternal(work.url);
   const tabs = TABS.filter(([key]) => work.details?.[key]);
-  if (work.sampleVideo || work.sampleImages?.length) tabs.push([SAMPLE_TAB, '결과물 샘플']);
+  if (work.sampleVideo || imageSets(work)) tabs.push([SAMPLE_TAB, '결과물 샘플']);
   if (work.testKey && manuscripts[work.testKey]) tabs.push([TEST_TAB, '테스트']);
   return `
     <article class="work" data-work="${i}">
@@ -260,23 +273,24 @@ works.forEach((work, i) => {
   });
 });
 
-/* 캐러셀: 좌우 버튼 · 스와이프로 한 장씩, 페이지 표시 갱신 */
+/* 캐러셀: 좌우 버튼 · 스와이프로 한 장씩, 페이지 표시 갱신 (세트가 여러 개면 각각 초기화) */
 function initCarousel(root) {
-  const track = root.querySelector('[data-track]');
-  if (!track) return;
-  const count = root.querySelector('[data-count]');
-  const total = track.querySelectorAll('img').length;
-  const update = () => {
-    const i = Math.round(track.scrollLeft / track.clientWidth);
-    count.textContent = `${Math.min(i + 1, total)} / ${total}`;
-  };
-  track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-  root.querySelectorAll('.carousel-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      track.scrollBy({ left: track.clientWidth * Number(btn.dataset.dir), behavior: 'smooth' });
+  root.querySelectorAll('.sample-carousel').forEach((carousel) => {
+    const track = carousel.querySelector('[data-track]');
+    const count = carousel.querySelector('[data-count]');
+    const total = track.querySelectorAll('img').length;
+    const update = () => {
+      const i = Math.round(track.scrollLeft / track.clientWidth);
+      count.textContent = `${Math.min(i + 1, total)} / ${total}`;
+    };
+    track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+    carousel.querySelectorAll('.carousel-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        track.scrollBy({ left: track.clientWidth * Number(btn.dataset.dir), behavior: 'smooth' });
+      });
     });
+    update();
   });
-  update();
 }
 
 /* http 환경에서는 navigator.clipboard가 없어서 textarea 방식으로 폴백 */
