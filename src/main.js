@@ -41,118 +41,8 @@ function checkLogo(src) {
 /* ---------- 상태 ---------- */
 let query = '';
 let dept = '전체';
-let favOnly = false;
 
 const DEPTS = ['전체', ...new Set(hospitals.flatMap((h) => h.dept))];
-
-/* ---------- 담당자 & 즐겨찾기 ---------- */
-/* 담당자 배정은 hospitals.json의 manager 필드에 등록되어 있다.
-   담당자를 선택하면 배정된 병원이 자동으로 즐겨찾기(★)에 들어가고,
-   별 토글로 추가/제외한 내용은 브라우저에 담당자별로 저장된다. */
-const USER_KEY = 'bkh_user';
-let user = localStorage.getItem(USER_KEY) || '';
-
-const MANAGERS = [...new Set(hospitals.map((h) => h.manager).filter(Boolean))].sort();
-const assignedTo = (name) => hospitals.filter((h) => h.manager === name).map((h) => h.slug);
-
-const favKey = () => `bkh_favs::${user || '공용'}`;
-
-function loadFavs() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(favKey()) || 'null');
-    // 저장된 목록이 비어있지 않을 때만 사용 — 비었으면 배정 병원으로 다시 채운다
-    if (Array.isArray(saved) && saved.length) return new Set(saved);
-  } catch {
-    /* 손상된 저장값은 무시 */
-  }
-  return new Set(user ? assignedTo(user) : []);
-}
-
-let favs = loadFavs();
-
-function saveFavs() {
-  localStorage.setItem(favKey(), JSON.stringify([...favs]));
-}
-
-function toggleFav(slug) {
-  if (favs.has(slug)) {
-    favs.delete(slug);
-    showToast('즐겨찾기에서 뺐습니다');
-  } else {
-    favs.add(slug);
-    showToast('즐겨찾기에 추가했습니다 ★');
-  }
-  saveFavs();
-  renderChips();
-  renderGrid();
-}
-
-/* 담당자 선택 메뉴 */
-function closeUserMenu() {
-  document.querySelector('.user-menu')?.remove();
-}
-
-function openUserMenu() {
-  closeUserMenu();
-  const chip = document.getElementById('user-chip');
-  const menu = document.createElement('div');
-  menu.className = 'user-menu';
-
-  MANAGERS.forEach((n) => {
-    const item = document.createElement('button');
-    item.className = 'user-menu-item' + (n === user ? ' on' : '');
-    item.textContent = `${n} (${assignedTo(n).length})`;
-    item.onclick = () => {
-      closeUserMenu();
-      setUser(n);
-      showToast(`${n} 님으로 전환 — 담당 병원 ${assignedTo(n).length}곳`);
-    };
-    menu.appendChild(item);
-  });
-
-  if (user) {
-    const clear = document.createElement('button');
-    clear.className = 'user-menu-item clear';
-    clear.textContent = '선택 해제';
-    clear.onclick = () => {
-      closeUserMenu();
-      setUser('');
-    };
-    menu.appendChild(clear);
-  }
-
-  document.body.appendChild(menu);
-  const rect = chip.getBoundingClientRect();
-  menu.style.top = `${rect.bottom + 6}px`;
-  menu.style.left = `${Math.max(8, rect.right - menu.offsetWidth)}px`;
-}
-
-document.addEventListener('click', (e) => {
-  if (e.target.closest('#user-chip')) {
-    if (document.querySelector('.user-menu')) closeUserMenu();
-    else openUserMenu();
-  } else if (!e.target.closest('.user-menu')) {
-    closeUserMenu();
-  }
-});
-
-function setUser(name) {
-  user = (name || '').trim();
-  if (user) localStorage.setItem(USER_KEY, user);
-  else localStorage.removeItem(USER_KEY);
-  favs = loadFavs();
-  renderUser();
-  renderChips();
-  renderGrid();
-}
-
-function renderUser() {
-  const btn = document.getElementById('user-chip');
-  btn.innerHTML =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>';
-  btn.appendChild(document.createTextNode(user || '담당자 선택'));
-  btn.classList.toggle('set', !!user);
-}
 
 /* ---------- 뼈대 ---------- */
 const app = document.getElementById('app');
@@ -168,7 +58,6 @@ app.innerHTML = `
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           <input id="search-input" type="search" placeholder="병원명·전화·주소 검색" autocomplete="off" />
         </div>
-        <button class="user-chip" id="user-chip" title="담당자 선택 — 즐겨찾기가 담당자별로 저장됩니다"></button>
       </div>
       <div class="chips" id="chips"></div>
     </div>
@@ -348,17 +237,6 @@ function renderCompany() {
 /* ---------- 필터 칩 ---------- */
 function renderChips() {
   $chips.innerHTML = '';
-
-  const favChip = document.createElement('button');
-  favChip.className = 'chip fav-chip' + (favOnly ? ' on' : '');
-  favChip.textContent = `★ 즐겨찾기${favs.size ? ` ${favs.size}` : ''}`;
-  favChip.onclick = () => {
-    favOnly = !favOnly;
-    renderChips();
-    renderGrid();
-  };
-  $chips.appendChild(favChip);
-
   DEPTS.forEach((d) => {
     const btn = document.createElement('button');
     btn.className = 'chip' + (d === dept ? ' on' : '');
@@ -376,7 +254,6 @@ function renderChips() {
 function filtered() {
   const q = query.trim().toLowerCase();
   return hospitals.filter((h) => {
-    if (favOnly && !favs.has(h.slug)) return false;
     if (dept !== '전체' && !h.dept.includes(dept)) return false;
     if (!q) return true;
     return [h.name, h.slug, h.phone, h.address, ...h.dept]
@@ -420,9 +297,7 @@ function renderGrid() {
   if (!list.length) {
     const div = document.createElement('div');
     div.className = 'empty';
-    div.textContent = favOnly
-      ? '즐겨찾기한 병원이 없습니다. 카드의 별(☆)을 눌러 추가하세요.'
-      : '검색 결과가 없습니다.';
+    div.textContent = '검색 결과가 없습니다.';
     div.style.gridColumn = '1 / -1';
     $grid.appendChild(div);
     return;
@@ -459,17 +334,6 @@ function renderGrid() {
       tags.appendChild(t);
     });
     meta.appendChild(tags);
-
-    const star = document.createElement('span');
-    star.className = 'fav-btn' + (favs.has(h.slug) ? ' on' : '');
-    star.textContent = favs.has(h.slug) ? '★' : '☆';
-    star.title = '즐겨찾기';
-    star.setAttribute('role', 'button');
-    star.onclick = (e) => {
-      e.stopPropagation();
-      toggleFav(h.slug);
-    };
-    meta.appendChild(star);
 
     card.appendChild(meta);
     $grid.appendChild(card);
@@ -791,21 +655,10 @@ function openDrawer(h) {
       <h2></h2>
       <div class="slug"></div>
     </div>
-    <button class="fav-btn drawer-fav" title="즐겨찾기"></button>
     <button class="close-btn" aria-label="닫기">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
     </button>
   `;
-  const favBtn = head.querySelector('.drawer-fav');
-  const syncFav = () => {
-    favBtn.textContent = favs.has(h.slug) ? '★' : '☆';
-    favBtn.classList.toggle('on', favs.has(h.slug));
-  };
-  syncFav();
-  favBtn.onclick = () => {
-    toggleFav(h.slug);
-    syncFav();
-  };
   head.querySelector('h2').textContent = h.name;
   if (h.badge) {
     const badge = document.createElement('span');
@@ -848,7 +701,6 @@ document.getElementById('search-input').addEventListener('input', (e) => {
   renderGrid();
 });
 
-renderUser();
 renderCompany();
 renderChips();
 renderGrid();
