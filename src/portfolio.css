@@ -504,3 +504,275 @@ body {
     padding-right: 10px;
   }
 }
+
+/* ---------- 히어로 실적 요약 ---------- */
+.hero-stat {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+}
+
+/* ---------- 분류 필터 ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.filter {
+  appearance: none;
+  border: 1px solid transparent;
+  background: none;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.filter:hover {
+  background: var(--hover);
+  color: var(--text);
+}
+
+.filter.active {
+  background: var(--text);
+  color: #fff;
+}
+
+/* 필터로 걸러진 항목 · 빈 섹션 */
+.hidden {
+  display: none !important;
+}
+
+/* 섹션 첫 제목은 필터 바 바로 아래라 여백을 줄인다 */
+.filters + .section .sec-title {
+  margin-top: 48px;
+}
+
+.sec-note {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: -8px 0 20px;
+}
+
+/* ---------- 납품 실적 ---------- */
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.ref-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
+}
+
+a.ref-card:hover {
+  border-color: #c9c5bd;
+  transform: translateY(-2px);
+}
+
+.ref-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96px;
+  padding: 16px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--brand) 8%, #fff);
+  box-shadow: inset 0 -2px 0 0 color-mix(in srgb, var(--brand) 45%, #fff);
+  overflow: hidden;
+}
+
+.ref-thumb .ref-shot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.ref-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: color-mix(in srgb, var(--brand) 85%, #000);
+  text-align: center;
+}
+
+.ref-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.ref-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ref-name {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ref-dept {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.ref-note {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #b0642a;
+  background: #fdf4ea;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+/* ---------- 고객사 로고 월 ---------- */
+.client-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.client-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+a.client-cell:hover {
+  background: var(--hover);
+}
+
+.client-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+
+.client-cell:hover .client-logo {
+  opacity: 1;
+}
+
+.client-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* 로고 파일이 확인되면 이름 텍스트는 로고로 대체된다 */
+.client-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ---------- 인쇄물 ---------- */
+.print-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.print-head {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+
+.print-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.print-desc {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.print-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.print-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.print-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.print-tile.empty {
+  border: 1px dashed var(--line);
+  background: #faf9f7;
+  font-size: 12px;
+  color: #a8a49c;
+}
+
+@media (max-width: 520px) {
+  .ref-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .client-wall {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -2,6 +2,9 @@ import './portfolio.css';
 import works from './data/works.json';
 import manuscripts from './data/test-manuscripts.js';
 import videos from './data/videos.json';
+import hospitals from './data/hospitals.json';
+import references from './data/references.json';
+import prints from './data/prints.json';
 
 /* 작업물 추가 = src/data/works.json 배열에 항목 하나 추가.
    { title, description, type, url, details: { tools, intent, method, test } }
@@ -93,6 +96,132 @@ const detailHTML = (value) =>
         .map((p) => `<p>${p}</p>`)
         .join('');
 
+/* ---------- 카테고리 ----------
+   작업물 · 영상 · 실적 · 인쇄물을 한 줄 필터로 훑어볼 수 있게 한다.
+   필터 대상 노드는 data-cat 을 달고, 섹션은 data-filter 를 단다.
+   (섹션 안에 보이는 항목이 하나도 없으면 섹션째 숨긴다) */
+const CATS = ['전체', '홈페이지', '인쇄물', '영상', 'AI 도구'];
+
+/* works.json 에 category 가 없으면 type 으로 갈음한다 */
+const workCat = (work) => work.category || (work.type === '웹 도구' ? 'AI 도구' : '홈페이지');
+
+/* ---------- 로고 ----------
+   public/logos/{슬러그}_{v·h·vw·hw}.png 규칙. 있는 파일만 골라 쓴다.
+   (허브의 checkLogo 와 같은 방식 — Image 프리로드로 존재 확인) */
+const logoCache = new Map();
+
+function checkLogo(src) {
+  if (logoCache.has(src)) {
+    const hit = logoCache.get(src);
+    return typeof hit === 'boolean' ? Promise.resolve(hit) : hit;
+  }
+  const p = new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => (logoCache.set(src, true), resolve(true));
+    img.onerror = () => (logoCache.set(src, false), resolve(false));
+    img.src = src;
+  });
+  logoCache.set(src, p);
+  return p;
+}
+
+/* 컬러 로고 우선순위: 병원이 지정한 thumb → 가로 → 세로 */
+async function firstLogo(slug, thumb) {
+  for (const code of [...(thumb ? [thumb] : []), 'h', 'v']) {
+    const src = `/logos/${slug}_${code}.png`;
+    if (await checkLogo(src)) return src;
+  }
+  return null;
+}
+
+/* 로고 자리는 비워 두고 그린 뒤, 파일이 확인되면 채운다 */
+function fillLogos(root) {
+  root.querySelectorAll('[data-logo-slug]').forEach(async (box) => {
+    const src = await firstLogo(box.dataset.logoSlug, box.dataset.logoThumb || '');
+    if (!src) return;
+    const img = new Image();
+    img.loading = 'lazy';
+    img.alt = box.dataset.logoAlt || '';
+    img.src = src;
+    box.replaceChildren(img);
+    box.classList.add('has-logo');
+  });
+}
+
+/* ---------- 납품 실적 ----------
+   references.json 은 slug 만 적어 두면 hospitals.json 에서
+   이름 · 진료과 · 대표 컬러 · 홈페이지 주소를 끌어온다. 개별 필드로 덮어쓸 수 있다.
+   shot(화면 캡처) 이 들어오면 로고 자리를 캡처 이미지로 대체한다. */
+const bySlug = Object.fromEntries(hospitals.map((h) => [h.slug, h]));
+
+const resolveRef = (ref) => {
+  const h = ref.slug ? bySlug[ref.slug] : null;
+  return {
+    slug: ref.slug || null,
+    thumb: h?.thumb || '',
+    name: ref.name || h?.name || '',
+    dept: ref.dept || h?.dept || [],
+    color: ref.color || h?.colors?.[0]?.hex || '#50C8FA',
+    url: ref.url ?? h?.links?.find((l) => l.label === '홈페이지')?.url ?? null,
+    year: ref.year || '',
+    note: ref.note || '',
+    shot: ref.shot || null,
+  };
+};
+
+function refCard(ref) {
+  const r = resolveRef(ref);
+  const meta = [r.dept.join(' · '), r.year].filter(Boolean).join(' · ');
+  const thumb = r.shot
+    ? `<img class="ref-shot" src="${r.shot}" loading="lazy" alt="${r.name} 홈페이지 화면" />`
+    : `<span class="ref-logo" data-logo-slug="${r.slug || ''}" data-logo-thumb="${r.thumb}" data-logo-alt="${r.name}">${
+        r.slug ? '' : r.name
+      }</span>`;
+  const inner = `
+    <span class="ref-thumb" style="--brand:${r.color}">${thumb}</span>
+    <span class="ref-meta">
+      <span class="ref-name">${r.name}</span>
+      <span class="ref-dept">${meta}</span>
+    </span>
+    ${r.note ? `<span class="ref-note">${r.note}</span>` : ''}
+  `;
+  return r.url
+    ? `<a class="ref-card" data-cat="홈페이지" href="${r.url}" target="_blank" rel="noopener noreferrer">${inner}</a>`
+    : `<div class="ref-card is-flat" data-cat="홈페이지">${inner}</div>`;
+}
+
+/* 고객사 로고 월 — 브랜드 키트에 등록된 병원 전체 */
+function clientLogo(h) {
+  const url = h.links?.find((l) => l.label === '홈페이지')?.url;
+  const inner = `<span class="client-logo" data-logo-slug="${h.slug}" data-logo-thumb="${h.thumb || ''}" data-logo-alt="${h.name}"><span class="client-name">${h.name}</span></span>`;
+  return url
+    ? `<a class="client-cell" href="${url}" target="_blank" rel="noopener noreferrer" title="${h.name}">${inner}</a>`
+    : `<span class="client-cell" title="${h.name}">${inner}</span>`;
+}
+
+/* ---------- 인쇄물 ----------
+   images 가 비어 있으면 자리(플레이스홀더)만 잡아 둔다.
+   prints.json 의 images 에 경로를 넣으면 그대로 채워진다. */
+function printItem(item) {
+  const tiles = item.images.length
+    ? item.images
+        .map(
+          (src, n) =>
+            `<a class="print-tile" href="${src}" target="_blank" rel="noopener"><img src="${src}" loading="lazy" alt="${item.title} ${n + 1}" /></a>`
+        )
+        .join('')
+    : Array.from({ length: 3 }, () => `<span class="print-tile empty">이미지 준비 중</span>`).join('');
+  return `
+    <article class="print" data-cat="인쇄물">
+      <div class="print-head">
+        <span class="print-title">${item.title}</span>
+        <span class="print-desc">${item.description || ''}</span>
+      </div>
+      <div class="print-grid">${tiles}</div>
+    </article>
+  `;
+}
+
 const app = document.getElementById('app');
 
 const isExternal = (url) => /^https?:\/\//.test(url);
@@ -103,7 +232,7 @@ function workItem(work, i) {
   if (work.sampleVideo || imageSets(work)) tabs.push([SAMPLE_TAB, '결과물 샘플']);
   if (work.testKey && manuscripts[work.testKey]) tabs.push([TEST_TAB, '테스트']);
   return `
-    <article class="work" data-work="${i}">
+    <article class="work" data-cat="${workCat(work)}" data-work="${i}">
       <div class="work-row" role="button" tabindex="0" aria-expanded="false" aria-controls="panel-${i}">
         <span class="work-num">${String(i + 1).padStart(2, '0')}</span>
         <span class="work-info">
@@ -160,7 +289,7 @@ function videoItem(video, i) {
     ? `<iframe class="video-embed" data-src="${video.embed}" title="${video.title}" allow="autoplay" scrolling="no"></iframe>`
     : `<video class="video-player" controls preload="none" src="${video.src}">브라우저가 영상 재생을 지원하지 않습니다.</video>`;
   return `
-    <article class="work">
+    <article class="work" data-cat="영상">
       <div class="work-row" role="button" tabindex="0" aria-expanded="false" aria-controls="video-panel-${i}">
         <span class="work-num">${String(i + 1).padStart(2, '0')}</span>
         <span class="work-info">
@@ -182,6 +311,9 @@ function videoItem(video, i) {
   `;
 }
 
+const refCount = references.length;
+const clientCount = hospitals.length;
+
 app.innerHTML = `
   <main class="portfolio">
     <header class="top">
@@ -190,23 +322,83 @@ app.innerHTML = `
 
     <section class="hero">
       <h1 class="hero-title">작업물</h1>
-      <p class="hero-sub">직접 기획하고 만든 웹사이트와 도구들입니다.<br />항목을 누르면 상세 정보가 열립니다.</p>
+      <p class="hero-sub">이스터에그 디자인팀이 만든 병의원 홈페이지와 디자인, 직접 기획해 만든 도구들입니다.<br />항목을 누르면 상세 정보가 열립니다.</p>
+      <p class="hero-stat">고객사 ${clientCount}곳 · 병의원 홈페이지 ${refCount}건</p>
     </section>
 
-    <section class="works" aria-label="작업물 목록">
-      ${works.map(workItem).join('')}
+    <nav class="filters" aria-label="분류 필터">
+      ${CATS.map(
+        (c, n) =>
+          `<button class="filter${n === 0 ? ' active' : ''}" data-filter-btn="${c}" aria-pressed="${n === 0}">${c}</button>`
+      ).join('')}
+    </nav>
+
+    <section class="section" data-filter aria-label="납품 실적">
+      <h2 class="sec-title">납품 실적</h2>
+      <p class="sec-note">실제 제작해 납품한 병의원 홈페이지입니다. 카드를 누르면 운영 중인 사이트로 이동합니다.</p>
+      <div class="ref-grid">
+        ${references.map(refCard).join('')}
+      </div>
     </section>
 
-    <section aria-label="영상 목록">
+    <section class="section" data-filter aria-label="고객사">
+      <h2 class="sec-title">고객사</h2>
+      <p class="sec-note">브랜드 키트에 등록해 관리 중인 병원 ${clientCount}곳입니다.</p>
+      <div class="client-wall" data-cat="홈페이지">
+        ${hospitals.map(clientLogo).join('')}
+      </div>
+    </section>
+
+    <section class="section" data-filter aria-label="작업물 목록">
+      <h2 class="sec-title">직접 만든 것</h2>
+      <div class="works">
+        ${works.map(workItem).join('')}
+      </div>
+    </section>
+
+    <section class="section" data-filter aria-label="영상 목록">
       <h2 class="sec-title">영상</h2>
       <div class="works">
         ${videos.map(videoItem).join('')}
       </div>
     </section>
 
+    <section class="section" data-filter aria-label="인쇄물">
+      <h2 class="sec-title">인쇄물</h2>
+      <p class="sec-note">명함 · 팝업 · 엑스배너 등 인쇄 · 배너 디자인입니다.</p>
+      <div class="print-list">
+        ${prints.map(printItem).join('')}
+      </div>
+    </section>
+
     <p class="works-note">원본 자료(로고 · 사업자등록증 · 병원 DB)는 전 작업물 공통으로 Google Drive에서 가져와 사용합니다.</p>
   </main>
 `;
+
+fillLogos(app);
+
+/* ---------- 분류 필터 ---------- */
+const filterButtons = [...app.querySelectorAll('[data-filter-btn]')];
+
+function applyFilter(cat) {
+  app.querySelectorAll('[data-cat]').forEach((node) => {
+    node.classList.toggle('hidden', cat !== '전체' && node.dataset.cat !== cat);
+  });
+  app.querySelectorAll('[data-filter]').forEach((section) => {
+    const items = section.querySelectorAll('[data-cat]');
+    const visible = [...items].some((n) => !n.classList.contains('hidden'));
+    section.classList.toggle('hidden', items.length > 0 && !visible);
+  });
+  filterButtons.forEach((b) => {
+    const on = b.dataset.filterBtn === cat;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+}
+
+filterButtons.forEach((btn) => {
+  btn.addEventListener('click', () => applyFilter(btn.dataset.filterBtn));
+});
 
 /* ---------- 아코디언 (한 번에 하나만 열림) ---------- */
 function setOpen(article, open) {
