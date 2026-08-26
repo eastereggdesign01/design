@@ -78,6 +78,21 @@ npm run build    # dist/ 폴더에 정적 파일 생성
 
 ## 배포
 
+### Railway (현재 사용)
+
+`railway.json` 에 빌드 · 실행 명령이 들어 있습니다. 저장소를 연결하면 그대로 씁니다.
+
+- build: `npm run build` → `dist/` 생성
+- start: `npm start` → `serve dist` 로 정적 파일 서빙 (포트는 Railway가 주는 `PORT` 사용)
+
+주소는 Railway 프로젝트의 **Settings → Networking → Generate Domain** 을 누르면
+`xxx.up.railway.app` 형태로 바로 발급됩니다. 도메인을 따로 살 필요는 없습니다.
+
+빌드에 `vite` 가 필요하므로 `vite` 는 `devDependencies` 가 아니라 `dependencies` 에 둡니다.
+(배포 환경에서 devDependencies 가 빠지면 빌드가 실패합니다.)
+
+### 그 외
+
 - **Netlify**: 저장소 연결 시 `netlify.toml` 설정을 자동으로 사용합니다. (build: `npm run build`, publish: `dist`)
 - **Vercel**: Vite 프로젝트로 자동 인식됩니다.
 - 드래그앤드롭 배포를 원하면 `npm run build` 후 `dist/` 폴더를 올리면 됩니다.
