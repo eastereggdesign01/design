@@ -145,12 +145,13 @@
     "type": "웹사이트",
     "url": "https://design.easteregg247.com/",
     "details": {
-      "tools": "Claude Code (기획 · 디자인 · 개발) · Railway (서버 · 도메인)",
+      "tools": "Claude Code (기획 · 디자인 · 개발) · Railway (서버) · 아임웹 (도메인 관리)",
       "intent": "홈페이지 포트폴리오나 이미지 작업물을 여기저기서 따로 가져와 보여주는 대신, 한눈에 볼 수 있게 한곳에 모았습니다. 원장님 미팅이나 제안 자리에서 바로 열어 보여드릴 수 있도록 알짜배기 작업물만 골라 담았습니다.",
       "method": [
         "작업물 아카이브 구조 설계",
         "포트폴리오 페이지 디자인 · 구현",
-        "배포 및 도메인 연결"
+        "Railway 배포",
+        "아임웹에서 관리하는 영문 도메인(easteregg247.com)에 Railway의 TXT · CNAME 레코드를 추가해 서브도메인(design.easteregg247.com) 연결"
       ]
     }
   }
