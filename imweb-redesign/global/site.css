@@ -1,0 +1,108 @@
+/* =====================================================================
+   이스터에그 아임웹 리디자인 · 사이트 공통 CSS
+   붙여넣는 곳: 아임웹 관리자 → 디자인 모드 → 설정(톱니) → 「코드 삽입」 → head 영역
+   형식:  style 태그로 감싸서 (여는 태그 … 이 파일 전체 … 닫는 태그)
+   ※ 섹션 코드(코드 위젯)는 이 파일이 없어도 동작하도록 fallback 값을 갖고 있지만,
+      폰트·버튼·간격을 사이트 전체에서 통일하려면 이 파일을 먼저 넣어 주세요.
+   ===================================================================== */
+
+/* 0. 폰트 (Pretendard Variable, 다이내믹 서브셋) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+/* 1. 디자인 토큰 */
+:root {
+  --eg-main: #50c8fa;          /* 브랜드 메인 (배경·포인트 면에 사용) */
+  --eg-main-deep: #0f9bd6;     /* 흰 배경 위 텍스트·아이콘용 (대비 확보) */
+  --eg-main-soft: #e9f7fe;     /* 연한 배경 */
+  --eg-ink: #111417;           /* 본문 검정 */
+  --eg-sub: #697180;           /* 보조 텍스트 */
+  --eg-line: #e6e8eb;          /* 구분선 */
+  --eg-bg: #ffffff;
+  --eg-bg-soft: #f5f7f9;
+  --eg-dark: #0e1216;          /* 다크 섹션 배경 */
+  --eg-radius: 18px;
+  --eg-radius-sm: 12px;
+  --eg-wrap: 1200px;
+  --eg-gutter: 24px;
+  --eg-section-y: 120px;
+  --eg-font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --eg-shadow: 0 1px 2px rgba(17,20,24,.04), 0 12px 32px rgba(17,20,24,.08);
+}
+@media (max-width: 768px) {
+  :root { --eg-section-y: 72px; --eg-gutter: 20px; }
+}
+
+/* 2. 아임웹 기본 본문 폰트 통일 (아임웹 body / 위젯 텍스트에 적용) */
+body, .eg, .eg * { font-family: var(--eg-font); }
+body { color: var(--eg-ink); -webkit-font-smoothing: antialiased; }
+
+/* 3. 섹션 공통 */
+.eg { position: relative; padding: var(--eg-section-y) 0; background: var(--eg-bg); color: var(--eg-ink); line-height: 1.6; word-break: keep-all; }
+.eg *, .eg *::before, .eg *::after { box-sizing: border-box; }
+.eg-wrap { width: 100%; max-width: var(--eg-wrap); margin: 0 auto; padding: 0 var(--eg-gutter); }
+.eg-soft { background: var(--eg-bg-soft); }
+.eg-dark { background: var(--eg-dark); color: #fff; }
+.eg-dark .eg-sub, .eg-dark .eg-eyebrow { color: rgba(255,255,255,.62); }
+
+/* 4. 타이포 */
+.eg h1, .eg h2, .eg h3, .eg h4, .eg p { margin: 0; }
+.eg-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--eg-main-deep); margin-bottom: 18px; }
+.eg-eyebrow::before { content: ''; width: 20px; height: 2px; background: currentColor; border-radius: 2px; }
+.eg-h1 { font-size: clamp(38px, 6vw, 72px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.08; }
+.eg-h2 { font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+.eg-h3 { font-size: clamp(19px, 2vw, 22px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.35; }
+.eg-lead { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.7; color: var(--eg-sub); }
+.eg-sub  { font-size: 15px; line-height: 1.7; color: var(--eg-sub); }
+.eg-accent { color: var(--eg-main-deep); }
+.eg-dark .eg-accent { color: var(--eg-main); }
+
+/* 섹션 머리말 (eyebrow + h2 + lead) */
+.eg-head { max-width: 720px; margin-bottom: 56px; }
+.eg-head--center { margin-left: auto; margin-right: auto; text-align: center; }
+.eg-head--center .eg-eyebrow { justify-content: center; }
+.eg-head .eg-lead { margin-top: 18px; }
+@media (max-width: 768px) { .eg-head { margin-bottom: 36px; } }
+
+/* 5. 버튼 */
+.eg-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 54px; padding: 0 26px; border-radius: 999px; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; cursor: pointer; border: 1.5px solid transparent; transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease; white-space: nowrap; }
+.eg-btn:hover { transform: translateY(-1px); }
+.eg-btn:active { transform: translateY(0); }
+.eg-btn--primary { background: var(--eg-ink); color: #fff; }
+.eg-btn--primary:hover { background: #000; }
+.eg-btn--brand { background: var(--eg-main); color: var(--eg-ink); }
+.eg-btn--brand:hover { background: #3dbdf2; }
+.eg-btn--ghost { background: transparent; color: var(--eg-ink); border-color: var(--eg-line); }
+.eg-btn--ghost:hover { border-color: var(--eg-ink); }
+.eg-dark .eg-btn--ghost { color: #fff; border-color: rgba(255,255,255,.28); }
+.eg-dark .eg-btn--ghost:hover { border-color: #fff; }
+.eg-btn--sm { height: 44px; padding: 0 18px; font-size: 14px; }
+.eg-btn svg { width: 18px; height: 18px; flex: none; }
+
+/* 텍스트 링크 */
+.eg-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--eg-ink); text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+.eg-link:hover { color: var(--eg-main-deep); }
+
+/* 6. 카드 */
+.eg-card { background: #fff; border: 1px solid var(--eg-line); border-radius: var(--eg-radius); padding: 32px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.eg-card:hover { transform: translateY(-3px); box-shadow: var(--eg-shadow); border-color: transparent; }
+.eg-dark .eg-card { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1); }
+
+/* 7. 태그·칩 */
+.eg-chip { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--eg-main-soft); color: var(--eg-main-deep); }
+.eg-dark .eg-chip { background: rgba(80,200,250,.14); color: var(--eg-main); }
+
+/* 8. 모션 (스크롤 등장) — 코드 위젯 JS 없이도 보이도록 기본은 표시, JS가 있으면 순차 등장 */
+.eg-reveal { opacity: 1; transform: none; }
+html.eg-js .eg-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+html.eg-js .eg-reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html.eg-js .eg-reveal { transition: none; opacity: 1; transform: none; } }
+
+/* 9. 아임웹 기본 요소 보정 (사이트 전반) */
+/* 섹션 사이 아임웹이 넣는 기본 여백 제거 → 섹션 코드가 자체 패딩을 가짐 */
+.eg + .eg { border-top: 0; }
+/* 아임웹 위젯 컨테이너가 코드 위젯에 좌우 패딩을 줄 때 풀폭 유지 */
+.eg-full { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); width: 100vw; }
+
+/* 10. 접근성 */
+.eg-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.eg a:focus-visible, .eg button:focus-visible { outline: 3px solid var(--eg-main); outline-offset: 3px; border-radius: 6px; }

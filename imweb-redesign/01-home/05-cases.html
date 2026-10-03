@@ -1,0 +1,71 @@
+<!-- ============================================================
+     홈 05 · 성과 사례 (카드 3개)
+     교체할 것: 병원명(공개 동의된 곳만), 지표 숫자, 기간, 이미지. 의료광고법상 치료효과 표현은 쓰지 않고
+     "노출/유입/예약 수" 같은 마케팅 지표만 적습니다.
+     ============================================================ -->
+<section class="eg eg-cases" id="eg-cases">
+<style>
+  .eg-cases__top { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 48px; }
+  .eg-cases__top .eg-head { margin-bottom: 0; }
+  .eg-cases__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .eg-case { display: flex; flex-direction: column; border-radius: var(--eg-radius, 18px); overflow: hidden; border: 1px solid var(--eg-line, #e6e8eb); background: #fff; text-decoration: none; color: inherit; transition: transform .2s ease, box-shadow .2s ease; }
+  .eg-case:hover { transform: translateY(-4px); box-shadow: var(--eg-shadow, 0 12px 32px rgba(17,20,24,.08)); }
+  .eg-case__img { aspect-ratio: 16 / 10; background: #e9edf1; overflow: hidden; }
+  .eg-case__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+  .eg-case:hover .eg-case__img img { transform: scale(1.03); }
+  .eg-case__body { padding: 24px 24px 28px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .eg-case__tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .eg-case__name { font-size: 18px; font-weight: 700; letter-spacing: -0.015em; }
+  .eg-case__metric { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: auto; padding-top: 18px; border-top: 1px solid var(--eg-line, #e6e8eb); }
+  .eg-case__metric strong { display: block; font-size: 26px; font-weight: 800; letter-spacing: -0.03em; color: var(--eg-main-deep, #0f9bd6); font-variant-numeric: tabular-nums; }
+  .eg-case__metric span { display: block; margin-top: 2px; font-size: 12.5px; color: var(--eg-sub, #697180); }
+  @media (max-width: 900px) { .eg-cases__grid { grid-template-columns: 1fr; } .eg-cases__top { flex-direction: column; align-items: flex-start; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-cases__top">
+      <div class="eg-head">
+        <p class="eg-eyebrow">Results</p>
+        <h2 class="eg-h2">말 대신 숫자로 보여드립니다.</h2>
+      </div>
+      <a class="eg-link" href="/247">모든 사례 보기 →</a>
+    </div>
+    <div class="eg-cases__grid">
+      <a class="eg-case eg-reveal" href="/247/?idx=[글번호]">
+        <div class="eg-case__img"><img src="[사례 이미지 URL]" alt=""></div>
+        <div class="eg-case__body">
+          <div class="eg-case__tags"><span class="eg-chip">외과</span><span class="eg-chip">네이버 플레이스</span></div>
+          <h3 class="eg-case__name">[병원명 또는 "서울 OO외과"]</h3>
+          <p class="eg-sub">[한 줄 요약: 무엇을 바꿨고 어떤 지표가 움직였는지]</p>
+          <div class="eg-case__metric">
+            <div><strong>+[00]%</strong><span>네이버 예약 (6개월)</span></div>
+            <div><strong>[0.0]배</strong><span>플레이스 유입</span></div>
+          </div>
+        </div>
+      </a>
+      <a class="eg-case eg-reveal" href="/247/?idx=[글번호]">
+        <div class="eg-case__img"><img src="[사례 이미지 URL]" alt=""></div>
+        <div class="eg-case__body">
+          <div class="eg-case__tags"><span class="eg-chip">정형외과</span><span class="eg-chip">홈페이지 · 브랜딩</span></div>
+          <h3 class="eg-case__name">[병원명]</h3>
+          <p class="eg-sub">[한 줄 요약]</p>
+          <div class="eg-case__metric">
+            <div><strong>+[00]%</strong><span>홈페이지 문의</span></div>
+            <div><strong>[00]일</strong><span>개원 전 세팅 완료</span></div>
+          </div>
+        </div>
+      </a>
+      <a class="eg-case eg-reveal" href="/247/?idx=[글번호]">
+        <div class="eg-case__img"><img src="[사례 이미지 URL]" alt=""></div>
+        <div class="eg-case__body">
+          <div class="eg-case__tags"><span class="eg-chip">가정의학과</span><span class="eg-chip">유튜브 · 영상</span></div>
+          <h3 class="eg-case__name">[병원명]</h3>
+          <p class="eg-sub">[한 줄 요약]</p>
+          <div class="eg-case__metric">
+            <div><strong>[00]만</strong><span>누적 조회수</span></div>
+            <div><strong>+[00]%</strong><span>영상 경유 예약</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

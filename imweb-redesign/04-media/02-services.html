@@ -1,0 +1,31 @@
+<!-- ============================================================
+     MEDIA 02 · 제작 영역 4종 (큰 카드 2×2)
+     ============================================================ -->
+<section class="eg eg-mserv" id="eg-mserv">
+<style>
+  .eg-mserv__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .eg-mserv__card { position: relative; min-height: 360px; border-radius: var(--eg-radius, 18px); overflow: hidden; background: #e9edf1; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; text-decoration: none; }
+  .eg-mserv__card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .eg-mserv__card:hover img { transform: scale(1.04); }
+  .eg-mserv__card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,18,22,.88), rgba(14,18,22,.1) 60%); }
+  .eg-mserv__body { position: relative; }
+  .eg-mserv__body span { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--eg-main, #50c8fa); }
+  .eg-mserv__body h3 { margin-top: 8px; font-size: clamp(22px, 2.4vw, 28px); font-weight: 800; letter-spacing: -0.03em; }
+  .eg-mserv__body p { margin-top: 10px; font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,.78); max-width: 440px; }
+  .eg-mserv__body ul { margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+  .eg-mserv__body li { font-size: 12.5px; font-weight: 600; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); }
+  @media (max-width: 800px) { .eg-mserv__grid { grid-template-columns: 1fr; } .eg-mserv__card { min-height: 300px; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-head">
+      <p class="eg-eyebrow">What we make</p>
+      <h2 class="eg-h2">병원에 필요한 영상과 사진,<br>네 가지로 나눴습니다.</h2>
+    </div>
+    <div class="eg-mserv__grid">
+      <div class="eg-mserv__card eg-reveal"><img src="[이미지]" alt=""><div class="eg-mserv__body"><span>01 · Interview</span><h3>원장님 인터뷰 · 병원 소개 영상</h3><p>진료 철학을 환자의 언어로 풀어내는 3~5분 영상. 홈페이지 메인과 플레이스, 유튜브에 함께 씁니다.</p><ul><li>대본 기획</li><li>원내 촬영 반나절</li><li>자막 · 썸네일</li></ul></div></div>
+      <div class="eg-mserv__card eg-reveal"><img src="[이미지]" alt=""><div class="eg-mserv__body"><span>02 · Guide</span><h3>시술 · 검사 안내 영상</h3><p>내시경 준비, 수술 전후 주의사항처럼 매번 설명하는 내용을 영상으로. 대기실·카톡·유튜브에 배포합니다.</p><ul><li>모션그래픽</li><li>의료광고 심의 대응</li><li>세로형 동시 제작</li></ul></div></div>
+      <div class="eg-mserv__card eg-reveal"><img src="[이미지]" alt=""><div class="eg-mserv__body"><span>03 · Photo</span><h3>원내 · 의료진 사진 촬영</h3><p>플레이스, 홈페이지, 블로그에 쓸 사진을 하루에 한 번에 찍습니다. 공간·장비·의료진 프로필 세트.</p><ul><li>프로필 · 공간 · 장비</li><li>보정 포함</li><li>플레이스 규격 납품</li></ul></div></div>
+      <div class="eg-mserv__card eg-reveal"><img src="[이미지]" alt=""><div class="eg-mserv__body"><span>04 · YouTube</span><h3>유튜브 채널 운영 · 숏폼</h3><p>기획–촬영–편집–업로드–댓글 관리까지. 자체 채널 운영 경험을 그대로 병원 채널에 적용합니다.</p><ul><li>월 N편 롱폼</li><li>숏폼 · 릴스</li><li>채널 분석 리포트</li></ul></div></div>
+    </div>
+  </div>
+</section>

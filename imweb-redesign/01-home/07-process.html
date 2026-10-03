@@ -1,0 +1,29 @@
+<!-- ============================================================
+     홈 07 · 진행 과정 (4단계)
+     ============================================================ -->
+<section class="eg eg-process" id="eg-process">
+<style>
+  .eg-process__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--eg-line, #e6e8eb); }
+  .eg-process__step { padding: 36px 28px 36px 0; border-right: 1px solid var(--eg-line, #e6e8eb); }
+  .eg-process__step + .eg-process__step { padding-left: 28px; }
+  .eg-process__step:last-child { border-right: 0; }
+  .eg-process__week { display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: .06em; color: var(--eg-main-deep, #0f9bd6); margin-bottom: 20px; }
+  .eg-process__num { font-size: 44px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--eg-line, #e6e8eb); margin-bottom: 18px; }
+  .eg-process__step h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+  .eg-process__step p { margin-top: 10px; font-size: 14.5px; line-height: 1.7; color: var(--eg-sub, #697180); }
+  @media (max-width: 960px) { .eg-process__grid { grid-template-columns: 1fr 1fr; } .eg-process__step:nth-child(2) { border-right: 0; } .eg-process__step:nth-child(3) { padding-left: 0; border-top: 1px solid var(--eg-line, #e6e8eb); } .eg-process__step:nth-child(4) { border-top: 1px solid var(--eg-line, #e6e8eb); } }
+  @media (max-width: 600px) { .eg-process__grid { grid-template-columns: 1fr; } .eg-process__step { border-right: 0 !important; padding-left: 0 !important; border-top: 1px solid var(--eg-line, #e6e8eb); } .eg-process__step:first-child { border-top: 0; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-head">
+      <p class="eg-eyebrow">Process</p>
+      <h2 class="eg-h2">첫 미팅부터 첫 리포트까지,<br>이렇게 진행됩니다.</h2>
+    </div>
+    <div class="eg-process__grid">
+      <div class="eg-process__step eg-reveal"><span class="eg-process__week">WEEK 1</span><div class="eg-process__num">01</div><h3>진단 미팅</h3><p>병원 방문 또는 화상으로 현재 유입 경로, 경쟁 병원, 진료 강점을 함께 정리합니다.</p></div>
+      <div class="eg-process__step eg-reveal"><span class="eg-process__week">WEEK 2</span><div class="eg-process__num">02</div><h3>전략 · 견적 제안</h3><p>채널별 우선순위와 월 예산, 디자인·영상 필요 범위를 한 장의 제안서로 드립니다.</p></div>
+      <div class="eg-process__step eg-reveal"><span class="eg-process__week">WEEK 3–4</span><div class="eg-process__num">03</div><h3>세팅 · 제작</h3><p>플레이스·블로그 정비, 브랜드 자산과 콘텐츠 제작, 촬영까지 한 팀이 동시에 진행합니다.</p></div>
+      <div class="eg-process__step eg-reveal"><span class="eg-process__week">MONTHLY</span><div class="eg-process__num">04</div><h3>운영 · 월간 리포트</h3><p>매달 숫자와 그 이유, 다음 달 바꿀 것을 리포트로 보고하고 바로 반영합니다.</p></div>
+    </div>
+  </div>
+</section>

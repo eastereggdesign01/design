@@ -1,0 +1,49 @@
+<!-- ============================================================
+     MARKETING 04 · 진행 방식 / 구성 (가격 대신 "구성 + 문의")
+     교체할 것: 실제 구성에 맞게 항목 수정. 금액 공개를 원하면 .eg-plan__price에 적으세요.
+     ============================================================ -->
+<section class="eg eg-plans eg-soft" id="eg-pricing">
+<style>
+  .eg-plans__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+  .eg-plan { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--eg-line, #e6e8eb); border-radius: var(--eg-radius, 18px); padding: 36px 32px; }
+  .eg-plan--hot { border-color: var(--eg-ink, #111417); box-shadow: var(--eg-shadow, 0 12px 32px rgba(17,20,24,.08)); }
+  .eg-plan__flag { position: absolute; top: -13px; left: 28px; background: var(--eg-ink, #111417); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+  .eg-plan__name { font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--eg-main-deep, #0f9bd6); }
+  .eg-plan__title { margin-top: 10px; font-size: 24px; font-weight: 800; letter-spacing: -0.03em; }
+  .eg-plan__for { margin-top: 8px; font-size: 14px; color: var(--eg-sub, #697180); }
+  .eg-plan__price { margin-top: 22px; font-size: 15px; font-weight: 700; }
+  .eg-plan__list { margin: 22px 0 0; padding: 22px 0 0; list-style: none; border-top: 1px solid var(--eg-line, #e6e8eb); display: grid; gap: 10px; flex: 1; }
+  .eg-plan__list li { display: flex; gap: 10px; font-size: 14.5px; line-height: 1.55; }
+  .eg-plan__list li::before { content: ''; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--eg-main, #50c8fa); margin-top: 8px; }
+  .eg-plan .eg-btn { margin-top: 28px; width: 100%; }
+  @media (max-width: 900px) { .eg-plans__grid { grid-template-columns: 1fr; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-head eg-head--center">
+      <p class="eg-eyebrow">How we work</p>
+      <h2 class="eg-h2">병원 상황에 따라 세 가지 방식으로 시작합니다.</h2>
+      <p class="eg-lead">정해진 패키지를 억지로 맞추지 않습니다. 진단 미팅 후 필요한 것만 조합해 견적을 드립니다.</p>
+    </div>
+    <div class="eg-plans__grid">
+      <div class="eg-plan eg-reveal">
+        <span class="eg-plan__name">Start</span><h3 class="eg-plan__title">기본 세팅</h3><p class="eg-plan__for">검색에 거의 안 잡히는 병원 · 개원 초기</p>
+        <p class="eg-plan__price">1회 세팅 + 선택 운영</p>
+        <ul class="eg-plan__list"><li>네이버 플레이스 정비 · 사진 교체</li><li>블로그 개설과 기본 글 세트</li><li>리뷰·예약 동선 점검</li><li>진단 리포트 1회</li></ul>
+        <a class="eg-btn eg-btn--ghost" href="/CONTACT">견적 문의</a>
+      </div>
+      <div class="eg-plan eg-plan--hot eg-reveal">
+        <span class="eg-plan__flag">가장 많이 선택</span>
+        <span class="eg-plan__name">Run</span><h3 class="eg-plan__title">월간 운영</h3><p class="eg-plan__for">꾸준히 노출을 쌓아야 하는 병원</p>
+        <p class="eg-plan__price">월 단위 · 최소 [N]개월</p>
+        <ul class="eg-plan__list"><li>플레이스 · 블로그 · 카드뉴스 운영</li><li>월간 콘텐츠 캘린더와 원장님 검수</li><li>필요 시 검색 광고 집행</li><li>매달 리포트 + 브리핑</li><li>디자인팀 소량 제작 포함</li></ul>
+        <a class="eg-btn eg-btn--primary" href="/CONTACT">상담 신청</a>
+      </div>
+      <div class="eg-plan eg-reveal">
+        <span class="eg-plan__name">Open</span><h3 class="eg-plan__title">개원 패키지</h3><p class="eg-plan__for">개원 2~3개월 전 병원</p>
+        <p class="eg-plan__price">개원 전 일괄 + 개원 후 운영</p>
+        <ul class="eg-plan__list"><li>로고 · 간판 · 인쇄물 디자인</li><li>홈페이지 제작</li><li>플레이스 · 블로그 · SNS 개설</li><li>원내 촬영 · 소개 영상</li><li>오픈 후 3개월 운영</li></ul>
+        <a class="eg-btn eg-btn--ghost" href="/CONTACT">개원 상담</a>
+      </div>
+    </div>
+  </div>
+</section>

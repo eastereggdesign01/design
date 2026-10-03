@@ -1,0 +1,56 @@
+<!-- ============================================================
+     DESIGN 02 · 작업물 그리드 (필터 탭 · JS 포함)
+     교체할 것: figure 항목 복제해 작업물 추가. data-cat 값: brand | web | print | sns
+     ============================================================ -->
+<section class="eg eg-works" id="eg-works">
+<style>
+  .eg-works__tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 36px; }
+  .eg-works__tab { appearance: none; border: 1px solid var(--eg-line, #e6e8eb); background: #fff; font: inherit; font-size: 14px; font-weight: 600; color: var(--eg-sub, #697180); height: 40px; padding: 0 16px; border-radius: 999px; cursor: pointer; transition: all .15s ease; }
+  .eg-works__tab.is-on, .eg-works__tab:hover { background: var(--eg-ink, #111417); color: #fff; border-color: var(--eg-ink, #111417); }
+  .eg-works__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .eg-work { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .eg-work.is-hide { display: none; }
+  .eg-work__img { aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; background: #e9edf1; }
+  .eg-work__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+  .eg-work:hover .eg-work__img img { transform: scale(1.03); }
+  .eg-work figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .eg-work__name { font-size: 16px; font-weight: 700; letter-spacing: -0.015em; }
+  .eg-work__cat { font-size: 12.5px; color: var(--eg-sub, #697180); white-space: nowrap; }
+  .eg-work--wide { grid-column: span 2; }
+  .eg-work--wide .eg-work__img { aspect-ratio: 16 / 8.3; }
+  @media (max-width: 900px) { .eg-works__grid { grid-template-columns: 1fr 1fr; } .eg-work--wide { grid-column: span 2; } }
+  @media (max-width: 600px) { .eg-works__grid { grid-template-columns: 1fr; } .eg-work--wide { grid-column: span 1; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-head">
+      <p class="eg-eyebrow">Selected works</p>
+      <h2 class="eg-h2">최근 작업</h2>
+    </div>
+    <div class="eg-works__tabs" role="tablist">
+      <button class="eg-works__tab is-on" data-filter="all">전체</button>
+      <button class="eg-works__tab" data-filter="brand">브랜딩 · 로고</button>
+      <button class="eg-works__tab" data-filter="web">홈페이지</button>
+      <button class="eg-works__tab" data-filter="print">간판 · 인쇄물</button>
+      <button class="eg-works__tab" data-filter="sns">카드뉴스 · SNS</button>
+    </div>
+    <div class="eg-works__grid">
+      <figure class="eg-work eg-work--wide eg-reveal" data-cat="web"><div class="eg-work__img"><img src="[이미지]" alt=""></div><figcaption><span class="eg-work__name">[병원명] 홈페이지</span><span class="eg-work__cat">Web · 2026</span></figcaption></figure>
+      <figure class="eg-work eg-reveal" data-cat="brand"><div class="eg-work__img"><img src="[이미지]" alt=""></div><figcaption><span class="eg-work__name">[병원명] 로고 · BI</span><span class="eg-work__cat">Brand</span></figcaption></figure>
+      <figure class="eg-work eg-reveal" data-cat="print"><div class="eg-work__img"><img src="[이미지]" alt=""></div><figcaption><span class="eg-work__name">[병원명] 간판 · 사인</span><span class="eg-work__cat">Print</span></figcaption></figure>
+      <figure class="eg-work eg-reveal" data-cat="sns"><div class="eg-work__img"><img src="[이미지]" alt=""></div><figcaption><span class="eg-work__name">[병원명] 카드뉴스 세트</span><span class="eg-work__cat">SNS</span></figcaption></figure>
+      <figure class="eg-work eg-reveal" data-cat="brand"><div class="eg-work__img"><img src="[이미지]" alt=""></div><figcaption><span class="eg-work__name">[병원명] 브랜드 가이드</span><span class="eg-work__cat">Brand</span></figcaption></figure>
+      <figure class="eg-work eg-reveal" data-cat="web"><div class="eg-work__img"><img src="[이미지]" alt=""></div><figcaption><span class="eg-work__name">[병원명] 모바일 홈페이지</span><span class="eg-work__cat">Web</span></figcaption></figure>
+    </div>
+  </div>
+<script>
+(function(){
+  var root = document.getElementById('eg-works'); if(!root) return;
+  var tabs = root.querySelectorAll('.eg-works__tab'), items = root.querySelectorAll('.eg-work');
+  tabs.forEach(function(t){ t.addEventListener('click', function(){
+    tabs.forEach(function(x){ x.classList.remove('is-on'); }); t.classList.add('is-on');
+    var f = t.getAttribute('data-filter');
+    items.forEach(function(it){ it.classList.toggle('is-hide', f !== 'all' && it.getAttribute('data-cat') !== f); });
+  }); });
+})();
+</script>
+</section>

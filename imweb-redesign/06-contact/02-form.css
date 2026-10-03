@@ -1,0 +1,24 @@
+/* =====================================================================
+   아임웹 폼(문의) 위젯 스타일 보정 — CONTACT 페이지
+   붙여넣는 곳: 코드 삽입 → head 영역 (site.css 아래)
+   ※ 폼 위젯의 실제 클래스는 F12로 확인 후 셀렉터 조정
+   ===================================================================== */
+.form_wrap, [class*="form_widget"], [class*="inquiry"] { font-family: var(--eg-font) !important; }
+.form_wrap label, [class*="form_widget"] label { font-size: 13.5px !important; font-weight: 700 !important; color: var(--eg-ink, #111417) !important; margin-bottom: 8px !important; }
+.form_wrap input[type="text"], .form_wrap input[type="tel"], .form_wrap input[type="email"], .form_wrap select, .form_wrap textarea,
+[class*="form_widget"] input, [class*="form_widget"] select, [class*="form_widget"] textarea {
+  width: 100% !important; height: 52px !important; border: 1px solid var(--eg-line, #e6e8eb) !important; border-radius: 12px !important;
+  padding: 0 16px !important; font-size: 15px !important; font-family: var(--eg-font) !important; background: #fff !important; box-shadow: none !important;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.form_wrap textarea, [class*="form_widget"] textarea { height: 140px !important; padding: 14px 16px !important; resize: vertical; }
+.form_wrap input:focus, .form_wrap select:focus, .form_wrap textarea:focus, [class*="form_widget"] :is(input,select,textarea):focus {
+  outline: none !important; border-color: var(--eg-main, #50c8fa) !important; box-shadow: 0 0 0 4px rgba(80,200,250,.22) !important;
+}
+.form_wrap .btn, .form_wrap button[type="submit"], [class*="form_widget"] button[type="submit"], [class*="form_widget"] .btn_submit {
+  width: 100% !important; height: 56px !important; border-radius: 999px !important; background: var(--eg-ink, #111417) !important; color: #fff !important;
+  font-size: 16px !important; font-weight: 700 !important; border: 0 !important; font-family: var(--eg-font) !important;
+}
+.form_wrap .btn:hover, [class*="form_widget"] button[type="submit"]:hover { background: #000 !important; }
+/* 체크박스(개인정보 동의) 문구 */
+.form_wrap .agree, [class*="agree"] { font-size: 13px !important; color: var(--eg-sub, #697180) !important; }

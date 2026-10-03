@@ -1,0 +1,327 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>247 미리보기</title>
+<style>/* =====================================================================
+   이스터에그 아임웹 리디자인 · 사이트 공통 CSS
+   붙여넣는 곳: 아임웹 관리자 → 디자인 모드 → 설정(톱니) → 「코드 삽입」 → head 영역
+   형식:  style 태그로 감싸서 (여는 태그 … 이 파일 전체 … 닫는 태그)
+   ※ 섹션 코드(코드 위젯)는 이 파일이 없어도 동작하도록 fallback 값을 갖고 있지만,
+      폰트·버튼·간격을 사이트 전체에서 통일하려면 이 파일을 먼저 넣어 주세요.
+   ===================================================================== */
+
+/* 0. 폰트 (Pretendard Variable, 다이내믹 서브셋) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+/* 1. 디자인 토큰 */
+:root {
+  --eg-main: #50c8fa;          /* 브랜드 메인 (배경·포인트 면에 사용) */
+  --eg-main-deep: #0f9bd6;     /* 흰 배경 위 텍스트·아이콘용 (대비 확보) */
+  --eg-main-soft: #e9f7fe;     /* 연한 배경 */
+  --eg-ink: #111417;           /* 본문 검정 */
+  --eg-sub: #697180;           /* 보조 텍스트 */
+  --eg-line: #e6e8eb;          /* 구분선 */
+  --eg-bg: #ffffff;
+  --eg-bg-soft: #f5f7f9;
+  --eg-dark: #0e1216;          /* 다크 섹션 배경 */
+  --eg-radius: 18px;
+  --eg-radius-sm: 12px;
+  --eg-wrap: 1200px;
+  --eg-gutter: 24px;
+  --eg-section-y: 120px;
+  --eg-font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --eg-shadow: 0 1px 2px rgba(17,20,24,.04), 0 12px 32px rgba(17,20,24,.08);
+}
+@media (max-width: 768px) {
+  :root { --eg-section-y: 72px; --eg-gutter: 20px; }
+}
+
+/* 2. 아임웹 기본 본문 폰트 통일 (아임웹 body / 위젯 텍스트에 적용) */
+body, .eg, .eg * { font-family: var(--eg-font); }
+body { color: var(--eg-ink); -webkit-font-smoothing: antialiased; }
+
+/* 3. 섹션 공통 */
+.eg { position: relative; padding: var(--eg-section-y) 0; background: var(--eg-bg); color: var(--eg-ink); line-height: 1.6; word-break: keep-all; }
+.eg *, .eg *::before, .eg *::after { box-sizing: border-box; }
+.eg-wrap { width: 100%; max-width: var(--eg-wrap); margin: 0 auto; padding: 0 var(--eg-gutter); }
+.eg-soft { background: var(--eg-bg-soft); }
+.eg-dark { background: var(--eg-dark); color: #fff; }
+.eg-dark .eg-sub, .eg-dark .eg-eyebrow { color: rgba(255,255,255,.62); }
+
+/* 4. 타이포 */
+.eg h1, .eg h2, .eg h3, .eg h4, .eg p { margin: 0; }
+.eg-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--eg-main-deep); margin-bottom: 18px; }
+.eg-eyebrow::before { content: ''; width: 20px; height: 2px; background: currentColor; border-radius: 2px; }
+.eg-h1 { font-size: clamp(38px, 6vw, 72px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.08; }
+.eg-h2 { font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+.eg-h3 { font-size: clamp(19px, 2vw, 22px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.35; }
+.eg-lead { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.7; color: var(--eg-sub); }
+.eg-sub  { font-size: 15px; line-height: 1.7; color: var(--eg-sub); }
+.eg-accent { color: var(--eg-main-deep); }
+.eg-dark .eg-accent { color: var(--eg-main); }
+
+/* 섹션 머리말 (eyebrow + h2 + lead) */
+.eg-head { max-width: 720px; margin-bottom: 56px; }
+.eg-head--center { margin-left: auto; margin-right: auto; text-align: center; }
+.eg-head--center .eg-eyebrow { justify-content: center; }
+.eg-head .eg-lead { margin-top: 18px; }
+@media (max-width: 768px) { .eg-head { margin-bottom: 36px; } }
+
+/* 5. 버튼 */
+.eg-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 54px; padding: 0 26px; border-radius: 999px; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; cursor: pointer; border: 1.5px solid transparent; transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease; white-space: nowrap; }
+.eg-btn:hover { transform: translateY(-1px); }
+.eg-btn:active { transform: translateY(0); }
+.eg-btn--primary { background: var(--eg-ink); color: #fff; }
+.eg-btn--primary:hover { background: #000; }
+.eg-btn--brand { background: var(--eg-main); color: var(--eg-ink); }
+.eg-btn--brand:hover { background: #3dbdf2; }
+.eg-btn--ghost { background: transparent; color: var(--eg-ink); border-color: var(--eg-line); }
+.eg-btn--ghost:hover { border-color: var(--eg-ink); }
+.eg-dark .eg-btn--ghost { color: #fff; border-color: rgba(255,255,255,.28); }
+.eg-dark .eg-btn--ghost:hover { border-color: #fff; }
+.eg-btn--sm { height: 44px; padding: 0 18px; font-size: 14px; }
+.eg-btn svg { width: 18px; height: 18px; flex: none; }
+
+/* 텍스트 링크 */
+.eg-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--eg-ink); text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+.eg-link:hover { color: var(--eg-main-deep); }
+
+/* 6. 카드 */
+.eg-card { background: #fff; border: 1px solid var(--eg-line); border-radius: var(--eg-radius); padding: 32px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.eg-card:hover { transform: translateY(-3px); box-shadow: var(--eg-shadow); border-color: transparent; }
+.eg-dark .eg-card { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1); }
+
+/* 7. 태그·칩 */
+.eg-chip { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--eg-main-soft); color: var(--eg-main-deep); }
+.eg-dark .eg-chip { background: rgba(80,200,250,.14); color: var(--eg-main); }
+
+/* 8. 모션 (스크롤 등장) — 코드 위젯 JS 없이도 보이도록 기본은 표시, JS가 있으면 순차 등장 */
+.eg-reveal { opacity: 1; transform: none; }
+html.eg-js .eg-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+html.eg-js .eg-reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html.eg-js .eg-reveal { transition: none; opacity: 1; transform: none; } }
+
+/* 9. 아임웹 기본 요소 보정 (사이트 전반) */
+/* 섹션 사이 아임웹이 넣는 기본 여백 제거 → 섹션 코드가 자체 패딩을 가짐 */
+.eg + .eg { border-top: 0; }
+/* 아임웹 위젯 컨테이너가 코드 위젯에 좌우 패딩을 줄 때 풀폭 유지 */
+.eg-full { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); width: 100vw; }
+
+/* 10. 접근성 */
+.eg-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.eg a:focus-visible, .eg button:focus-visible { outline: 3px solid var(--eg-main); outline-offset: 3px; border-radius: 6px; }
+</style><style>/* =====================================================================
+   247 게시판(블로그형) 스타일 보정 CSS
+   붙여넣는 곳: 코드 삽입 → head 영역 (site.css 아래) — 또는 247 페이지에만 넣으려면
+   247 페이지 맨 위 「코드」 위젯에 style 태그로 감싸 넣어도 됩니다.
+   ※ 아임웹 게시판 마크업은 스킨마다 다릅니다. 적용 안 되는 항목은 F12로 실제 클래스를 확인해
+      아래 셀렉터를 바꿔 주세요. 권장 게시판 스킨: 「갤러리형(썸네일+제목)」 3열.
+   권장 설정: 썸네일 비율 16:9, 목록당 9개, 카테고리(인사이트 / 사례 / 공지) 탭 사용
+   ===================================================================== */
+
+/* 목록 전체 폭·여백을 사이트 그리드와 맞춤 */
+.board_list_wrap, .board-list, [class*="board_list"], [class*="list_wrap"] {
+  max-width: var(--eg-wrap, 1200px) !important; margin: 0 auto !important; padding: 0 var(--eg-gutter, 24px) 96px !important;
+  font-family: var(--eg-font) !important;
+}
+
+/* 카테고리 탭 → pill */
+.board_category a, [class*="category"] a, .list_category a {
+  display: inline-flex !important; align-items: center; height: 40px; padding: 0 16px !important; border-radius: 999px !important;
+  border: 1px solid var(--eg-line, #e6e8eb) !important; background: #fff !important; color: var(--eg-sub, #697180) !important;
+  font-size: 14px !important; font-weight: 600 !important; margin: 0 6px 6px 0 !important;
+}
+.board_category a.active, .board_category a.on, [class*="category"] a.active, [class*="category"] a.on {
+  background: var(--eg-ink, #111417) !important; color: #fff !important; border-color: var(--eg-ink, #111417) !important;
+}
+
+/* 썸네일형 카드 */
+.gallery_list li, [class*="gallery"] li, .board_list_wrap .item, .board-list .item {
+  border: 0 !important; background: transparent !important; box-shadow: none !important;
+}
+.gallery_list .thumb, [class*="gallery"] .thumb, [class*="thumb"] img {
+  border-radius: 14px !important; overflow: hidden !important; aspect-ratio: 16 / 9; object-fit: cover;
+}
+.gallery_list .thumb img { transition: transform .4s ease; }
+.gallery_list li:hover .thumb img { transform: scale(1.04); }
+
+/* 제목·메타 타이포 */
+.gallery_list .tit, .gallery_list .subject, [class*="subject"] a, .board_list_wrap .title a {
+  font-size: 17px !important; font-weight: 700 !important; letter-spacing: -0.015em; line-height: 1.45 !important; color: var(--eg-ink, #111417) !important;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.gallery_list .tit:hover, [class*="subject"] a:hover { color: var(--eg-main-deep, #0f9bd6) !important; }
+.gallery_list .info, .gallery_list .date, [class*="date"], [class*="writer"], [class*="hit"] {
+  font-size: 12.5px !important; color: var(--eg-sub, #697180) !important;
+}
+/* 조회수·작성자 숨김 (블로그형에서는 불필요) */
+[class*="hit"], [class*="writer"] { display: none !important; }
+
+/* 상세(본문) 페이지: 읽기 폭 720px, 본문 17px */
+.board_view_wrap, .board-view, [class*="board_view"], [class*="view_wrap"] {
+  max-width: 760px !important; margin: 0 auto !important; padding: 72px var(--eg-gutter, 24px) 96px !important; font-family: var(--eg-font) !important;
+}
+.board_view_wrap .subject, .board-view .title, [class*="view_tit"], [class*="view_subject"] {
+  font-size: clamp(28px, 4vw, 40px) !important; font-weight: 800 !important; letter-spacing: -0.03em; line-height: 1.2 !important; margin-bottom: 18px !important;
+}
+.board_view_wrap .content, .board-view .content, [class*="view_content"], .fr-view {
+  font-size: 17px !important; line-height: 1.85 !important; color: #2a2f36 !important; word-break: keep-all;
+}
+.board_view_wrap .content img, .fr-view img { border-radius: 12px; max-width: 100%; height: auto; }
+.board_view_wrap .content h2, .fr-view h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.025em; margin: 48px 0 14px; }
+.board_view_wrap .content h3, .fr-view h3 { font-size: 21px; font-weight: 700; letter-spacing: -0.02em; margin: 36px 0 10px; }
+.board_view_wrap .content blockquote, .fr-view blockquote { border-left: 3px solid var(--eg-main, #50c8fa); padding: 4px 0 4px 18px; color: var(--eg-sub, #697180); margin: 28px 0; }
+
+/* 목록으로 / 이전·다음 버튼 */
+.board_view_wrap .btn, .board-view .btn, [class*="btn_list"], [class*="prev_next"] a {
+  font-family: var(--eg-font) !important; border-radius: 999px !important; font-weight: 700 !important;
+}
+</style><style>
+/* 미리보기 전용: 아임웹 헤더 모사 + 플레이스홀더 이미지 처리 */
+.pv-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid rgba(17,20,24,.06);font-family:var(--eg-font)}
+.pv-wrap{max-width:1200px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;gap:32px}
+.pv-logo{color:#111417;display:flex}
+.pv-header nav{display:flex;gap:28px;margin-left:auto}
+.pv-header nav a{font-size:14px;font-weight:600;letter-spacing:.04em;color:#111417;text-decoration:none}
+.pv-header nav a.on{color:#0f9bd6}
+.pv-cta{height:40px;padding:0 18px;border-radius:999px;background:#111417;color:#fff;font-size:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center}
+@media(max-width:800px){.pv-header nav{display:none}}
+img[src^="["]{opacity:0}
+.pv-ph{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;color:rgba(0,0,0,.35);pointer-events:none}
+</style></head><body>
+<header class="pv-header"><div class="pv-wrap"><a class="pv-logo" href="index.html"><svg width="120" height="22" viewBox="0 0 120 22"><text x="0" y="17" font-family="Pretendard Variable,Pretendard,sans-serif" font-weight="800" font-size="19" letter-spacing="-0.5">EASTER EGG</text></svg></a><nav><a href="MARKETING.html" class="">MARKETING</a><a href="DESIGN.html" class="">DESIGN</a><a href="MEDIA.html" class="">MEDIA</a><a href="247.html" class="on">247</a><a href="CONTACT.html" class="">CONTACT</a></nav><a class="pv-cta" href="CONTACT.html">상담 문의</a></div></header>
+<!-- ============================================================
+     247 01 · 페이지 머리말 (게시판 목록 위에 코드 위젯으로)
+     ============================================================ -->
+<section class="eg eg-bhero" id="eg-bhero">
+<style>
+  .eg-bhero { padding: clamp(80px, 11vw, 140px) 0 40px; }
+  .eg-bhero .eg-wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
+  .eg-bhero__title { font-size: clamp(36px, 5.6vw, 64px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.06; }
+  .eg-bhero__title small { display: block; font-size: 15px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--eg-main-deep, #0f9bd6); margin-bottom: 14px; }
+  .eg-bhero__lead { margin-top: 18px; max-width: 560px; font-size: 17px; line-height: 1.7; color: var(--eg-sub, #697180); }
+  .eg-bhero__yt { display: inline-flex; align-items: center; gap: 14px; padding: 14px 18px 14px 14px; border-radius: 16px; border: 1px solid var(--eg-line, #e6e8eb); text-decoration: none; color: inherit; transition: box-shadow .2s ease, transform .2s ease; }
+  .eg-bhero__yt:hover { box-shadow: var(--eg-shadow, 0 12px 32px rgba(17,20,24,.08)); transform: translateY(-2px); }
+  .eg-bhero__yt i { width: 44px; height: 44px; border-radius: 12px; background: #ff0033; color: #fff; display: grid; place-items: center; }
+  .eg-bhero__yt i svg { width: 22px; height: 22px; }
+  .eg-bhero__yt b { display: block; font-size: 15px; font-weight: 700; }
+  .eg-bhero__yt span { font-size: 12.5px; color: var(--eg-sub, #697180); }
+  @media (max-width: 800px) { .eg-bhero .eg-wrap { flex-direction: column; align-items: flex-start; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-reveal">
+      <h1 class="eg-bhero__title"><small>247 · Insights</small>병원 운영과 마케팅,<br>알고 있으면 다른 것들.</h1>
+      <p class="eg-bhero__lead">현장에서 겪은 사례, 네이버·유튜브 변화, 개원 준비 체크리스트를 정리해 올립니다. 24시간 7일, 병원 생각만 합니다.</p>
+    </div>
+    <a class="eg-bhero__yt eg-reveal" href="https://www.youtube.com/@easteregg247" target="_blank" rel="noopener">
+      <i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8zM9.8 15.1V8.9l6 3.1-6 3.1z"/></svg></i>
+      <div><b>유튜브 @easteregg247</b><span>영상으로 보는 병원 마케팅 이야기</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="eg" style="padding-top:0"><div class="eg-wrap"><div style="display:flex;gap:6px;margin-bottom:28px"><a class="eg-btn eg-btn--primary eg-btn--sm" href="#">전체</a><a class="eg-btn eg-btn--ghost eg-btn--sm" href="#">인사이트</a><a class="eg-btn eg-btn--ghost eg-btn--sm" href="#">사례</a><a class="eg-btn eg-btn--ghost eg-btn--sm" href="#">공지</a></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px"><a href="#" style="text-decoration:none;color:inherit"><div style="aspect-ratio:16/9;border-radius:14px;background:#e9edf1;position:relative"><span class="pv-ph">아임웹 게시판 썸네일</span></div><div style="margin-top:12px;font-size:12.5px;color:#697180">인사이트 · 2026.01.01</div><div style="margin-top:6px;font-size:17px;font-weight:700;letter-spacing:-.015em;line-height:1.45">[글 제목 1] — 아임웹 게시판 위젯(갤러리형)에 board.css 적용 시 이런 모습</div></a><a href="#" style="text-decoration:none;color:inherit"><div style="aspect-ratio:16/9;border-radius:14px;background:#e9edf1;position:relative"><span class="pv-ph">아임웹 게시판 썸네일</span></div><div style="margin-top:12px;font-size:12.5px;color:#697180">인사이트 · 2026.02.02</div><div style="margin-top:6px;font-size:17px;font-weight:700;letter-spacing:-.015em;line-height:1.45">[글 제목 2] — 아임웹 게시판 위젯(갤러리형)에 board.css 적용 시 이런 모습</div></a><a href="#" style="text-decoration:none;color:inherit"><div style="aspect-ratio:16/9;border-radius:14px;background:#e9edf1;position:relative"><span class="pv-ph">아임웹 게시판 썸네일</span></div><div style="margin-top:12px;font-size:12.5px;color:#697180">인사이트 · 2026.03.03</div><div style="margin-top:6px;font-size:17px;font-weight:700;letter-spacing:-.015em;line-height:1.45">[글 제목 3] — 아임웹 게시판 위젯(갤러리형)에 board.css 적용 시 이런 모습</div></a><a href="#" style="text-decoration:none;color:inherit"><div style="aspect-ratio:16/9;border-radius:14px;background:#e9edf1;position:relative"><span class="pv-ph">아임웹 게시판 썸네일</span></div><div style="margin-top:12px;font-size:12.5px;color:#697180">인사이트 · 2026.04.04</div><div style="margin-top:6px;font-size:17px;font-weight:700;letter-spacing:-.015em;line-height:1.45">[글 제목 4] — 아임웹 게시판 위젯(갤러리형)에 board.css 적용 시 이런 모습</div></a><a href="#" style="text-decoration:none;color:inherit"><div style="aspect-ratio:16/9;border-radius:14px;background:#e9edf1;position:relative"><span class="pv-ph">아임웹 게시판 썸네일</span></div><div style="margin-top:12px;font-size:12.5px;color:#697180">인사이트 · 2026.05.05</div><div style="margin-top:6px;font-size:17px;font-weight:700;letter-spacing:-.015em;line-height:1.45">[글 제목 5] — 아임웹 게시판 위젯(갤러리형)에 board.css 적용 시 이런 모습</div></a><a href="#" style="text-decoration:none;color:inherit"><div style="aspect-ratio:16/9;border-radius:14px;background:#e9edf1;position:relative"><span class="pv-ph">아임웹 게시판 썸네일</span></div><div style="margin-top:12px;font-size:12.5px;color:#697180">인사이트 · 2026.06.06</div><div style="margin-top:6px;font-size:17px;font-weight:700;letter-spacing:-.015em;line-height:1.45">[글 제목 6] — 아임웹 게시판 위젯(갤러리형)에 board.css 적용 시 이런 모습</div></a></div></div></section>
+<!-- ============================================================
+     홈 09 · 상담 CTA (모든 페이지 하단 공통으로 써도 됩니다)
+     교체할 것: 카카오톡 채널 링크가 있으면 두 번째 버튼 href 교체, 없으면 버튼 삭제
+     ============================================================ -->
+<section class="eg eg-cta" id="eg-cta">
+<style>
+  .eg-cta { padding: 0 0 var(--eg-section-y, 120px); }
+  .eg-cta__box { position: relative; overflow: hidden; border-radius: 28px; background: var(--eg-dark, #0e1216); color: #fff; padding: clamp(48px, 7vw, 96px) clamp(28px, 6vw, 80px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 40px; align-items: center; }
+  .eg-cta__box::before { content: ''; position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(closest-side, rgba(80,200,250,.55), rgba(80,200,250,0)); pointer-events: none; }
+  .eg-cta__title { font-size: clamp(28px, 4.2vw, 48px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.12; }
+  .eg-cta__title em { font-style: normal; color: var(--eg-main, #50c8fa); }
+  .eg-cta__desc { margin-top: 18px; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,.66); max-width: 520px; }
+  .eg-cta__actions { display: flex; flex-direction: column; gap: 12px; align-items: stretch; position: relative; }
+  .eg-cta__actions .eg-btn { height: 60px; font-size: 17px; }
+  .eg-cta__box .eg-btn--ghost { color: #fff; border-color: rgba(255,255,255,.28); }
+  .eg-cta__box .eg-btn--ghost:hover { border-color: #fff; }
+  .eg-cta__tel { text-align: center; font-size: 14px; color: rgba(255,255,255,.6); margin-top: 6px; }
+  .eg-cta__tel a { color: #fff; font-weight: 700; text-decoration: none; }
+  @media (max-width: 900px) { .eg-cta__box { grid-template-columns: 1fr; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-cta__box eg-reveal">
+      <div>
+        <h2 class="eg-cta__title">우리 병원에 맞는 방법이 궁금하다면,<br><em>30분 진단 미팅</em>부터 시작하세요.</h2>
+        <p class="eg-cta__desc">현재 네이버 노출 상태와 유입 경로를 보고, 지금 바꾸면 효과가 큰 것 세 가지를 먼저 알려드립니다. 부담 없이 문의 주세요.</p>
+      </div>
+      <div class="eg-cta__actions">
+        <a class="eg-btn eg-btn--brand" href="/CONTACT">상담 문의 남기기</a>
+        <a class="eg-btn eg-btn--ghost" href="[카카오톡 채널 URL]" target="_blank" rel="noopener">카카오톡으로 문의</a>
+        <p class="eg-cta__tel">평일 10:00–18:00 · <a href="tel:032-710-2258">032-710-2258</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     공통 · 푸터 (모든 페이지 맨 아래 코드 위젯 / 또는 아임웹 푸터 영역에 HTML로)
+     아임웹 기본 푸터는 「푸터 설정」에서 비우고 이 코드로 대체하는 것을 권장
+     교체할 것: 통신판매업 신고번호(있으면), 개인정보처리방침 페이지 링크, 로고 이미지 URL
+     ============================================================ -->
+<footer class="eg eg-footer eg-dark" id="eg-footer">
+<style>
+  .eg-footer { padding: 72px 0 40px; }
+  .eg-footer__top { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, .6fr)); gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .eg-footer__logo img { height: 22px; width: auto; display: block; }
+  .eg-footer__tag { margin-top: 18px; font-size: 14.5px; line-height: 1.7; color: rgba(255,255,255,.62); max-width: 360px; }
+  .eg-footer__col h4 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 16px; }
+  .eg-footer__col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .eg-footer__col a { color: rgba(255,255,255,.85); text-decoration: none; font-size: 14.5px; font-weight: 500; }
+  .eg-footer__col a:hover { color: var(--eg-main, #50c8fa); }
+  .eg-footer__bottom { padding-top: 28px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 12.5px; line-height: 1.8; color: rgba(255,255,255,.45); }
+  .eg-footer__bottom b { color: rgba(255,255,255,.7); font-weight: 600; }
+  .eg-footer__bottom i { font-style: normal; margin: 0 8px; opacity: .35; }
+  .eg-footer__legal { display: flex; gap: 16px; }
+  .eg-footer__legal a { color: rgba(255,255,255,.6); text-decoration: none; }
+  .eg-footer__legal a:hover { color: #fff; }
+  @media (max-width: 900px) { .eg-footer__top { grid-template-columns: 1fr 1fr; } .eg-footer__top > :first-child { grid-column: span 2; } }
+  @media (max-width: 600px) { .eg-footer__top { grid-template-columns: 1fr; } .eg-footer__top > :first-child { grid-column: span 1; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-footer__top">
+      <div>
+        <a class="eg-footer__logo" href="/"><img src="[easteregg_hw.png 가로 화이트 로고 URL]" alt="이스터에그"><span class="pv-ph">이미지 자리: easteregg_hw.png 가로 화이트 로고 U</span></a>
+        <p class="eg-footer__tag">인천 송도에서 시작한 병의원 전문 마케팅 에이전시. 마케팅 · 디자인 · 미디어가 한 팀으로 병원의 방향을 기획하고 실행합니다.</p>
+      </div>
+      <div class="eg-footer__col"><h4>Services</h4><ul><li><a href="/MARKETING">Marketing</a></li><li><a href="/DESIGN">Design</a></li><li><a href="/MEDIA">Media</a></li></ul></div>
+      <div class="eg-footer__col"><h4>Company</h4><ul><li><a href="/247">247 인사이트</a></li><li><a href="/CONTACT">상담 문의</a></li><li><a href="https://www.youtube.com/@easteregg247" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://blog.naver.com/easteregg_blog" target="_blank" rel="noopener">Blog</a></li></ul></div>
+      <div class="eg-footer__col"><h4>Contact</h4><ul><li><a href="tel:032-710-2258">032-710-2258</a></li><li><a href="mailto:easteregg.medi@gmail.com">easteregg.medi@gmail.com</a></li><li><a href="/CONTACT">평일 10:00–18:00</a></li></ul></div>
+    </div>
+    <div class="eg-footer__bottom">
+      <div>
+        <b>주식회사 이스터에그</b><i>|</i>대표 김소연<i>|</i>사업자등록번호 116-86-02909<br>
+        인천 연수구 인천타워대로 323, 송도센트로드 A동 1811호<i>|</i>TEL 032-710-2258<i>|</i>easteregg.medi@gmail.com<br>
+        © <span id="eg-year">2026</span> Easter Egg Inc. All rights reserved.
+      </div>
+      <div class="eg-footer__legal"><a href="[개인정보처리방침 페이지]">개인정보처리방침</a><a href="[이용약관 페이지]">이용약관</a></div>
+    </div>
+  </div>
+<script>(function(){var y=document.getElementById('eg-year');if(y)y.textContent=new Date().getFullYear();})();</script>
+</footer>
+
+<script>/* =====================================================================
+   스크롤 등장 모션 (선택) · 붙여넣는 곳: 코드 삽입 → body 닫는 태그 직전
+   형식: script 태그로 감싸서 (여는 태그 … 이 파일 전체 … 닫는 태그)
+   ===================================================================== */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('eg-js');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+  function bind() {
+    document.querySelectorAll('.eg-reveal:not(.is-in)').forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i % 6, 5) * 60 + 'ms';
+      io.observe(el);
+    });
+  }
+  bind();
+  // 아임웹이 위젯을 지연 렌더링할 때를 대비해 한 번 더
+  window.addEventListener('load', bind);
+})();
+</script>
+<script>document.querySelectorAll('.eg-reveal').forEach(e=>e.classList.add('is-in'))</script>
+</body></html>

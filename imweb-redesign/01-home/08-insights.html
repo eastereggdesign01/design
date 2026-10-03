@@ -1,0 +1,53 @@
+<!-- ============================================================
+     홈 08 · 247 인사이트 + 유튜브 (최근 글 3개)
+     교체할 것: 카드 3개의 링크/썸네일/제목/날짜. 아임웹 게시판 위젯을 쓰고 싶으면 이 섹션 대신
+     아임웹 「게시판 요약」 위젯을 넣고 05-247/board.css 로 스타일만 맞춰도 됩니다.
+     ============================================================ -->
+<section class="eg eg-insights eg-soft" id="eg-insights">
+<style>
+  .eg-insights__top { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 40px; }
+  .eg-insights__top .eg-head { margin-bottom: 0; }
+  .eg-insights__links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .eg-insights__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .eg-post { display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: inherit; }
+  .eg-post__thumb { aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #dfe4e9; position: relative; }
+  .eg-post__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+  .eg-post:hover .eg-post__thumb img { transform: scale(1.04); }
+  .eg-post__play { position: absolute; left: 14px; bottom: 14px; width: 40px; height: 40px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  .eg-post__play svg { width: 16px; height: 16px; margin-left: 2px; }
+  .eg-post__meta { font-size: 12.5px; color: var(--eg-sub, #697180); display: flex; gap: 8px; }
+  .eg-post__title { font-size: 17px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.45; }
+  .eg-post:hover .eg-post__title { color: var(--eg-main-deep, #0f9bd6); }
+  @media (max-width: 900px) { .eg-insights__grid { grid-template-columns: 1fr; } .eg-insights__top { flex-direction: column; align-items: flex-start; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-insights__top">
+      <div class="eg-head">
+        <p class="eg-eyebrow">247 · Insights</p>
+        <h2 class="eg-h2">병원 운영과 마케팅,<br>알고 있으면 다른 것들.</h2>
+      </div>
+      <div class="eg-insights__links">
+        <a class="eg-btn eg-btn--ghost eg-btn--sm" href="/247">247 전체 글</a>
+        <a class="eg-btn eg-btn--ghost eg-btn--sm" href="https://www.youtube.com/@easteregg247" target="_blank" rel="noopener">유튜브 채널
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+    <div class="eg-insights__grid">
+      <a class="eg-post eg-reveal" href="https://www.youtube.com/@easteregg247" target="_blank" rel="noopener">
+        <div class="eg-post__thumb"><img src="[유튜브 썸네일 URL]" alt=""><span class="eg-post__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div>
+        <div class="eg-post__meta"><span>YouTube</span><span>·</span><span>[날짜]</span></div>
+        <h3 class="eg-post__title">[영상 제목 — 예: 개원 첫 달, 네이버 플레이스에서 꼭 손봐야 할 5가지]</h3>
+      </a>
+      <a class="eg-post eg-reveal" href="/247/?idx=[글번호]">
+        <div class="eg-post__thumb"><img src="[썸네일 URL]" alt=""></div>
+        <div class="eg-post__meta"><span>247</span><span>·</span><span>[날짜]</span></div>
+        <h3 class="eg-post__title">[글 제목]</h3>
+      </a>
+      <a class="eg-post eg-reveal" href="/247/?idx=6">
+        <div class="eg-post__thumb"><img src="[썸네일 URL]" alt=""></div>
+        <div class="eg-post__meta"><span>247</span><span>·</span><span>[날짜]</span></div>
+        <h3 class="eg-post__title">PPT 제작 — 병원 설명회·학회 발표 자료는 이렇게 만듭니다</h3>
+      </a>
+    </div>
+  </div>
+</section>

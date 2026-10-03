@@ -1,0 +1,23 @@
+<!-- ============================================================
+     홈 02 · 신뢰 지표 바 (숫자 4개)
+     교체할 것: 숫자는 실제 수치로. 확인 안 되는 수치는 항목 자체를 지우세요.
+     ============================================================ -->
+<section class="eg eg-stats eg-dark" id="eg-stats">
+<style>
+  .eg-stats { padding: 56px 0; }
+  .eg-stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .eg-stats__item { padding: 8px 0 8px 24px; border-left: 1px solid rgba(255,255,255,.14); }
+  .eg-stats__num { display: block; font-size: clamp(34px, 4vw, 52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: #fff; font-variant-numeric: tabular-nums; }
+  .eg-stats__num small { font-size: .5em; font-weight: 700; color: var(--eg-main, #50c8fa); margin-left: 2px; }
+  .eg-stats__label { display: block; margin-top: 12px; font-size: 14px; color: rgba(255,255,255,.62); }
+  @media (max-width: 768px) { .eg-stats__grid { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; } .eg-stats__item { padding-left: 16px; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-stats__grid">
+      <div class="eg-stats__item eg-reveal"><span class="eg-stats__num">28<small>+</small></span><span class="eg-stats__label">함께한 병의원</span></div>
+      <div class="eg-stats__item eg-reveal"><span class="eg-stats__num">3<small>팀</small></span><span class="eg-stats__label">마케팅 · 디자인 · 미디어 전담</span></div>
+      <div class="eg-stats__item eg-reveal"><span class="eg-stats__num">12<small>회/년</small></span><span class="eg-stats__label">숫자마다 설명이 붙는 월간 리포트</span></div>
+      <div class="eg-stats__item eg-reveal"><span class="eg-stats__num">[00]<small>%</small></span><span class="eg-stats__label">[예: 평균 네이버 예약 증가율 — 실제 수치로 교체]</span></div>
+    </div>
+  </div>
+</section>

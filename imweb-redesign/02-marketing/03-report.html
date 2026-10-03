@@ -1,0 +1,32 @@
+<!-- ============================================================
+     MARKETING 03 · 리포트 미리보기 (차별점 시각화)
+     교체할 것: 리포트 캡처 이미지 1장 (개인정보/병원명 가린 버전)
+     ============================================================ -->
+<section class="eg eg-report eg-dark" id="eg-report">
+<style>
+  .eg-report .eg-wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; align-items: center; }
+  .eg-report__img { border-radius: 20px; overflow: hidden; background: #1a2027; box-shadow: 0 30px 80px rgba(0,0,0,.4); aspect-ratio: 4 / 3; }
+  .eg-report__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .eg-report__quote { margin-top: 36px; padding-left: 20px; border-left: 2px solid var(--eg-main, #50c8fa); font-size: 17px; line-height: 1.7; color: rgba(255,255,255,.85); }
+  .eg-report__quote cite { display: block; margin-top: 10px; font-style: normal; font-size: 13px; color: rgba(255,255,255,.5); }
+  .eg-report__checks { margin: 32px 0 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+  .eg-report__checks li { display: flex; gap: 12px; font-size: 15.5px; line-height: 1.6; color: rgba(255,255,255,.85); }
+  .eg-report__checks svg { flex: none; width: 22px; height: 22px; color: var(--eg-main, #50c8fa); margin-top: 1px; }
+  @media (max-width: 960px) { .eg-report .eg-wrap { grid-template-columns: 1fr; gap: 36px; } }
+</style>
+  <div class="eg-wrap">
+    <div>
+      <div class="eg-head" style="margin-bottom:0;">
+        <p class="eg-eyebrow">Monthly report</p>
+        <h2 class="eg-h2">리포트에 숫자만 있으면<br>읽을 이유가 없습니다.</h2>
+      </div>
+      <ul class="eg-report__checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>이번 달 유입·전화·예약이 <b>왜</b> 그렇게 나왔는지 한 줄 설명</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>다음 달에 <b>무엇을 바꿀지</b>와 예상 효과</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>원장님이 결정해야 할 것은 <b>질문 형태</b>로 따로 정리</li>
+      </ul>
+      <blockquote class="eg-report__quote">“[원장님 후기 한 문장 — 예: 리포트를 보면 다음 달에 뭘 해야 하는지가 보여서 회의가 짧아졌습니다.]”<cite>[OO외과 원장 — 공개 동의된 후기만]</cite></blockquote>
+    </div>
+    <div class="eg-report__img eg-reveal"><img src="[리포트 캡처 이미지 URL]" alt="이스터에그 월간 리포트 예시"></div>
+  </div>
+</section>

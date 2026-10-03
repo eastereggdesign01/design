@@ -1,0 +1,409 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MARKETING 미리보기</title>
+<style>/* =====================================================================
+   이스터에그 아임웹 리디자인 · 사이트 공통 CSS
+   붙여넣는 곳: 아임웹 관리자 → 디자인 모드 → 설정(톱니) → 「코드 삽입」 → head 영역
+   형식:  style 태그로 감싸서 (여는 태그 … 이 파일 전체 … 닫는 태그)
+   ※ 섹션 코드(코드 위젯)는 이 파일이 없어도 동작하도록 fallback 값을 갖고 있지만,
+      폰트·버튼·간격을 사이트 전체에서 통일하려면 이 파일을 먼저 넣어 주세요.
+   ===================================================================== */
+
+/* 0. 폰트 (Pretendard Variable, 다이내믹 서브셋) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+/* 1. 디자인 토큰 */
+:root {
+  --eg-main: #50c8fa;          /* 브랜드 메인 (배경·포인트 면에 사용) */
+  --eg-main-deep: #0f9bd6;     /* 흰 배경 위 텍스트·아이콘용 (대비 확보) */
+  --eg-main-soft: #e9f7fe;     /* 연한 배경 */
+  --eg-ink: #111417;           /* 본문 검정 */
+  --eg-sub: #697180;           /* 보조 텍스트 */
+  --eg-line: #e6e8eb;          /* 구분선 */
+  --eg-bg: #ffffff;
+  --eg-bg-soft: #f5f7f9;
+  --eg-dark: #0e1216;          /* 다크 섹션 배경 */
+  --eg-radius: 18px;
+  --eg-radius-sm: 12px;
+  --eg-wrap: 1200px;
+  --eg-gutter: 24px;
+  --eg-section-y: 120px;
+  --eg-font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --eg-shadow: 0 1px 2px rgba(17,20,24,.04), 0 12px 32px rgba(17,20,24,.08);
+}
+@media (max-width: 768px) {
+  :root { --eg-section-y: 72px; --eg-gutter: 20px; }
+}
+
+/* 2. 아임웹 기본 본문 폰트 통일 (아임웹 body / 위젯 텍스트에 적용) */
+body, .eg, .eg * { font-family: var(--eg-font); }
+body { color: var(--eg-ink); -webkit-font-smoothing: antialiased; }
+
+/* 3. 섹션 공통 */
+.eg { position: relative; padding: var(--eg-section-y) 0; background: var(--eg-bg); color: var(--eg-ink); line-height: 1.6; word-break: keep-all; }
+.eg *, .eg *::before, .eg *::after { box-sizing: border-box; }
+.eg-wrap { width: 100%; max-width: var(--eg-wrap); margin: 0 auto; padding: 0 var(--eg-gutter); }
+.eg-soft { background: var(--eg-bg-soft); }
+.eg-dark { background: var(--eg-dark); color: #fff; }
+.eg-dark .eg-sub, .eg-dark .eg-eyebrow { color: rgba(255,255,255,.62); }
+
+/* 4. 타이포 */
+.eg h1, .eg h2, .eg h3, .eg h4, .eg p { margin: 0; }
+.eg-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--eg-main-deep); margin-bottom: 18px; }
+.eg-eyebrow::before { content: ''; width: 20px; height: 2px; background: currentColor; border-radius: 2px; }
+.eg-h1 { font-size: clamp(38px, 6vw, 72px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.08; }
+.eg-h2 { font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+.eg-h3 { font-size: clamp(19px, 2vw, 22px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.35; }
+.eg-lead { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.7; color: var(--eg-sub); }
+.eg-sub  { font-size: 15px; line-height: 1.7; color: var(--eg-sub); }
+.eg-accent { color: var(--eg-main-deep); }
+.eg-dark .eg-accent { color: var(--eg-main); }
+
+/* 섹션 머리말 (eyebrow + h2 + lead) */
+.eg-head { max-width: 720px; margin-bottom: 56px; }
+.eg-head--center { margin-left: auto; margin-right: auto; text-align: center; }
+.eg-head--center .eg-eyebrow { justify-content: center; }
+.eg-head .eg-lead { margin-top: 18px; }
+@media (max-width: 768px) { .eg-head { margin-bottom: 36px; } }
+
+/* 5. 버튼 */
+.eg-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 54px; padding: 0 26px; border-radius: 999px; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; cursor: pointer; border: 1.5px solid transparent; transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease; white-space: nowrap; }
+.eg-btn:hover { transform: translateY(-1px); }
+.eg-btn:active { transform: translateY(0); }
+.eg-btn--primary { background: var(--eg-ink); color: #fff; }
+.eg-btn--primary:hover { background: #000; }
+.eg-btn--brand { background: var(--eg-main); color: var(--eg-ink); }
+.eg-btn--brand:hover { background: #3dbdf2; }
+.eg-btn--ghost { background: transparent; color: var(--eg-ink); border-color: var(--eg-line); }
+.eg-btn--ghost:hover { border-color: var(--eg-ink); }
+.eg-dark .eg-btn--ghost { color: #fff; border-color: rgba(255,255,255,.28); }
+.eg-dark .eg-btn--ghost:hover { border-color: #fff; }
+.eg-btn--sm { height: 44px; padding: 0 18px; font-size: 14px; }
+.eg-btn svg { width: 18px; height: 18px; flex: none; }
+
+/* 텍스트 링크 */
+.eg-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--eg-ink); text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+.eg-link:hover { color: var(--eg-main-deep); }
+
+/* 6. 카드 */
+.eg-card { background: #fff; border: 1px solid var(--eg-line); border-radius: var(--eg-radius); padding: 32px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.eg-card:hover { transform: translateY(-3px); box-shadow: var(--eg-shadow); border-color: transparent; }
+.eg-dark .eg-card { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1); }
+
+/* 7. 태그·칩 */
+.eg-chip { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--eg-main-soft); color: var(--eg-main-deep); }
+.eg-dark .eg-chip { background: rgba(80,200,250,.14); color: var(--eg-main); }
+
+/* 8. 모션 (스크롤 등장) — 코드 위젯 JS 없이도 보이도록 기본은 표시, JS가 있으면 순차 등장 */
+.eg-reveal { opacity: 1; transform: none; }
+html.eg-js .eg-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+html.eg-js .eg-reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html.eg-js .eg-reveal { transition: none; opacity: 1; transform: none; } }
+
+/* 9. 아임웹 기본 요소 보정 (사이트 전반) */
+/* 섹션 사이 아임웹이 넣는 기본 여백 제거 → 섹션 코드가 자체 패딩을 가짐 */
+.eg + .eg { border-top: 0; }
+/* 아임웹 위젯 컨테이너가 코드 위젯에 좌우 패딩을 줄 때 풀폭 유지 */
+.eg-full { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); width: 100vw; }
+
+/* 10. 접근성 */
+.eg-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.eg a:focus-visible, .eg button:focus-visible { outline: 3px solid var(--eg-main); outline-offset: 3px; border-radius: 6px; }
+</style><style></style><style>
+/* 미리보기 전용: 아임웹 헤더 모사 + 플레이스홀더 이미지 처리 */
+.pv-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid rgba(17,20,24,.06);font-family:var(--eg-font)}
+.pv-wrap{max-width:1200px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;gap:32px}
+.pv-logo{color:#111417;display:flex}
+.pv-header nav{display:flex;gap:28px;margin-left:auto}
+.pv-header nav a{font-size:14px;font-weight:600;letter-spacing:.04em;color:#111417;text-decoration:none}
+.pv-header nav a.on{color:#0f9bd6}
+.pv-cta{height:40px;padding:0 18px;border-radius:999px;background:#111417;color:#fff;font-size:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center}
+@media(max-width:800px){.pv-header nav{display:none}}
+img[src^="["]{opacity:0}
+.pv-ph{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;color:rgba(0,0,0,.35);pointer-events:none}
+</style></head><body>
+<header class="pv-header"><div class="pv-wrap"><a class="pv-logo" href="index.html"><svg width="120" height="22" viewBox="0 0 120 22"><text x="0" y="17" font-family="Pretendard Variable,Pretendard,sans-serif" font-weight="800" font-size="19" letter-spacing="-0.5">EASTER EGG</text></svg></a><nav><a href="MARKETING.html" class="on">MARKETING</a><a href="DESIGN.html" class="">DESIGN</a><a href="MEDIA.html" class="">MEDIA</a><a href="247.html" class="">247</a><a href="CONTACT.html" class="">CONTACT</a></nav><a class="pv-cta" href="CONTACT.html">상담 문의</a></div></header>
+<!-- ============================================================
+     MARKETING 01 · 페이지 히어로
+     (DESIGN / MEDIA 페이지도 같은 구조 — 텍스트와 이미지만 다릅니다)
+     ============================================================ -->
+<section class="eg eg-phero" id="eg-phero">
+<style>
+  .eg-phero { padding: clamp(80px, 11vw, 140px) 0 0; }
+  .eg-phero__crumb { font-size: 13px; font-weight: 600; color: var(--eg-sub, #697180); margin-bottom: 20px; }
+  .eg-phero__crumb a { color: inherit; text-decoration: none; }
+  .eg-phero__crumb span { margin: 0 8px; opacity: .5; }
+  .eg-phero__title { font-size: clamp(36px, 5.6vw, 68px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.06; }
+  .eg-phero__title small { display: block; font-size: clamp(15px, 1.4vw, 18px); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--eg-main-deep, #0f9bd6); margin-bottom: 14px; }
+  .eg-phero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: end; margin-top: 36px; }
+  .eg-phero__lead { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.75; color: var(--eg-sub, #697180); max-width: 520px; }
+  .eg-phero__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+  .eg-phero__img { margin-top: 56px; aspect-ratio: 21 / 9; border-radius: 24px; overflow: hidden; background: #dfe4e9; }
+  .eg-phero__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @media (max-width: 800px) { .eg-phero__grid { grid-template-columns: 1fr; gap: 24px; } .eg-phero__actions { justify-content: flex-start; } .eg-phero__img { aspect-ratio: 16 / 10; margin-top: 36px; } }
+</style>
+  <div class="eg-wrap">
+    <p class="eg-phero__crumb"><a href="/">홈</a><span>/</span>Marketing</p>
+    <h1 class="eg-phero__title eg-reveal"><small>Marketing</small>검색에서 먼저 보이고,<br>예약으로 이어지게.</h1>
+    <div class="eg-phero__grid eg-reveal">
+      <p class="eg-phero__lead">네이버 플레이스·검색·블로그·카드뉴스를 한 사람이 끝까지 운영합니다. 매달 숫자와 이유, 다음 달 계획을 리포트로 드립니다.</p>
+      <div class="eg-phero__actions">
+        <a class="eg-btn eg-btn--primary" href="/CONTACT">상담 문의</a>
+        <a class="eg-btn eg-btn--ghost" href="#eg-pricing">진행 방식 보기</a>
+      </div>
+    </div>
+    <div class="eg-phero__img eg-reveal"><img src="[마케팅 페이지 대표 이미지 URL — 리포트/대시보드 또는 미팅 장면]" alt=""><span class="pv-ph">이미지 자리: 마케팅 페이지 대표 이미지 URL — 리포트/대시보</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARKETING 02 · 하는 일 (6개 그리드)
+     ============================================================ -->
+<section class="eg eg-scope" id="eg-scope">
+<style>
+  .eg-scope__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--eg-line, #e6e8eb); border: 1px solid var(--eg-line, #e6e8eb); border-radius: var(--eg-radius, 18px); overflow: hidden; }
+  .eg-scope__item { background: #fff; padding: 36px 32px; min-height: 260px; display: flex; flex-direction: column; transition: background .2s ease; }
+  .eg-scope__item:hover { background: var(--eg-main-soft, #e9f7fe); }
+  .eg-scope__icon { width: 44px; height: 44px; border-radius: 12px; background: var(--eg-main-soft, #e9f7fe); color: var(--eg-main-deep, #0f9bd6); display: grid; place-items: center; margin-bottom: 22px; }
+  .eg-scope__icon svg { width: 22px; height: 22px; }
+  .eg-scope__item h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+  .eg-scope__item p { margin-top: 10px; font-size: 14.5px; line-height: 1.7; color: var(--eg-sub, #697180); }
+  .eg-scope__item ul { margin: auto 0 0; padding: 18px 0 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+  .eg-scope__item li { font-size: 12.5px; font-weight: 600; color: var(--eg-sub, #697180); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--eg-line, #e6e8eb); background: #fff; }
+  @media (max-width: 960px) { .eg-scope__grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .eg-scope__grid { grid-template-columns: 1fr; } .eg-scope__item { min-height: 0; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-head">
+      <p class="eg-eyebrow">Scope</p>
+      <h2 class="eg-h2">병원 마케팅에서 저희가 맡는 일</h2>
+    </div>
+    <div class="eg-scope__grid">
+      <div class="eg-scope__item eg-reveal"><div class="eg-scope__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3>네이버 플레이스 · 지도</h3><p>병원명·진료과 검색에서 상단에 보이도록 플레이스 정보, 리뷰, 소식, 예약 동선을 정비하고 운영합니다.</p><ul><li>플레이스 최적화</li><li>리뷰 관리</li><li>스마트콜·예약</li></ul></div>
+      <div class="eg-scope__item eg-reveal"><div class="eg-scope__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg></div><h3>블로그 운영</h3><p>의료광고법을 지키면서 환자가 실제로 검색하는 질문에 답하는 글을 꾸준히 씁니다. 원장님 검수 과정 포함.</p><ul><li>키워드 설계</li><li>월 N건 발행</li><li>의료광고 심의 대응</li></ul></div>
+      <div class="eg-scope__item eg-reveal"><div class="eg-scope__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></div><h3>카드뉴스 · SNS</h3><p>병원 톤에 맞춘 템플릿으로 인스타그램·블로그용 카드뉴스를 제작하고 발행 일정까지 관리합니다.</p><ul><li>월간 콘텐츠 캘린더</li><li>인스타그램</li><li>템플릿 제작</li></ul></div>
+      <div class="eg-scope__item eg-reveal"><div class="eg-scope__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 16V9M11 16V5M16 16v-7"/></svg></div><h3>검색 광고 · 성과 측정</h3><p>필요한 시점에만 네이버·구글 검색 광고를 집행하고, 전환(전화·예약)을 기준으로 예산을 조정합니다.</p><ul><li>파워링크</li><li>전환 추적</li><li>예산 최적화</li></ul></div>
+      <div class="eg-scope__item eg-reveal"><div class="eg-scope__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 4.5v9L12 21l-9-4.5v-9z"/><path d="M12 12l9-4.5M12 12v9M12 12L3 7.5"/></svg></div><h3>개원 마케팅 패키지</h3><p>개원 2개월 전부터 플레이스 등록, 홈페이지, 간판·인쇄물, 오픈 이벤트까지 순서대로 세팅합니다.</p><ul><li>개원 D-60 체크리스트</li><li>온·오프라인 동시</li></ul></div>
+      <div class="eg-scope__item eg-reveal"><div class="eg-scope__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16H5z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div><h3>월간 리포트</h3><p>유입·전화·예약 수치와 그 이유, 다음 달 계획을 한 장으로 정리해 매달 직접 설명드립니다.</p><ul><li>매달 1회</li><li>대면/화상 브리핑</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARKETING 03 · 리포트 미리보기 (차별점 시각화)
+     교체할 것: 리포트 캡처 이미지 1장 (개인정보/병원명 가린 버전)
+     ============================================================ -->
+<section class="eg eg-report eg-dark" id="eg-report">
+<style>
+  .eg-report .eg-wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; align-items: center; }
+  .eg-report__img { border-radius: 20px; overflow: hidden; background: #1a2027; box-shadow: 0 30px 80px rgba(0,0,0,.4); aspect-ratio: 4 / 3; }
+  .eg-report__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .eg-report__quote { margin-top: 36px; padding-left: 20px; border-left: 2px solid var(--eg-main, #50c8fa); font-size: 17px; line-height: 1.7; color: rgba(255,255,255,.85); }
+  .eg-report__quote cite { display: block; margin-top: 10px; font-style: normal; font-size: 13px; color: rgba(255,255,255,.5); }
+  .eg-report__checks { margin: 32px 0 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+  .eg-report__checks li { display: flex; gap: 12px; font-size: 15.5px; line-height: 1.6; color: rgba(255,255,255,.85); }
+  .eg-report__checks svg { flex: none; width: 22px; height: 22px; color: var(--eg-main, #50c8fa); margin-top: 1px; }
+  @media (max-width: 960px) { .eg-report .eg-wrap { grid-template-columns: 1fr; gap: 36px; } }
+</style>
+  <div class="eg-wrap">
+    <div>
+      <div class="eg-head" style="margin-bottom:0;">
+        <p class="eg-eyebrow">Monthly report</p>
+        <h2 class="eg-h2">리포트에 숫자만 있으면<br>읽을 이유가 없습니다.</h2>
+      </div>
+      <ul class="eg-report__checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>이번 달 유입·전화·예약이 <b>왜</b> 그렇게 나왔는지 한 줄 설명</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>다음 달에 <b>무엇을 바꿀지</b>와 예상 효과</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>원장님이 결정해야 할 것은 <b>질문 형태</b>로 따로 정리</li>
+      </ul>
+      <blockquote class="eg-report__quote">“[원장님 후기 한 문장 — 예: 리포트를 보면 다음 달에 뭘 해야 하는지가 보여서 회의가 짧아졌습니다.]”<cite>[OO외과 원장 — 공개 동의된 후기만]</cite></blockquote>
+    </div>
+    <div class="eg-report__img eg-reveal"><img src="[리포트 캡처 이미지 URL]" alt="이스터에그 월간 리포트 예시"><span class="pv-ph">이미지 자리: 리포트 캡처 이미지 URL</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARKETING 04 · 진행 방식 / 구성 (가격 대신 "구성 + 문의")
+     교체할 것: 실제 구성에 맞게 항목 수정. 금액 공개를 원하면 .eg-plan__price에 적으세요.
+     ============================================================ -->
+<section class="eg eg-plans eg-soft" id="eg-pricing">
+<style>
+  .eg-plans__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+  .eg-plan { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--eg-line, #e6e8eb); border-radius: var(--eg-radius, 18px); padding: 36px 32px; }
+  .eg-plan--hot { border-color: var(--eg-ink, #111417); box-shadow: var(--eg-shadow, 0 12px 32px rgba(17,20,24,.08)); }
+  .eg-plan__flag { position: absolute; top: -13px; left: 28px; background: var(--eg-ink, #111417); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+  .eg-plan__name { font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--eg-main-deep, #0f9bd6); }
+  .eg-plan__title { margin-top: 10px; font-size: 24px; font-weight: 800; letter-spacing: -0.03em; }
+  .eg-plan__for { margin-top: 8px; font-size: 14px; color: var(--eg-sub, #697180); }
+  .eg-plan__price { margin-top: 22px; font-size: 15px; font-weight: 700; }
+  .eg-plan__list { margin: 22px 0 0; padding: 22px 0 0; list-style: none; border-top: 1px solid var(--eg-line, #e6e8eb); display: grid; gap: 10px; flex: 1; }
+  .eg-plan__list li { display: flex; gap: 10px; font-size: 14.5px; line-height: 1.55; }
+  .eg-plan__list li::before { content: ''; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--eg-main, #50c8fa); margin-top: 8px; }
+  .eg-plan .eg-btn { margin-top: 28px; width: 100%; }
+  @media (max-width: 900px) { .eg-plans__grid { grid-template-columns: 1fr; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-head eg-head--center">
+      <p class="eg-eyebrow">How we work</p>
+      <h2 class="eg-h2">병원 상황에 따라 세 가지 방식으로 시작합니다.</h2>
+      <p class="eg-lead">정해진 패키지를 억지로 맞추지 않습니다. 진단 미팅 후 필요한 것만 조합해 견적을 드립니다.</p>
+    </div>
+    <div class="eg-plans__grid">
+      <div class="eg-plan eg-reveal">
+        <span class="eg-plan__name">Start</span><h3 class="eg-plan__title">기본 세팅</h3><p class="eg-plan__for">검색에 거의 안 잡히는 병원 · 개원 초기</p>
+        <p class="eg-plan__price">1회 세팅 + 선택 운영</p>
+        <ul class="eg-plan__list"><li>네이버 플레이스 정비 · 사진 교체</li><li>블로그 개설과 기본 글 세트</li><li>리뷰·예약 동선 점검</li><li>진단 리포트 1회</li></ul>
+        <a class="eg-btn eg-btn--ghost" href="/CONTACT">견적 문의</a>
+      </div>
+      <div class="eg-plan eg-plan--hot eg-reveal">
+        <span class="eg-plan__flag">가장 많이 선택</span>
+        <span class="eg-plan__name">Run</span><h3 class="eg-plan__title">월간 운영</h3><p class="eg-plan__for">꾸준히 노출을 쌓아야 하는 병원</p>
+        <p class="eg-plan__price">월 단위 · 최소 [N]개월</p>
+        <ul class="eg-plan__list"><li>플레이스 · 블로그 · 카드뉴스 운영</li><li>월간 콘텐츠 캘린더와 원장님 검수</li><li>필요 시 검색 광고 집행</li><li>매달 리포트 + 브리핑</li><li>디자인팀 소량 제작 포함</li></ul>
+        <a class="eg-btn eg-btn--primary" href="/CONTACT">상담 신청</a>
+      </div>
+      <div class="eg-plan eg-reveal">
+        <span class="eg-plan__name">Open</span><h3 class="eg-plan__title">개원 패키지</h3><p class="eg-plan__for">개원 2~3개월 전 병원</p>
+        <p class="eg-plan__price">개원 전 일괄 + 개원 후 운영</p>
+        <ul class="eg-plan__list"><li>로고 · 간판 · 인쇄물 디자인</li><li>홈페이지 제작</li><li>플레이스 · 블로그 · SNS 개설</li><li>원내 촬영 · 소개 영상</li><li>오픈 후 3개월 운영</li></ul>
+        <a class="eg-btn eg-btn--ghost" href="/CONTACT">개원 상담</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARKETING 05 · 자주 묻는 질문 (JS 없이 <details>로 동작)
+     ============================================================ -->
+<section class="eg eg-faq" id="eg-faq">
+<style>
+  .eg-faq .eg-wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 64px; }
+  .eg-faq__list { border-top: 1px solid var(--eg-line, #e6e8eb); }
+  .eg-faq__item { border-bottom: 1px solid var(--eg-line, #e6e8eb); }
+  .eg-faq__item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; font-size: 17px; font-weight: 700; letter-spacing: -0.015em; }
+  .eg-faq__item summary::-webkit-details-marker { display: none; }
+  .eg-faq__item summary::after { content: '+'; flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--eg-line, #e6e8eb); display: grid; place-items: center; font-weight: 500; font-size: 18px; color: var(--eg-sub, #697180); transition: transform .2s ease, background .2s ease; }
+  .eg-faq__item[open] summary::after { transform: rotate(45deg); background: var(--eg-ink, #111417); color: #fff; border-color: var(--eg-ink, #111417); }
+  .eg-faq__item p { padding: 0 44px 24px 0; font-size: 15px; line-height: 1.75; color: var(--eg-sub, #697180); }
+  @media (max-width: 900px) { .eg-faq .eg-wrap { grid-template-columns: 1fr; gap: 24px; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-head" style="margin-bottom:0;">
+      <p class="eg-eyebrow">FAQ</p>
+      <h2 class="eg-h2">시작 전에<br>자주 물어보시는 것</h2>
+      <p class="eg-lead">여기 없는 질문은 <a class="eg-link" href="/CONTACT">문의</a>로 남겨 주세요.</p>
+    </div>
+    <div class="eg-faq__list">
+      <details class="eg-faq__item"><summary>효과는 보통 언제부터 보이나요?</summary><p>플레이스·리뷰 정비처럼 바로 반영되는 항목은 첫 달에, 블로그·콘텐츠처럼 쌓이는 항목은 보통 3개월 전후부터 유입 변화가 보입니다. 첫 리포트에서 항목별 예상 시점을 적어 드립니다.</p></details>
+      <details class="eg-faq__item"><summary>의료광고법 심의는 어떻게 하나요?</summary><p>심의 대상이 되는 소재는 제작 단계에서 걸러내고, 필요한 건은 대한의사협회 의료광고심의위원회 절차에 맞춰 준비합니다. 치료 효과 보장·비교 표현은 처음부터 쓰지 않습니다.</p></details>
+      <details class="eg-faq__item"><summary>원장님이 해야 할 일은 얼마나 되나요?</summary><p>월 1회 리포트 브리핑(30분)과 블로그 글 검수가 전부입니다. 촬영이 있는 달에는 반나절 정도 시간을 내 주시면 됩니다.</p></details>
+      <details class="eg-faq__item"><summary>인천 외 지역도 가능한가요?</summary><p>네. 인천 송도에서 시작했지만 지금은 서울·경기·세종 등 전국 병원과 일하고 있습니다. 첫 미팅과 촬영은 방문하고, 월간 브리핑은 화상으로도 진행합니다.</p></details>
+      <details class="eg-faq__item"><summary>계약 기간은 어떻게 되나요?</summary><p>월간 운영은 최소 [N]개월 단위이며, 이후에는 월 단위로 연장합니다. 세팅형 작업은 1회 계약입니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     홈 09 · 상담 CTA (모든 페이지 하단 공통으로 써도 됩니다)
+     교체할 것: 카카오톡 채널 링크가 있으면 두 번째 버튼 href 교체, 없으면 버튼 삭제
+     ============================================================ -->
+<section class="eg eg-cta" id="eg-cta">
+<style>
+  .eg-cta { padding: 0 0 var(--eg-section-y, 120px); }
+  .eg-cta__box { position: relative; overflow: hidden; border-radius: 28px; background: var(--eg-dark, #0e1216); color: #fff; padding: clamp(48px, 7vw, 96px) clamp(28px, 6vw, 80px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 40px; align-items: center; }
+  .eg-cta__box::before { content: ''; position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(closest-side, rgba(80,200,250,.55), rgba(80,200,250,0)); pointer-events: none; }
+  .eg-cta__title { font-size: clamp(28px, 4.2vw, 48px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.12; }
+  .eg-cta__title em { font-style: normal; color: var(--eg-main, #50c8fa); }
+  .eg-cta__desc { margin-top: 18px; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,.66); max-width: 520px; }
+  .eg-cta__actions { display: flex; flex-direction: column; gap: 12px; align-items: stretch; position: relative; }
+  .eg-cta__actions .eg-btn { height: 60px; font-size: 17px; }
+  .eg-cta__box .eg-btn--ghost { color: #fff; border-color: rgba(255,255,255,.28); }
+  .eg-cta__box .eg-btn--ghost:hover { border-color: #fff; }
+  .eg-cta__tel { text-align: center; font-size: 14px; color: rgba(255,255,255,.6); margin-top: 6px; }
+  .eg-cta__tel a { color: #fff; font-weight: 700; text-decoration: none; }
+  @media (max-width: 900px) { .eg-cta__box { grid-template-columns: 1fr; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-cta__box eg-reveal">
+      <div>
+        <h2 class="eg-cta__title">우리 병원에 맞는 방법이 궁금하다면,<br><em>30분 진단 미팅</em>부터 시작하세요.</h2>
+        <p class="eg-cta__desc">현재 네이버 노출 상태와 유입 경로를 보고, 지금 바꾸면 효과가 큰 것 세 가지를 먼저 알려드립니다. 부담 없이 문의 주세요.</p>
+      </div>
+      <div class="eg-cta__actions">
+        <a class="eg-btn eg-btn--brand" href="/CONTACT">상담 문의 남기기</a>
+        <a class="eg-btn eg-btn--ghost" href="[카카오톡 채널 URL]" target="_blank" rel="noopener">카카오톡으로 문의</a>
+        <p class="eg-cta__tel">평일 10:00–18:00 · <a href="tel:032-710-2258">032-710-2258</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     공통 · 푸터 (모든 페이지 맨 아래 코드 위젯 / 또는 아임웹 푸터 영역에 HTML로)
+     아임웹 기본 푸터는 「푸터 설정」에서 비우고 이 코드로 대체하는 것을 권장
+     교체할 것: 통신판매업 신고번호(있으면), 개인정보처리방침 페이지 링크, 로고 이미지 URL
+     ============================================================ -->
+<footer class="eg eg-footer eg-dark" id="eg-footer">
+<style>
+  .eg-footer { padding: 72px 0 40px; }
+  .eg-footer__top { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, .6fr)); gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .eg-footer__logo img { height: 22px; width: auto; display: block; }
+  .eg-footer__tag { margin-top: 18px; font-size: 14.5px; line-height: 1.7; color: rgba(255,255,255,.62); max-width: 360px; }
+  .eg-footer__col h4 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 16px; }
+  .eg-footer__col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .eg-footer__col a { color: rgba(255,255,255,.85); text-decoration: none; font-size: 14.5px; font-weight: 500; }
+  .eg-footer__col a:hover { color: var(--eg-main, #50c8fa); }
+  .eg-footer__bottom { padding-top: 28px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 12.5px; line-height: 1.8; color: rgba(255,255,255,.45); }
+  .eg-footer__bottom b { color: rgba(255,255,255,.7); font-weight: 600; }
+  .eg-footer__bottom i { font-style: normal; margin: 0 8px; opacity: .35; }
+  .eg-footer__legal { display: flex; gap: 16px; }
+  .eg-footer__legal a { color: rgba(255,255,255,.6); text-decoration: none; }
+  .eg-footer__legal a:hover { color: #fff; }
+  @media (max-width: 900px) { .eg-footer__top { grid-template-columns: 1fr 1fr; } .eg-footer__top > :first-child { grid-column: span 2; } }
+  @media (max-width: 600px) { .eg-footer__top { grid-template-columns: 1fr; } .eg-footer__top > :first-child { grid-column: span 1; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-footer__top">
+      <div>
+        <a class="eg-footer__logo" href="/"><img src="[easteregg_hw.png 가로 화이트 로고 URL]" alt="이스터에그"><span class="pv-ph">이미지 자리: easteregg_hw.png 가로 화이트 로고 U</span></a>
+        <p class="eg-footer__tag">인천 송도에서 시작한 병의원 전문 마케팅 에이전시. 마케팅 · 디자인 · 미디어가 한 팀으로 병원의 방향을 기획하고 실행합니다.</p>
+      </div>
+      <div class="eg-footer__col"><h4>Services</h4><ul><li><a href="/MARKETING">Marketing</a></li><li><a href="/DESIGN">Design</a></li><li><a href="/MEDIA">Media</a></li></ul></div>
+      <div class="eg-footer__col"><h4>Company</h4><ul><li><a href="/247">247 인사이트</a></li><li><a href="/CONTACT">상담 문의</a></li><li><a href="https://www.youtube.com/@easteregg247" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://blog.naver.com/easteregg_blog" target="_blank" rel="noopener">Blog</a></li></ul></div>
+      <div class="eg-footer__col"><h4>Contact</h4><ul><li><a href="tel:032-710-2258">032-710-2258</a></li><li><a href="mailto:easteregg.medi@gmail.com">easteregg.medi@gmail.com</a></li><li><a href="/CONTACT">평일 10:00–18:00</a></li></ul></div>
+    </div>
+    <div class="eg-footer__bottom">
+      <div>
+        <b>주식회사 이스터에그</b><i>|</i>대표 김소연<i>|</i>사업자등록번호 116-86-02909<br>
+        인천 연수구 인천타워대로 323, 송도센트로드 A동 1811호<i>|</i>TEL 032-710-2258<i>|</i>easteregg.medi@gmail.com<br>
+        © <span id="eg-year">2026</span> Easter Egg Inc. All rights reserved.
+      </div>
+      <div class="eg-footer__legal"><a href="[개인정보처리방침 페이지]">개인정보처리방침</a><a href="[이용약관 페이지]">이용약관</a></div>
+    </div>
+  </div>
+<script>(function(){var y=document.getElementById('eg-year');if(y)y.textContent=new Date().getFullYear();})();</script>
+</footer>
+
+<script>/* =====================================================================
+   스크롤 등장 모션 (선택) · 붙여넣는 곳: 코드 삽입 → body 닫는 태그 직전
+   형식: script 태그로 감싸서 (여는 태그 … 이 파일 전체 … 닫는 태그)
+   ===================================================================== */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('eg-js');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+  function bind() {
+    document.querySelectorAll('.eg-reveal:not(.is-in)').forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i % 6, 5) * 60 + 'ms';
+      io.observe(el);
+    });
+  }
+  bind();
+  // 아임웹이 위젯을 지연 렌더링할 때를 대비해 한 번 더
+  window.addEventListener('load', bind);
+})();
+</script>
+<script>document.querySelectorAll('.eg-reveal').forEach(e=>e.classList.add('is-in'))</script>
+</body></html>

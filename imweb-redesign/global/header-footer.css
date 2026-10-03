@@ -1,0 +1,38 @@
+/* =====================================================================
+   아임웹 기본 헤더(GNB)·푸터 보정 CSS
+   붙여넣는 곳: 코드 삽입 → head 영역 (site.css 아래에)
+   ※ 아임웹 헤더 마크업은 테마마다 달라 셀렉터가 100% 맞지 않을 수 있습니다.
+      적용 후 안 먹는 항목은 브라우저 개발자도구(F12)로 실제 클래스명을 확인해
+      아래 셀렉터만 바꿔 주세요. 헤더 자체는 아임웹 「헤더 설정」에서
+      - 로고: easteregg_h.png (가로 컬러), 높이 22~26px
+      - 메뉴: MARKETING · DESIGN · MEDIA · 247 · CONTACT (대문자 영문 유지, 한글 설명은 서브)
+      - 우측 버튼: 「상담 문의」 1개만 (검은 배경 pill)
+      - 스크롤 시 고정(sticky) + 반투명 흰 배경
+   ===================================================================== */
+
+/* 헤더: 얇고 가볍게 */
+#header, .header, .site-header, [class*="header_wrap"] {
+  background: rgba(255,255,255,.86) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid rgba(17,20,24,.06) !important;
+  box-shadow: none !important;
+}
+/* GNB 글자 */
+#header a, .header a, .site-header a, [class*="header_wrap"] a {
+  font-family: var(--eg-font) !important;
+  font-weight: 600 !important;
+  letter-spacing: .02em;
+  color: var(--eg-ink) !important;
+}
+#header a:hover, .header a:hover, .site-header a:hover { color: var(--eg-main-deep) !important; }
+
+/* 푸터: 사이트 다크 톤과 맞춤 (푸터 내용은 06-contact/03-footer.html 코드 위젯으로 대체 권장) */
+#footer, .footer, .site-footer, [class*="footer_wrap"] {
+  background: var(--eg-dark) !important;
+  color: rgba(255,255,255,.62) !important;
+  font-family: var(--eg-font) !important;
+  font-size: 13px !important;
+  border-top: 0 !important;
+}
+#footer a, .footer a, .site-footer a { color: rgba(255,255,255,.82) !important; }

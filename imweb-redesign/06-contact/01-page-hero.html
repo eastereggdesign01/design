@@ -1,0 +1,49 @@
+<!-- ============================================================
+     CONTACT 01 · 연락 정보 + 문의 폼 영역
+     폼: 아임웹 「폼(문의) 위젯」을 그대로 쓰되, 아래 섹션의 오른쪽 자리(.eg-contact__form)에
+         위젯을 두고 02-form.css 로 스타일만 맞춥니다. (코드 위젯 안에 아임웹 폼 위젯을 넣을 수 없으니
+         실제로는 ① 이 코드 위젯(좌측 정보만) ② 바로 아래에 아임웹 폼 위젯 — 2단 배치로 구성하세요.
+         아임웹 「2단 컬럼」 레이아웃에 좌: 이 코드 위젯 / 우: 폼 위젯을 넣으면 그림대로 나옵니다.)
+     ============================================================ -->
+<section class="eg eg-contact" id="eg-contact">
+<style>
+  .eg-contact { padding: clamp(80px, 11vw, 140px) 0 var(--eg-section-y, 120px); }
+  .eg-contact .eg-wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 64px; align-items: start; }
+  .eg-contact__title { font-size: clamp(36px, 5.2vw, 60px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.06; }
+  .eg-contact__title small { display: block; font-size: 15px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--eg-main-deep, #0f9bd6); margin-bottom: 14px; }
+  .eg-contact__lead { margin-top: 20px; font-size: 17px; line-height: 1.7; color: var(--eg-sub, #697180); }
+  .eg-contact__list { margin: 36px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--eg-line, #e6e8eb); }
+  .eg-contact__list li { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--eg-line, #e6e8eb); font-size: 15.5px; }
+  .eg-contact__list li span { font-size: 13px; font-weight: 700; color: var(--eg-sub, #697180); letter-spacing: .04em; padding-top: 3px; }
+  .eg-contact__list a { color: inherit; font-weight: 600; text-decoration: none; }
+  .eg-contact__list a:hover { color: var(--eg-main-deep, #0f9bd6); }
+  .eg-contact__steps { margin-top: 32px; padding: 24px; border-radius: 16px; background: var(--eg-bg-soft, #f5f7f9); }
+  .eg-contact__steps b { font-size: 14px; font-weight: 800; }
+  .eg-contact__steps ol { margin: 10px 0 0; padding-left: 18px; font-size: 14px; line-height: 1.8; color: var(--eg-sub, #697180); }
+  .eg-contact__form { background: #fff; border: 1px solid var(--eg-line, #e6e8eb); border-radius: 24px; padding: 40px; box-shadow: var(--eg-shadow, 0 12px 32px rgba(17,20,24,.08)); }
+  .eg-contact__form h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 6px; }
+  .eg-contact__form p { font-size: 14px; color: var(--eg-sub, #697180); margin-bottom: 24px; }
+  @media (max-width: 900px) { .eg-contact .eg-wrap { grid-template-columns: 1fr; gap: 36px; } .eg-contact__form { padding: 28px 22px; } }
+</style>
+  <div class="eg-wrap">
+    <div class="eg-reveal">
+      <h1 class="eg-contact__title"><small>Contact</small>우리 병원 이야기,<br>편하게 들려주세요.</h1>
+      <p class="eg-contact__lead">문의를 남기시면 영업일 기준 1일 내에 담당자가 연락드립니다. 첫 통화에서 현재 상황을 듣고, 진단 미팅 일정을 잡습니다.</p>
+      <ul class="eg-contact__list">
+        <li><span>TEL</span><a href="tel:032-710-2258">032-710-2258</a></li>
+        <li><span>EMAIL</span><a href="mailto:easteregg.medi@gmail.com">easteregg.medi@gmail.com</a></li>
+        <li><span>OFFICE</span><div>인천 연수구 인천타워대로 323, 송도센트로드 A동 1811호<br><a class="eg-link" style="font-size:13.5px;margin-top:6px;" href="https://map.naver.com/p/search/송도센트로드" target="_blank" rel="noopener">네이버 지도에서 보기</a></div></li>
+        <li><span>HOURS</span><div>평일 10:00–18:00 · 주말·공휴일 휴무</div></li>
+      </ul>
+      <div class="eg-contact__steps">
+        <b>문의 후 진행</b>
+        <ol><li>담당자 전화 (영업일 1일 내)</li><li>진단 미팅 30분 — 방문 또는 화상</li><li>제안서 · 견적 (미팅 후 1주 내)</li></ol>
+      </div>
+    </div>
+    <div class="eg-contact__form eg-reveal">
+      <h2>상담 문의</h2>
+      <p>아래 자리에 아임웹 「폼」 위젯을 두세요. 권장 항목: 병원명 · 진료과 · 지역 · 연락처 · 관심 서비스(마케팅/디자인/미디어/개원) · 문의 내용 · 개인정보 동의</p>
+      <!-- ▼ 아임웹 폼 위젯 자리 (코드 위젯이 아닌 아임웹 폼 위젯을 2단 컬럼 우측에 배치) -->
+    </div>
+  </div>
+</section>
