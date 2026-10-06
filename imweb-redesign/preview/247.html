@@ -184,13 +184,17 @@ html.eg-js .eg-reveal.is-in { opacity: 1; transform: none; }
 .pv-cta{height:40px;padding:0 18px;border-radius:999px;background:#111417;color:#fff;font-size:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center}
 @media(max-width:800px){.pv-header nav{display:none}}
 img[src^="["]{opacity:0}
+.pv-tag{position:absolute;left:12px;top:10px;z-index:5;font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.02em;color:#fff;background:rgba(15,155,214,.92);padding:6px 9px;border-radius:6px;pointer-events:none;opacity:.9}
+.eg{position:relative}
+.pv-note{position:fixed;right:14px;bottom:14px;z-index:60;background:#111417;color:#fff;font:500 12.5px/1.5 var(--eg-font);padding:12px 14px;border-radius:12px;max-width:300px;box-shadow:0 12px 32px rgba(0,0,0,.25)}
+.pv-note b{color:#50c8fa}
 .pv-ph{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;color:rgba(0,0,0,.35);pointer-events:none}
 </style></head><body>
 <header class="pv-header"><div class="pv-wrap"><a class="pv-logo" href="index.html"><svg width="120" height="22" viewBox="0 0 120 22"><text x="0" y="17" font-family="Pretendard Variable,Pretendard,sans-serif" font-weight="800" font-size="19" letter-spacing="-0.5">EASTER EGG</text></svg></a><nav><a href="MARKETING.html" class="">MARKETING</a><a href="DESIGN.html" class="">DESIGN</a><a href="247.html" class="on">247</a><a href="CONTACT.html" class="">CONTACT</a></nav><a class="pv-cta" href="CONTACT.html">상담 문의</a></div></header>
 <!-- ============================================================
      247 01 · 페이지 머리말 (게시판 목록 위에 코드 위젯으로)
      ============================================================ -->
-<section class="eg eg-bhero" id="eg-bhero">
+<section class="eg eg-bhero" id="eg-bhero"><span class="pv-tag">05-247/01-page-hero.html</span>
 <style>
   .eg-bhero { padding: clamp(80px, 11vw, 140px) 0 40px; }
   .eg-bhero .eg-wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
@@ -223,7 +227,7 @@ img[src^="["]{opacity:0}
      홈 09 · 상담 CTA (모든 페이지 하단 공통으로 써도 됩니다)
      교체할 것: 카카오톡 채널 링크가 있으면 두 번째 버튼 href 교체, 없으면 버튼 삭제
      ============================================================ -->
-<section class="eg eg-cta" id="eg-cta">
+<section class="eg eg-cta" id="eg-cta"><span class="pv-tag">01-home/09-cta.html</span>
 <style>
   .eg-cta { padding: 0 0 var(--eg-section-y, 120px); }
   .eg-cta__box { position: relative; overflow: hidden; border-radius: 28px; background: var(--eg-dark, #0e1216); color: #fff; padding: clamp(48px, 7vw, 96px) clamp(28px, 6vw, 80px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 40px; align-items: center; }
@@ -259,7 +263,7 @@ img[src^="["]{opacity:0}
      아임웹 기본 푸터는 「푸터 설정」에서 비우고 이 코드로 대체하는 것을 권장
      교체할 것: 통신판매업 신고번호(있으면), 개인정보처리방침 페이지 링크, 로고 이미지 URL
      ============================================================ -->
-<footer class="eg eg-footer eg-dark" id="eg-footer">
+<footer class="eg eg-footer eg-dark" id="eg-footer"><span class="pv-tag">06-contact/03-footer.html</span>
 <style>
   .eg-footer { padding: 72px 0 40px; }
   .eg-footer__top { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, .6fr)); gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1); }
@@ -301,6 +305,7 @@ img[src^="["]{opacity:0}
 <script>(function(){var y=document.getElementById('eg-year');if(y)y.textContent=new Date().getFullYear();})();</script>
 </footer>
 
+<div class="pv-note"><b>시안 미리보기</b> · 회색 박스는 이미지 자리, [대괄호]는 교체할 문구입니다. 각 섹션 왼쪽 위 파란 라벨이 코드 파일명이에요. 수정 요청은 그 라벨 이름으로 말씀해 주세요.</div>
 <script>/* =====================================================================
    스크롤 등장 모션 (선택) · 붙여넣는 곳: 코드 삽입 → body 닫는 태그 직전
    형식: script 태그로 감싸서 (여는 태그 … 이 파일 전체 … 닫는 태그)
