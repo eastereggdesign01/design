@@ -1,0 +1,273 @@
+<!-- ============================================================
+     홈 00 · 히어로 워드마크 (WebGL 래스터 효과 · 순수 HTML/JS)
+     Originkit "Vector Wordmark Raster" 를 React 없이 아임웹 코드 위젯에 붙일 수 있게 옮긴 것.
+     마우스를 올리면 그 주변 글자가 격자 픽셀로 바뀌고, 마우스가 없으면 좌→우로 자동 스윕합니다.
+     바꿀 것: 아래 CONFIG 의 text / 색상 / 글자 크기. WebGL 미지원 브라우저에서는 일반 텍스트로 대체 표시됩니다.
+     ============================================================ -->
+<section class="eg eg-wm" id="eg-wordmark">
+<style>
+  .eg-wm { position: relative; padding: 0; background: #080e13; }
+  .eg-wm__host { position: relative; overflow: hidden; width: 100%; height: clamp(420px, 70vh, 820px); background: #080e13; touch-action: pan-y; }
+  .eg-wm__host canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .eg-wm__label { position: absolute; left: 0; top: 0; opacity: .6; pointer-events: none; white-space: nowrap; font: 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+  .eg-wm__fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; font: 500 clamp(48px, 15vw, 190px)/1 'Pretendard Variable', Pretendard, Inter, system-ui, sans-serif; letter-spacing: -0.02em; color: #e6f7ff; }
+  .eg-wm__host.is-fallback .eg-wm__fallback { display: flex; }
+  .eg-wm__host.is-fallback canvas, .eg-wm__host.is-fallback .eg-wm__label { display: none; }
+  /* 워드마크 위에 올릴 문구·버튼 (원하지 않으면 .eg-wm__copy 블록 삭제) */
+  .eg-wm__copy { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 var(--eg-gutter, 24px) 48px; pointer-events: none; }
+  .eg-wm__copy .eg-wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .eg-wm__copy p { margin: 0; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6; color: rgba(255,255,255,.7); max-width: 460px; }
+  .eg-wm__copy p b { display: block; font-size: clamp(22px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.03em; color: #fff; margin-bottom: 8px; }
+  .eg-wm__copy .eg-btn { pointer-events: auto; }
+  @media (max-width: 800px) {
+    .eg-wm__host { height: clamp(240px, 38vh, 420px); }
+    .eg-wm__copy { position: static; padding: 8px var(--eg-gutter, 20px) 40px; }
+    .eg-wm__copy .eg-wrap { flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+</style>
+  <div class="eg-wm__host" id="eg-wm-host">
+    <canvas id="eg-wm-canvas"></canvas>
+    <div class="eg-wm__label" id="eg-wm-label"></div>
+    <div class="eg-wm__fallback">EASTEREGG</div>
+  </div>
+  <div class="eg-wm__copy">
+    <div class="eg-wrap">
+      <p><b>숨겨진 한 수, 이스터에그.</b>병원 마케팅, 기획부터 결과까지 한 팀이 책임집니다.</p>
+      <a class="eg-btn eg-btn--brand" href="#eg-contact">상담 문의하기</a>
+    </div>
+  </div>
+<script>
+(function () {
+  /* ---------- CONFIG: 여기만 바꾸면 됩니다 ---------- */
+  var CONFIG = {
+    text: "EASTEREGG",
+    fontFamily: "'Pretendard Variable', Pretendard, Inter, system-ui, sans-serif",
+    fontWeight: "500",
+    fontSize: 190,                      // 폭 1200px 기준 px (화면 폭에 비례해 자동 축소/확대)
+    letterSpacing: "-0.02em",
+    textColor: "#E6F7FF",               // 글자 위쪽 색
+    shade: "#0B2A3A",                   // 글자 아래쪽(그늘) 색
+    accent: "rgba(80, 200, 250, 0.5)",  // 격자·십자선 색 (브랜드 블루)
+    reach: 200,                         // 포인터 영향 반경(px)
+    speed: 50,                          // 자동 스윕 속도
+    damping: 35,                        // 포인터 따라가는 부드러움
+    grid: { size: 14, gap: 20, labels: true }
+  };
+  /* -------------------------------------------------- */
+
+  var MAX_DPR = 2, REF_WIDTH = 1200, MAX_TEX = 4096;
+  var SWEEP_RATE = 0.5, DAMP_REF = 20, SPEED_REF = 50;
+  var DOT_DIAMETER = 4 / 440, DOT_PITCH = 12 / 440, SWEEP_BAND = 0.28;
+  var GRID_ALPHA = 0.35, CROSS_ALPHA = 0.6;
+
+  var host = document.getElementById("eg-wm-host");
+  var canvas = document.getElementById("eg-wm-canvas");
+  var label = document.getElementById("eg-wm-label");
+  if (!host || !canvas) return;
+
+  function clamp(x, a, b) { return x < a ? a : x > b ? b : x; }
+  function fract(x) { return x - Math.floor(x); }
+
+  function parseColor(input, fallback) {
+    if (!input) return fallback;
+    var s = String(input).trim();
+    if (s[0] === "#") {
+      var h = s.slice(1);
+      if (h.length === 3 || h.length === 4) { var x = ""; for (var i = 0; i < h.length; i++) x += h[i] + h[i]; h = x; }
+      if (h.length === 6) h += "ff";
+      if (h.length !== 8 || /[^0-9a-f]/i.test(h)) return fallback;
+      return [parseInt(h.slice(0,2),16)/255, parseInt(h.slice(2,4),16)/255, parseInt(h.slice(4,6),16)/255, parseInt(h.slice(6,8),16)/255];
+    }
+    var m = s.match(/^(rgba?|hsla?)\(([^)]*)\)$/i);
+    if (!m) return fallback;
+    var parts = m[2].split(/[\s,\/]+/).filter(function (p) { return p.length > 0; });
+    if (parts.length < 3) return fallback;
+    var num = function (t, scale) { var v = parseFloat(t); if (!isFinite(v)) return 0; return t.indexOf("%") >= 0 ? (v / 100) * scale : v; };
+    var alpha = parts.length > 3 ? clamp(num(parts[3], 1), 0, 1) : 1;
+    if (m[1].toLowerCase().slice(0, 3) === "rgb") {
+      return [clamp(num(parts[0],255)/255,0,1), clamp(num(parts[1],255)/255,0,1), clamp(num(parts[2],255)/255,0,1), alpha];
+    }
+    var hh = fract(parseFloat(parts[0]) / 360), sat = clamp(num(parts[1],1),0,1), li = clamp(num(parts[2],1),0,1);
+    var q = li < 0.5 ? li * (1 + sat) : li + sat - li * sat, p = 2 * li - q;
+    var chan = function (t) { var u = fract(t); if (u < 1/6) return p + (q-p)*6*u; if (u < 1/2) return q; if (u < 2/3) return p + (q-p)*(2/3-u)*6; return p; };
+    return [chan(hh + 1/3), chan(hh), chan(hh - 1/3), alpha];
+  }
+
+  var VERT = "attribute vec2 aPos; varying vec2 vUv; void main(){ vUv = aPos*0.5+0.5; gl_Position = vec4(aPos,0.0,1.0); }";
+  var FRAG = [
+    "precision highp float;",
+    "uniform sampler2D uMap; uniform vec2 uRes; uniform vec2 uAtlas; uniform vec2 uPtr;",
+    "uniform float uReach; uniform float uCell; uniform float uGap; uniform vec3 uText; uniform vec3 uShade; uniform vec4 uAccent;",
+    "varying vec2 vUv;",
+    "float hash(vec2 p){ return fract(sin(dot(p, vec2(12.9898,78.233)))*43758.5453); }",
+    "vec2 blurRG(vec2 uv, float e){ vec4 sum=vec4(0.0); for(int i=0;i<6;i++){ float fi=float(i); float th=radians(fi/6.0*360.0); vec2 dir=vec2(cos(th),sin(th)); vec2 off=dir*(hash(vec2(fi,uv.x+uv.y))+e); sum+=texture2D(uMap, uv+off*e);} return (sum/6.0).rg; }",
+    "float stroke(float d, float lw, float px){ return 1.0 - smoothstep(lw, lw+px, d); }",
+    "vec2 atlasUv(vec2 px){ return (px - (uRes-uAtlas)*0.5)/uAtlas; }",
+    "float coverage(vec2 px){ vec2 e=atlasUv(px); float inb=step(0.0,e.x)*step(e.x,1.0)*step(0.0,e.y)*step(e.y,1.0); return texture2D(uMap, clamp(e,0.0,1.0)).r*inb; }",
+    "void main(){",
+    "  float aspect=uRes.x/uRes.y; vec2 p=vUv*uRes;",
+    "  vec2 E=atlasUv(p); float inside=step(0.0,E.x)*step(E.x,1.0)*step(0.0,E.y)*step(E.y,1.0);",
+    "  vec2 safeUv=clamp(E,0.0,1.0); float b=clamp(1.0-E.y*3.5,0.0,1.0)*0.008;",
+    "  float softMask=blurRG(safeUv,b).r*inside; vec3 fillS=mix(uShade,uText,smoothstep(0.0,1.0,E.y));",
+    "  vec2 cell=floor(p/uCell); vec2 cc=(cell+0.5)*uCell; float q=uCell*0.25;",
+    "  float cov=0.25*(coverage(cc+vec2(-q,-q))+coverage(cc+vec2(q,-q))+coverage(cc+vec2(-q,q))+coverage(cc+vec2(q,q)));",
+    "  vec2 f=fract(p/uCell)*uCell; float g=uGap*uCell*0.5; vec2 sqd=min(f-g,uCell-g-f);",
+    "  float sq=smoothstep(-0.5,0.5,min(sqd.x,sqd.y)); float rasterMask=cov*sq;",
+    "  vec3 fillR=mix(uShade,uText,smoothstep(0.0,1.0,atlasUv(cc).y));",
+    "  float d=length((vUv-uPtr)/vec2(1.0,aspect)); float k=1.0-pow(smoothstep(0.0,max(uReach,1e-4),d),3.0);",
+    "  float fade=pow(clamp(E.y,0.0,1.0),0.7); float mask=mix(softMask,rasterMask,k);",
+    "  vec3 rgbP=mix(fillS*softMask,fillR*rasterMask,k); vec4 card=vec4(rgbP,mask)*fade;",
+    "  vec2 edge=min(f,uCell-f); float grid=stroke(min(edge.x,edge.y),0.25,1.0)*k*" + GRID_ALPHA.toFixed(3) + ";",
+    "  vec2 c=uPtr*uRes; float cross=max(stroke(abs(p.x-c.x),0.5,1.0),stroke(abs(p.y-c.y),0.5,1.0))*" + CROSS_ALPHA.toFixed(3) + ";",
+    "  vec2 pc=floor(c/uCell); float same=1.0-step(0.5,length(cell-pc)); float hl=stroke(min(edge.x,edge.y),0.5,1.0)*same;",
+    "  float A=max(max(grid,cross),hl)*uAccent.a;",
+    "  gl_FragColor=vec4(uAccent.rgb*A,A)+card*(1.0-A);",
+    "}"
+  ].join("\n");
+
+  var attrs = { alpha: true, antialias: false, depth: false, stencil: false, premultipliedAlpha: true, powerPreference: "high-performance" };
+  var gl = canvas.getContext("webgl2", attrs) || canvas.getContext("webgl", attrs);
+  if (!gl) { host.classList.add("is-fallback"); return; }
+  var isGL2 = typeof WebGL2RenderingContext !== "undefined" && gl instanceof WebGL2RenderingContext;
+
+  function compile(vs, fs) {
+    var make = function (type, src) { var sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh); return sh; };
+    var p = gl.createProgram(); gl.attachShader(p, make(gl.VERTEX_SHADER, vs)); gl.attachShader(p, make(gl.FRAGMENT_SHADER, fs));
+    gl.bindAttribLocation(p, 0, "aPos"); gl.linkProgram(p); return p;
+  }
+  var prog = compile(VERT, FRAG);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { host.classList.add("is-fallback"); return; }
+  var U = {};
+  ["uMap","uRes","uAtlas","uPtr","uReach","uCell","uGap","uText","uShade","uAccent"].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+
+  var quad = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, quad);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0); gl.disable(gl.BLEND);
+
+  var tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0,0,0,255]));
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+  function fontString(px) { return "normal " + CONFIG.fontWeight + " " + px + "px " + CONFIG.fontFamily; }
+
+  function buildAtlas(text, drawFontPx, dpr) {
+    var probe = document.createElement("canvas").getContext("2d");
+    if (!probe) return null;
+    var setFont = function (ctx, px) { ctx.font = fontString(px); try { if ("letterSpacing" in ctx) ctx.letterSpacing = CONFIG.letterSpacing; } catch (e) {} };
+    var measure = function (px) { setFont(probe, px); var m = probe.measureText(text); return { w: Math.max(1, m.width), asc: m.actualBoundingBoxAscent || px * 0.8, desc: m.actualBoundingBoxDescent || px * 0.22 }; };
+    var fpx = Math.max(8, drawFontPx * dpr), m = measure(fpx), pad = fpx * 0.12;
+    var over = Math.max((m.w + pad * 2) / MAX_TEX, (m.asc + m.desc + pad * 2) / MAX_TEX);
+    if (over > 1) { fpx = Math.max(8, fpx / over); m = measure(fpx); pad = fpx * 0.12; }
+    var w = Math.max(1, Math.ceil(m.w + pad * 2)), h = Math.max(1, Math.ceil(m.asc + m.desc + pad * 2));
+    var c = document.createElement("canvas"); c.width = w; c.height = h;
+    var ctx = c.getContext("2d"); if (!ctx) return null;
+    ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h);
+    setFont(ctx, fpx); ctx.textBaseline = "alphabetic"; ctx.textAlign = "left"; ctx.globalCompositeOperation = "lighter";
+    ctx.fillStyle = "#ff0000"; ctx.fillText(text, pad, pad + m.asc);
+    var block = m.asc + m.desc;
+    ctx.strokeStyle = "#00ff00"; ctx.lineCap = "round"; ctx.lineJoin = "round";
+    ctx.lineWidth = Math.max(1, block * DOT_DIAMETER); ctx.setLineDash([0, Math.max(2, block * DOT_PITCH)]);
+    ctx.strokeText(text, pad, pad + m.asc);
+    var cssPerPx = drawFontPx / fpx;
+    return { canvas: c, cssW: w * cssPerPx, cssH: h * cssPerPx };
+  }
+
+  var alive = true, boxW = Math.max(1, host.offsetWidth), boxH = Math.max(1, host.offsetHeight), boxDirty = true;
+  var dpr = 1, bufW = 0, bufH = 0, atlasRatioW = 1, atlasRatioH = 1, atlasKey = "";
+
+  function drawFontPx() {
+    var px = CONFIG.fontSize * (boxW / REF_WIDTH);
+    var fit = (boxW * 0.92) / atlasRatioW;   // 첫 빌드 후 실제 글자 폭 비율로 보정
+    return Math.min(px, fit);
+  }
+  function resize() {
+    boxW = Math.max(1, host.offsetWidth); boxH = Math.max(1, host.offsetHeight);
+    dpr = Math.min(MAX_DPR, window.devicePixelRatio || 1);
+    var w = Math.max(1, Math.round(boxW * dpr)), h = Math.max(1, Math.round(boxH * dpr));
+    if (w === bufW && h === bufH) return;
+    bufW = w; bufH = h; canvas.width = w; canvas.height = h;
+  }
+  function rebuildAtlas() {
+    var px = Math.max(8, drawFontPx());
+    var atlas = buildAtlas(CONFIG.text || " ", px, dpr);
+    if (!atlas) return;
+    atlasRatioW = Math.max(1e-4, atlas.cssW / px); atlasRatioH = Math.max(1e-4, atlas.cssH / px);
+    if (document.fonts) { try { var probe = fontString(64); if (!document.fonts.check(probe)) { var again = function () { if (alive) atlasKey = ""; }; document.fonts.load(probe, CONFIG.text).then(again, again); } } catch (e) {} }
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, atlas.canvas);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+    var cw = atlas.canvas.width, ch = atlas.canvas.height, pot = (cw & (cw - 1)) === 0 && (ch & (ch - 1)) === 0;
+    if (isGL2 || pot) { gl.generateMipmap(gl.TEXTURE_2D); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); }
+    else { gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); }
+  }
+
+  var target = { x: -0.5, y: 0.5 }, eased = { x: -0.5, y: 0.5 }, hasPointer = false;
+  host.addEventListener("pointermove", function (e) {
+    hasPointer = true;
+    var r = host.getBoundingClientRect(); if (r.width <= 0 || r.height <= 0) return;
+    target.x = (e.clientX - r.left) / r.width; target.y = 1 - (e.clientY - r.top) / r.height;
+  });
+  host.addEventListener("pointerleave", function () { hasPointer = false; });
+
+  var raf = 0, last = 0;
+  function sync() {
+    if (boxDirty) { boxDirty = false; resize(); }
+    var key = [CONFIG.text, CONFIG.fontFamily, CONFIG.fontWeight, CONFIG.letterSpacing, dpr, Math.ceil(Math.max(8, drawFontPx()) / 64)].join("|");
+    if (key !== atlasKey) { atlasKey = key; rebuildAtlas(); }
+  }
+  function step(dt) {
+    var rate = Math.max(0, CONFIG.speed) / SPEED_REF;
+    if (!hasPointer) {
+      var band = (atlasRatioH * Math.max(8, drawFontPx())) / boxH;
+      target.x += dt * SWEEP_RATE * rate;
+      target.y = (1 - band) / 2 + SWEEP_BAND * band;
+      if (target.x > 1.5) { target.x = -0.5; eased.x = -0.5; }
+    }
+    var damp = clamp((CONFIG.damping / 100) * DAMP_REF * dt, 0, 1);
+    eased.x += (target.x - eased.x) * damp; eased.y += (target.y - eased.y) * damp;
+  }
+  function writeLabels() {
+    if (!label || !CONFIG.grid.labels) return;
+    var cellPx = Math.max(1, CONFIG.grid.size), cx = eased.x * boxW, cyUp = eased.y * boxH;
+    var col = Math.floor(cx / cellPx), rowUp = Math.floor(cyUp / cellPx), row = Math.max(0, Math.ceil(boxH / cellPx) - 1 - rowUp);
+    label.style.transform = "translate(" + ((col + 1) * cellPx + 6) + "px, " + (boxH - (rowUp + 1) * cellPx - 16) + "px)";
+    label.textContent = col + ", " + row;
+  }
+  var ac = parseColor(CONFIG.accent, [0.314, 0.784, 0.98, 0.5]);
+  if (label) label.style.color = "rgb(" + Math.round(ac[0]*255) + "," + Math.round(ac[1]*255) + "," + Math.round(ac[2]*255) + ")";
+  function draw() {
+    var tc = parseColor(CONFIG.textColor, [0.9, 0.97, 1, 1]), sc = parseColor(CONFIG.shade, [0.04, 0.16, 0.23, 1]);
+    gl.viewport(0, 0, bufW, bufH); gl.useProgram(prog);
+    gl.uniform1i(U.uMap, 0); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.uniform2f(U.uRes, boxW, boxH);
+    var px = Math.max(8, drawFontPx());
+    gl.uniform2f(U.uAtlas, atlasRatioW * px, atlasRatioH * px);
+    gl.uniform2f(U.uPtr, eased.x, eased.y);
+    gl.uniform1f(U.uReach, Math.max(1, CONFIG.reach) / boxW);
+    gl.uniform1f(U.uCell, Math.max(1, CONFIG.grid.size));
+    gl.uniform1f(U.uGap, clamp(CONFIG.grid.gap, 0, 80) / 100);
+    gl.uniform3f(U.uText, tc[0], tc[1], tc[2]); gl.uniform3f(U.uShade, sc[0], sc[1], sc[2]);
+    gl.uniform4f(U.uAccent, ac[0], ac[1], ac[2], ac[3]);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  }
+  function frame(now) {
+    var dt = last ? Math.min(0.1, (now - last) / 1000) : 0; last = now;
+    sync(); step(dt); writeLabels(); draw();
+    raf = requestAnimationFrame(frame);
+  }
+  function gate() {
+    if (!document.hidden) { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
+    else if (raf) { cancelAnimationFrame(raf); raf = 0; }
+  }
+  if ("ResizeObserver" in window) { new ResizeObserver(function () { boxDirty = true; }).observe(host); }
+  else { window.addEventListener("resize", function () { boxDirty = true; }); }
+  document.addEventListener("visibilitychange", gate);
+  if (document.fonts) document.fonts.ready.then(function () { if (alive) atlasKey = ""; }, function () {});
+  gate();
+})();
+</script>
+</section>

@@ -85,7 +85,7 @@ imweb-redesign/
 ### 홈 `/`
 | 순서 | 파일 | 내용 | 교체할 것 |
 |---|---|---|---|
-| 1 | `01-home/01-hero.html` | 가치제안 + CTA 2개 + 신뢰 지표 | 영상/이미지 1개 |
+| 1 | `01-home/01-hero.html` 또는 `01-home/00-hero-wordmark.html` | 일반 히어로 / WebGL 워드마크 히어로(EASTEREGG 래스터 효과, 마우스 반응) 중 택 1 | 영상·이미지 1개 / CONFIG의 문구·색 |
 | 2 | `01-home/02-stats.html` | 숫자 4개 (다크) | 4번째 수치 |
 | 3 | `01-home/03-services.html` | 마케팅/디자인 카드 2개 (현재 문장 유지) | 목업 이미지 2장, 링크 경로 |
 | 4 | `01-home/04-difference.html` | 차별점 3가지 | 이미지 1개 |
