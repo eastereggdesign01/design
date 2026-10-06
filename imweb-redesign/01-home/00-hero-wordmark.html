@@ -3,38 +3,24 @@
      Originkit "Vector Wordmark Raster" 를 React 없이 아임웹 코드 위젯에 붙일 수 있게 옮긴 것.
      마우스를 올리면 그 주변 글자가 격자 픽셀로 바뀌고, 마우스가 없으면 좌→우로 자동 스윕합니다.
      바꿀 것: 아래 CONFIG 의 text / 색상 / 글자 크기. WebGL 미지원 브라우저에서는 일반 텍스트로 대체 표시됩니다.
+     섹션은 아임웹 컨테이너 폭과 무관하게 화면 좌우 끝까지 채웁니다 (width:100vw 트릭).
      ============================================================ -->
 <section class="eg eg-wm" id="eg-wordmark">
 <style>
-  .eg-wm { position: relative; padding: 0; background: #080e13; }
+  /* 아임웹 컨테이너 폭을 무시하고 화면 끝까지 */
+  .eg-wm { position: relative; padding: 0; background: #080e13; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
   .eg-wm__host { position: relative; overflow: hidden; width: 100%; height: clamp(420px, 70vh, 820px); background: #080e13; touch-action: pan-y; }
   .eg-wm__host canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .eg-wm__label { position: absolute; left: 0; top: 0; opacity: .6; pointer-events: none; white-space: nowrap; font: 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
   .eg-wm__fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; font: 500 clamp(48px, 15vw, 190px)/1 'Pretendard Variable', Pretendard, Inter, system-ui, sans-serif; letter-spacing: -0.02em; color: #e6f7ff; }
   .eg-wm__host.is-fallback .eg-wm__fallback { display: flex; }
   .eg-wm__host.is-fallback canvas, .eg-wm__host.is-fallback .eg-wm__label { display: none; }
-  /* 워드마크 위에 올릴 문구·버튼 (원하지 않으면 .eg-wm__copy 블록 삭제) */
-  .eg-wm__copy { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 var(--eg-gutter, 24px) 48px; pointer-events: none; }
-  .eg-wm__copy .eg-wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
-  .eg-wm__copy p { margin: 0; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6; color: rgba(255,255,255,.7); max-width: 460px; }
-  .eg-wm__copy p b { display: block; font-size: clamp(22px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.03em; color: #fff; margin-bottom: 8px; }
-  .eg-wm__copy .eg-btn { pointer-events: auto; }
-  @media (max-width: 800px) {
-    .eg-wm__host { height: clamp(240px, 38vh, 420px); }
-    .eg-wm__copy { position: static; padding: 8px var(--eg-gutter, 20px) 40px; }
-    .eg-wm__copy .eg-wrap { flex-direction: column; align-items: flex-start; gap: 20px; }
-  }
+  @media (max-width: 800px) { .eg-wm__host { height: clamp(260px, 48vh, 480px); } }
 </style>
   <div class="eg-wm__host" id="eg-wm-host">
     <canvas id="eg-wm-canvas"></canvas>
     <div class="eg-wm__label" id="eg-wm-label"></div>
     <div class="eg-wm__fallback">EASTEREGG</div>
-  </div>
-  <div class="eg-wm__copy">
-    <div class="eg-wrap">
-      <p><b>숨겨진 한 수, 이스터에그.</b>병원 마케팅, 기획부터 결과까지 한 팀이 책임집니다.</p>
-      <a class="eg-btn eg-btn--brand" href="#eg-contact">상담 문의하기</a>
-    </div>
   </div>
 <script>
 (function () {
