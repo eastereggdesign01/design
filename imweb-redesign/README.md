@@ -50,6 +50,15 @@ imweb-redesign/
    - 이미지는 아임웹 「파일 관리」에 올린 뒤 URL 복사 → `src="…"`에 붙여넣기
    - 수치(`[00]%`)는 확인된 값만. 확인 안 되면 해당 블록 삭제
 
+## 2-1. 원스크롤(단일 페이지) 유지 시
+
+현재 사이트는 원스크롤 단일 페이지입니다. 페이지를 나누지 않고 그대로 가려면 홈 한 페이지에 아래 순서로 코드 위젯을 쌓으면 됩니다. 자세한 대응표는 `00-문제점분석.md` §3 에 있습니다.
+
+`01-home/01-hero` → `02-stats` → `03-services` → `05-cases` → `09-cta` → `06-clients` → `04-difference` → `07-process` → (현재 「여섯 가지 약속」 섹션 유지) → `08-insights` → `06-contact/01-page-hero` + 아임웹 폼 → `06-contact/03-footer`
+
+헤더 메뉴는 앵커로 연결합니다: 하는 일 `#eg-services` · 성과 `#eg-cases` · 진행 과정 `#eg-process` · 247 `#eg-insights` · 문의 `#eg-contact`.
+`02-marketing/`, `03-design/`, `04-media/` 는 나중에 서브페이지를 만들 때 쓰면 됩니다.
+
 ## 3. 페이지별 섹션 목록
 
 ### 홈 `/`
