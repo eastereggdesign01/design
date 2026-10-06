@@ -4,6 +4,7 @@
 import pathlib, re
 root = pathlib.Path(__file__).resolve().parent.parent
 site_css = (root/'global/site.css').read_text(encoding='utf-8')
+site_css = '\n'.join(l for l in site_css.splitlines() if not l.strip().startswith('@import'))
 reveal_js = (root/'global/reveal.js').read_text(encoding='utf-8')
 board_css = (root/'05-247/board.css').read_text(encoding='utf-8')
 footer = None
@@ -24,6 +25,7 @@ pv_css = '''
 .pv-header nav a.on{color:#0f9bd6}
 .pv-cta{height:40px;padding:0 18px;border-radius:999px;background:#111417;color:#fff;font-size:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center}
 @media(max-width:800px){.pv-header nav{display:none}}
+:root{--eg-font:'Noto Sans KR',-apple-system,BlinkMacSystemFont,system-ui,sans-serif}
 img[src^="["]{opacity:0}
 .pv-tag{position:absolute;left:12px;top:10px;z-index:5;font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.02em;color:#fff;background:rgba(15,155,214,.92);padding:6px 9px;border-radius:6px;pointer-events:none;opacity:.9}
 .eg{position:relative}
@@ -37,10 +39,12 @@ def page(name, title, parts, extra_css='', active=''):
     # 플레이스홀더 이미지에 안내 라벨 표시
     body = re.sub(r'<img src="\[([^"]*)\]"([^>]*)>', lambda m: f'<img src="[{m.group(1)}]"{m.group(2)}><span class="pv-ph">이미지 자리: {m.group(1)[:28]}</span>', body)
     html = f'''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>{site_css}</style><style>{extra_css}</style><style>{pv_css}</style></head><body>
 {mock_header(active)}
 {body}
-<div class="pv-note"><b>시안 미리보기</b> · 회색 박스는 이미지 자리, [대괄호]는 교체할 문구입니다. 각 섹션 왼쪽 위 파란 라벨이 코드 파일명이에요. 수정 요청은 그 라벨 이름으로 말씀해 주세요.</div>
+<div class="pv-note"><b>시안 미리보기</b> · 미리보기 폰트는 Noto Sans KR이고 실제 사이트는 Pretendard로 적용됩니다. 회색 박스는 이미지 자리, [대괄호]는 교체할 문구입니다. 각 섹션 왼쪽 위 파란 라벨이 코드 파일명이에요. 수정 요청은 그 라벨 이름으로 말씀해 주세요.</div>
 <script>{reveal_js}</script>
 <script>document.querySelectorAll('.eg-reveal').forEach(e=>e.classList.add('is-in'))</script>
 </body></html>'''
@@ -60,13 +64,13 @@ def contact_block():
     return rd('06-contact/01-page-hero.html').replace('<!-- ▼ 아임웹 폼 위젯 자리 (코드 위젯이 아닌 아임웹 폼 위젯을 2단 컬럼 우측에 배치) -->', mock_form)
 
 home_order=['01-hero','02-stats','03-services','05-cases','09-cta','06-portfolio','04-difference','07-process','08-insights']
-page('index', '홈 미리보기', [rd(f'01-home/{n}.html') for n in home_order] + [contact_block(), footer], active='')
-page('MARKETING', 'MARKETING 미리보기', all_in('02-marketing') + [cta, footer], active='MARKETING')
-page('DESIGN', 'DESIGN 미리보기', all_in('03-design') + [cta, footer], active='DESIGN')
+page('index', '이스터에그 리디자인 시안 · 홈', [rd(f'01-home/{n}.html') for n in home_order] + [contact_block(), footer], active='')
+page('MARKETING', '시안 · MARKETING', all_in('02-marketing') + [cta, footer], active='MARKETING')
+page('DESIGN', '시안 · DESIGN', all_in('03-design') + [cta, footer], active='DESIGN')
 # 247: 게시판 목록은 아임웹 위젯이므로 목업 카드로 대체
 mock_board = '''<section class="eg" style="padding-top:0"><div class="eg-wrap"><div style="display:flex;gap:6px;margin-bottom:28px"><a class="eg-btn eg-btn--primary eg-btn--sm" href="#">전체</a><a class="eg-btn eg-btn--ghost eg-btn--sm" href="#">인사이트</a><a class="eg-btn eg-btn--ghost eg-btn--sm" href="#">사례</a><a class="eg-btn eg-btn--ghost eg-btn--sm" href="#">공지</a></div>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px">''' + ''.join(f'''<a href="#" style="text-decoration:none;color:inherit"><div style="aspect-ratio:16/9;border-radius:14px;background:#e9edf1;position:relative"><span class="pv-ph">아임웹 게시판 썸네일</span></div><div style="margin-top:12px;font-size:12.5px;color:#697180">인사이트 · 2026.0{i}.0{i}</div><div style="margin-top:6px;font-size:17px;font-weight:700;letter-spacing:-.015em;line-height:1.45">[글 제목 {i}] — 아임웹 게시판 위젯(갤러리형)에 board.css 적용 시 이런 모습</div></a>''' for i in range(1,7)) + '</div></div></section>'
-page('247', '247 미리보기', [rd('05-247/01-page-hero.html'), mock_board, cta, footer], extra_css=board_css, active='247')
+page('247', '시안 · 247', [rd('05-247/01-page-hero.html'), mock_board, cta, footer], extra_css=board_css, active='247')
 contact = contact_block()
-page('CONTACT', 'CONTACT 미리보기', [contact, footer], active='CONTACT')
+page('CONTACT', '시안 · CONTACT', [contact, footer], active='CONTACT')
 print('built:', sorted(p.name for p in (root/'preview').glob('*.html')))
