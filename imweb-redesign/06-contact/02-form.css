@@ -22,3 +22,19 @@
 .form_wrap .btn:hover, [class*="form_widget"] button[type="submit"]:hover { background: #000 !important; }
 /* 체크박스(개인정보 동의) 문구 */
 .form_wrap .agree, [class*="agree"] { font-size: 13px !important; color: var(--eg-sub, #697180) !important; }
+
+/* 라디오 · 체크박스 (개원여부, 동의) */
+.form_wrap input[type="radio"], .form_wrap input[type="checkbox"], [class*="form_widget"] input[type="radio"], [class*="form_widget"] input[type="checkbox"] {
+  width: 20px !important; height: 20px !important; accent-color: var(--eg-ink, #111417); margin-right: 8px; vertical-align: -4px;
+}
+.form_wrap .radio_wrap label, [class*="form_widget"] .radio label {
+  display: inline-flex !important; align-items: center; height: 44px; padding: 0 16px 0 12px !important; margin: 0 8px 8px 0 !important;
+  border: 1px solid var(--eg-line, #e6e8eb) !important; border-radius: 999px !important; font-weight: 600 !important; cursor: pointer;
+}
+/* 필수 표시(*)와 안내 문구 */
+.form_wrap .required, [class*="form_widget"] .required { color: var(--eg-main-deep, #0f9bd6) !important; }
+.form_wrap .help, .form_wrap .desc, [class*="form_widget"] [class*="desc"] { font-size: 12.5px !important; color: var(--eg-sub, #697180) !important; margin-top: 6px !important; }
+/* 개인정보 처리방침 스크롤 박스는 숨기고 링크 한 줄로 (폼 설정에서 "약관 내용 표시"를 끄는 것이 우선) */
+.form_wrap .agree_content, .form_wrap textarea[readonly], [class*="form_widget"] [class*="terms_content"] { display: none !important; }
+/* 전송 완료 메시지 */
+.form_wrap .complete, [class*="form_widget"] [class*="complete"] { padding: 32px; border-radius: 16px; background: var(--eg-main-soft, #e9f7fe); font-size: 16px; font-weight: 600; text-align: center; }

@@ -10,7 +10,7 @@ footer = (root/'06-contact/03-footer.html').read_text(encoding='utf-8')
 cta = (root/'01-home/09-cta.html').read_text(encoding='utf-8')
 
 def mock_header(active):
-    items = ['MARKETING','DESIGN','MEDIA','247','CONTACT']
+    items = ['MARKETING','DESIGN','247','CONTACT']
     nav = ''.join(f'<a href="{i}.html" class="{"on" if i==active else ""}">{i}</a>' for i in items)
     return f'''<header class="pv-header"><div class="pv-wrap"><a class="pv-logo" href="index.html"><svg width="120" height="22" viewBox="0 0 120 22"><text x="0" y="17" font-family="Pretendard Variable,Pretendard,sans-serif" font-weight="800" font-size="19" letter-spacing="-0.5">EASTER EGG</text></svg></a><nav>{nav}</nav><a class="pv-cta" href="CONTACT.html">상담 문의</a></div></header>'''
 
@@ -47,7 +47,6 @@ def all_in(d): return [rd(p) for p in sorted((root/d).glob('*.html'))]
 page('index', '홈 미리보기', all_in('01-home') + [footer], active='')
 page('MARKETING', 'MARKETING 미리보기', all_in('02-marketing') + [cta, footer], active='MARKETING')
 page('DESIGN', 'DESIGN 미리보기', all_in('03-design') + [cta, footer], active='DESIGN')
-page('MEDIA', 'MEDIA 미리보기', all_in('04-media') + [cta, footer], active='MEDIA')
 # 247: 게시판 목록은 아임웹 위젯이므로 목업 카드로 대체
 mock_board = '''<section class="eg" style="padding-top:0"><div class="eg-wrap"><div style="display:flex;gap:6px;margin-bottom:28px"><a class="eg-btn eg-btn--primary eg-btn--sm" href="#">전체</a><a class="eg-btn eg-btn--ghost eg-btn--sm" href="#">인사이트</a><a class="eg-btn eg-btn--ghost eg-btn--sm" href="#">사례</a><a class="eg-btn eg-btn--ghost eg-btn--sm" href="#">공지</a></div>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px">''' + ''.join(f'''<a href="#" style="text-decoration:none;color:inherit"><div style="aspect-ratio:16/9;border-radius:14px;background:#e9edf1;position:relative"><span class="pv-ph">아임웹 게시판 썸네일</span></div><div style="margin-top:12px;font-size:12.5px;color:#697180">인사이트 · 2026.0{i}.0{i}</div><div style="margin-top:6px;font-size:17px;font-weight:700;letter-spacing:-.015em;line-height:1.45">[글 제목 {i}] — 아임웹 게시판 위젯(갤러리형)에 board.css 적용 시 이런 모습</div></a>''' for i in range(1,7)) + '</div></div></section>'

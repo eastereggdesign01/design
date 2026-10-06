@@ -120,7 +120,7 @@ html.eg-js .eg-reveal.is-in { opacity: 1; transform: none; }
 img[src^="["]{opacity:0}
 .pv-ph{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;color:rgba(0,0,0,.35);pointer-events:none}
 </style></head><body>
-<header class="pv-header"><div class="pv-wrap"><a class="pv-logo" href="index.html"><svg width="120" height="22" viewBox="0 0 120 22"><text x="0" y="17" font-family="Pretendard Variable,Pretendard,sans-serif" font-weight="800" font-size="19" letter-spacing="-0.5">EASTER EGG</text></svg></a><nav><a href="MARKETING.html" class="">MARKETING</a><a href="DESIGN.html" class="">DESIGN</a><a href="MEDIA.html" class="">MEDIA</a><a href="247.html" class="">247</a><a href="CONTACT.html" class="on">CONTACT</a></nav><a class="pv-cta" href="CONTACT.html">상담 문의</a></div></header>
+<header class="pv-header"><div class="pv-wrap"><a class="pv-logo" href="index.html"><svg width="120" height="22" viewBox="0 0 120 22"><text x="0" y="17" font-family="Pretendard Variable,Pretendard,sans-serif" font-weight="800" font-size="19" letter-spacing="-0.5">EASTER EGG</text></svg></a><nav><a href="MARKETING.html" class="">MARKETING</a><a href="DESIGN.html" class="">DESIGN</a><a href="247.html" class="">247</a><a href="CONTACT.html" class="on">CONTACT</a></nav><a class="pv-cta" href="CONTACT.html">상담 문의</a></div></header>
 <!-- ============================================================
      CONTACT 01 · 연락 정보 + 문의 폼 영역
      폼: 아임웹 「폼(문의) 위젯」을 그대로 쓰되, 아래 섹션의 오른쪽 자리(.eg-contact__form)에
@@ -165,7 +165,7 @@ img[src^="["]{opacity:0}
     </div>
     <div class="eg-contact__form eg-reveal">
       <h2>상담 문의</h2>
-      <p>아래 자리에 아임웹 「폼」 위젯을 두세요. 권장 항목: 병원명 · 진료과 · 지역 · 연락처 · 관심 서비스(마케팅/디자인/미디어/개원) · 문의 내용 · 개인정보 동의</p>
+      <p>아래 자리에 아임웹 「폼」 위젯을 두세요. 항목 구성은 <b>06-contact/폼-설정-가이드.md</b> 를 따릅니다 (5항목 + 동의 1줄).</p>
       <form onsubmit="return false" style="display:grid;gap:14px;font-family:var(--eg-font)"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><label style="font-size:13.5px;font-weight:700">병원명<input style="margin-top:8px;width:100%;height:52px;border:1px solid #e6e8eb;border-radius:12px;padding:0 16px;font:inherit" placeholder="OO외과"></label><label style="font-size:13.5px;font-weight:700">진료과<input style="margin-top:8px;width:100%;height:52px;border:1px solid #e6e8eb;border-radius:12px;padding:0 16px;font:inherit" placeholder="외과 / 정형외과 …"></label></div><label style="font-size:13.5px;font-weight:700">연락처<input style="margin-top:8px;width:100%;height:52px;border:1px solid #e6e8eb;border-radius:12px;padding:0 16px;font:inherit" placeholder="010-0000-0000"></label><label style="font-size:13.5px;font-weight:700">관심 서비스<div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><span class="eg-chip">마케팅</span><span class="eg-chip">디자인</span><span class="eg-chip">미디어</span><span class="eg-chip">개원 패키지</span></div></label><label style="font-size:13.5px;font-weight:700">문의 내용<textarea style="margin-top:8px;width:100%;height:140px;border:1px solid #e6e8eb;border-radius:12px;padding:14px 16px;font:inherit" placeholder="현재 상황과 궁금한 점을 적어 주세요."></textarea></label><label style="font-size:13px;color:#697180"><input type="checkbox"> 개인정보 수집·이용에 동의합니다.</label><button class="eg-btn eg-btn--primary" style="width:100%;height:56px">문의 보내기</button></form>
     </div>
   </div>
@@ -199,19 +199,20 @@ img[src^="["]{opacity:0}
     <div class="eg-footer__top">
       <div>
         <a class="eg-footer__logo" href="/"><img src="[easteregg_hw.png 가로 화이트 로고 URL]" alt="이스터에그"><span class="pv-ph">이미지 자리: easteregg_hw.png 가로 화이트 로고 U</span></a>
-        <p class="eg-footer__tag">인천 송도에서 시작한 병의원 전문 마케팅 에이전시. 마케팅 · 디자인 · 미디어가 한 팀으로 병원의 방향을 기획하고 실행합니다.</p>
+        <p class="eg-footer__tag">인천 송도에서 시작한 병의원 전문 마케팅 에이전시. 마케팅과 디자인이 한 팀으로 병원의 방향을 기획하고 실행합니다.</p>
       </div>
-      <div class="eg-footer__col"><h4>Services</h4><ul><li><a href="/MARKETING">Marketing</a></li><li><a href="/DESIGN">Design</a></li><li><a href="/MEDIA">Media</a></li></ul></div>
+      <div class="eg-footer__col"><h4>Services</h4><ul><li><a href="/MARKETING">Marketing</a></li><li><a href="/DESIGN">Design</a></li></ul></div>
       <div class="eg-footer__col"><h4>Company</h4><ul><li><a href="/247">247 인사이트</a></li><li><a href="/CONTACT">상담 문의</a></li><li><a href="https://www.youtube.com/@easteregg247" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://blog.naver.com/easteregg_blog" target="_blank" rel="noopener">Blog</a></li></ul></div>
       <div class="eg-footer__col"><h4>Contact</h4><ul><li><a href="tel:032-710-2258">032-710-2258</a></li><li><a href="mailto:easteregg.medi@gmail.com">easteregg.medi@gmail.com</a></li><li><a href="/CONTACT">평일 10:00–18:00</a></li></ul></div>
     </div>
     <div class="eg-footer__bottom">
       <div>
-        <b>주식회사 이스터에그</b><i>|</i>대표 김소연<i>|</i>사업자등록번호 116-86-02909<br>
-        인천 연수구 인천타워대로 323, 송도센트로드 A동 1811호<i>|</i>TEL 032-710-2258<i>|</i>easteregg.medi@gmail.com<br>
+        <b>주식회사 이스터에그</b><i>|</i>대표 김소연<i>|</i>사업자등록번호 116-86-02909<i>|</i>통신판매업신고 2024-충북청주-0953<br>
+        본사 충청북도 청주시 청원구 오창읍 오창중앙로 123-12, 1동 402호 C23호<br>
+        인천지사 인천 연수구 인천타워대로 323, 송도센트로드 A동 1811호<i>|</i>TEL 032-710-2258<i>|</i>easteregg.medi@gmail.com<br>
         © <span id="eg-year">2026</span> Easter Egg Inc. All rights reserved.
       </div>
-      <div class="eg-footer__legal"><a href="[개인정보처리방침 페이지]">개인정보처리방침</a><a href="[이용약관 페이지]">이용약관</a></div>
+      <div class="eg-footer__legal"><a href="[개인정보처리방침 페이지]">개인정보처리방침</a></div>
     </div>
   </div>
 <script>(function(){var y=document.getElementById('eg-year');if(y)y.textContent=new Date().getFullYear();})();</script>
