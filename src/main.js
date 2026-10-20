@@ -546,12 +546,16 @@ function infoSection(h) {
   });
   row('진료시간', ul, null);
 
-  if (h.taxEmail) {
+  if (h.ceo) row('대표자', document.createTextNode(h.ceo), null);
+
+  if (h.bizNo) row('사업자번호', document.createTextNode(h.bizNo), h.bizNo);
+
+  (h.taxEmails || []).forEach((email, i) => {
     const mail = document.createElement('a');
-    mail.href = `mailto:${h.taxEmail}`;
-    mail.textContent = h.taxEmail;
-    row('세금계산서', mail, h.taxEmail);
-  }
+    mail.href = `mailto:${email}`;
+    mail.textContent = email;
+    row(i === 0 ? '세금계산서' : ' ', mail, email);
+  });
 
   row('진료과', document.createTextNode(h.dept.join(' · ')), null);
 

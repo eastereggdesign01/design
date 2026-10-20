@@ -41,7 +41,12 @@
       "h": true
     },
     "thumb": "v",
-    "manager": "최유미(01)"
+    "manager": "최유미(01)",
+    "bizNo": "425-90-00103",
+    "ceo": "박찬호 외 1명",
+    "taxEmails": [
+      "park-ch77@hotmail.com"
+    ]
   },
   {
     "slug": "jshang",
@@ -76,7 +81,11 @@
       }
     ],
     "manager": "최유미(01)",
-    "taxEmail": "jsdrkim@naver.com"
+    "bizNo": "206-93-61081",
+    "ceo": "김지훈",
+    "taxEmails": [
+      "jsdrkim@naver.com"
+    ]
   },
   {
     "slug": "geomdanhang",
@@ -115,7 +124,11 @@
       }
     ],
     "manager": "이길은",
-    "taxEmail": "hyh031@naver.com"
+    "bizNo": "146-94-01721",
+    "ceo": "하윤형",
+    "taxEmails": [
+      "hyh031@naver.com"
+    ]
   },
   {
     "slug": "kimhyeeun",
@@ -149,7 +162,11 @@
       }
     ],
     "manager": "이하늘",
-    "taxEmail": "heaeun.kim77@naver.com"
+    "bizNo": "312-91-80055",
+    "ceo": "김혜은",
+    "taxEmails": [
+      "heaeun.kim76@gmail.com"
+    ]
   },
   {
     "slug": "maxmo",
@@ -183,7 +200,11 @@
       }
     ],
     "manager": "이하늘",
-    "taxEmail": "maddoc79@naver.com"
+    "bizNo": "501-25-44033",
+    "ceo": "원창식",
+    "taxEmails": [
+      "maddoc79@naver.com"
+    ]
   },
   {
     "slug": "miraehangmaek",
@@ -223,7 +244,11 @@
       }
     ],
     "manager": "최유미(03)",
-    "taxEmail": "mdbhlee@hotmail.com"
+    "bizNo": "122-91-62788",
+    "ceo": "이병희",
+    "taxEmails": [
+      "mdbhlee@hotmail.com"
+    ]
   },
   {
     "slug": "bucheonmompyeonhan",
@@ -259,7 +284,11 @@
       }
     ],
     "manager": "이길은",
-    "taxEmail": "mampyunhan@naver.com"
+    "bizNo": "853-94-01421",
+    "ceo": "천승희",
+    "taxEmails": [
+      "mampyunhan@naver.com"
+    ]
   },
   {
     "slug": "samsungyu",
@@ -298,7 +327,12 @@
       }
     ],
     "manager": "이길은",
-    "taxEmail": "dr.chodh@gmail.com"
+    "bizNo": "596-90-01705",
+    "ceo": "조동희",
+    "taxEmails": [
+      "samsungu0101@gmail.com",
+      "dr.chodh@gmail.com"
+    ]
   },
   {
     "slug": "saebit",
@@ -334,7 +368,12 @@
         "url": "https://blog.naver.com/hongcrates"
       }
     ],
-    "manager": "최유미(03)"
+    "manager": "최유미(03)",
+    "bizNo": "301-91-89551",
+    "ceo": "홍정훈",
+    "taxEmails": [
+      "hongcrates@hanmail.net"
+    ]
   },
   {
     "slug": "seoulyuhang",
@@ -370,7 +409,11 @@
       }
     ],
     "manager": "이길은",
-    "taxEmail": "seouluhang@naver.com"
+    "bizNo": "314-96-05964",
+    "ceo": "김혜정",
+    "taxEmails": [
+      "seouluhang@naver.com"
+    ]
   },
   {
     "slug": "seoultaphangmaek",
@@ -407,7 +450,11 @@
       }
     ],
     "manager": "이길은",
-    "taxEmail": "tophmsurgery@naver.com"
+    "bizNo": "225-97-02816",
+    "ceo": "김병수",
+    "taxEmails": [
+      "tophmsurgery@naver.com"
+    ]
   },
   {
     "slug": "seoulhanghaji",
@@ -447,7 +494,11 @@
       }
     ],
     "manager": "최유미(01)",
-    "taxEmail": "hangandhagi@naver.com"
+    "bizNo": "254-98-01530",
+    "ceo": "박수민",
+    "taxEmails": [
+      "hangandhagi@naver.com"
+    ]
   },
   {
     "slug": "seoultunteun",
@@ -481,7 +532,12 @@
       }
     ],
     "badge": "홈페이지만 제작 · 마케팅 미진행",
-    "manager": "김수빈"
+    "manager": "김수빈",
+    "bizNo": "753-95-01735",
+    "ceo": "서종연",
+    "taxEmails": [
+      "seoultntnos@gmail.com"
+    ]
   },
   {
     "slug": "sejong365mideum",
@@ -531,7 +587,11 @@
       }
     ],
     "manager": "최유미(01)",
-    "taxEmail": "niccolao9@hanmail.net"
+    "bizNo": "149-95-02124",
+    "ceo": "김민구",
+    "taxEmails": [
+      "niccolao9@hanmail.net"
+    ]
   },
   {
     "slug": "songdo",
@@ -568,7 +628,12 @@
         "url": "https://blog.naver.com/djsongdo"
       }
     ],
-    "manager": "최유미(01)"
+    "manager": "최유미(01)",
+    "bizNo": "380-99-00268",
+    "ceo": "유정준",
+    "taxEmails": [
+      "park910314@naver.com"
+    ]
   },
   {
     "slug": "smileme",
@@ -600,7 +665,11 @@
     ],
     "badge": "홈페이지만 관리 · 마케팅 미진행",
     "manager": "김수빈",
-    "taxEmail": "smilemedent@naver.com"
+    "bizNo": "236-06-03592",
+    "ceo": "황인영",
+    "taxEmails": [
+      "smilemedent@naver.com"
+    ]
   },
   {
     "slug": "yeouiyuhang",
@@ -635,7 +704,11 @@
       }
     ],
     "manager": "최유미(03)",
-    "taxEmail": "nabiya3005@gmail.com"
+    "bizNo": "804-07-02530",
+    "ceo": "김남희",
+    "taxEmails": [
+      "nabiya3005@gmail.com"
+    ]
   },
   {
     "slug": "yeilhang",
@@ -670,7 +743,11 @@
       }
     ],
     "manager": "최유미(03)",
-    "taxEmail": "sumi_song@hanmail.net"
+    "bizNo": "127-90-47510",
+    "ceo": "유필건",
+    "taxEmails": [
+      "sumi_song@hanmail.net"
+    ]
   },
   {
     "slug": "joeunachim",
@@ -703,7 +780,12 @@
         "url": "https://blog.naver.com/mkhdream7"
       }
     ],
-    "manager": "최유미(03)"
+    "manager": "최유미(03)",
+    "bizNo": "127-90-38215",
+    "ceo": "김상희",
+    "taxEmails": [
+      "numbermoon@naver.com"
+    ]
   },
   {
     "slug": "champyeonhan",
@@ -734,7 +816,11 @@
       }
     ],
     "manager": "이길은",
-    "taxEmail": "violia1872@naver.com"
+    "bizNo": "356-94-01731",
+    "ceo": "천근영",
+    "taxEmails": [
+      "violia1872@naver.com"
+    ]
   },
   {
     "slug": "chaehang",
@@ -764,7 +850,12 @@
         "url": "http://www.chsurgery.com/"
       }
     ],
-    "manager": "김지예"
+    "manager": "김지예",
+    "bizNo": "312-91-59251",
+    "ceo": "채만규",
+    "taxEmails": [
+      "dagigi@hanmail.net"
+    ]
   },
   {
     "slug": "nowonhangpyeonhan",
@@ -800,7 +891,11 @@
       }
     ],
     "manager": "이길은",
-    "taxEmail": "drkang2024@naver.com"
+    "bizNo": "699-96-01840",
+    "ceo": "강현종",
+    "taxEmails": [
+      "koogi21c@naver.com"
+    ]
   },
   {
     "slug": "daywell_bundang",
@@ -834,7 +929,11 @@
       }
     ],
     "manager": "이하늘",
-    "taxEmail": "jmbundang@naver.com"
+    "bizNo": "179-91-01507",
+    "ceo": "조충현",
+    "taxEmails": [
+      "jmbundang@naver.com"
+    ]
   },
   {
     "slug": "daywell_daechi",
@@ -868,7 +967,11 @@
       }
     ],
     "manager": "이하늘",
-    "taxEmail": "bh820228@naver.com"
+    "bizNo": "247-97-01286",
+    "ceo": "강봉희",
+    "taxEmails": [
+      "bh820228@naver.com"
+    ]
   },
   {
     "slug": "daywell_yongsan",
@@ -903,7 +1006,11 @@
       }
     ],
     "manager": "이하늘",
-    "taxEmail": "parkseoheee@gmail.com"
+    "bizNo": "526-97-01291",
+    "ceo": "박서희",
+    "taxEmails": [
+      "parkseoheee@gmail.com"
+    ]
   },
   {
     "slug": "daywell_misa",
@@ -934,7 +1041,11 @@
       }
     ],
     "manager": "이하늘",
-    "taxEmail": "jaa5710@naver.com"
+    "bizNo": "167-99-01233",
+    "ceo": "김소연",
+    "taxEmails": [
+      "jaa5710@naver.com"
+    ]
   },
   {
     "slug": "osegwan",
@@ -959,7 +1070,13 @@
       }
     ],
     "badge": "홈페이지만 제작 · 마케팅 미진행",
-    "manager": "김수빈"
+    "manager": "김수빈",
+    "bizNo": "129-92-93367",
+    "ceo": "오세관",
+    "taxEmails": [
+      "mp3qm5@daum.net",
+      "dhtprhks74@daum.net"
+    ]
   },
   {
     "slug": "ajuhang",
@@ -997,6 +1114,10 @@
       }
     ],
     "manager": "최유미(03)",
-    "taxEmail": "susiyong@gmail.com"
+    "bizNo": "289-96-01774",
+    "ceo": "이경록",
+    "taxEmails": [
+      "susiyong@gmail.com"
+    ]
   }
 ]
